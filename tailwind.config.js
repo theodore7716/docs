@@ -2,8 +2,9 @@
 export default {
   darkMode: 'class',
   content: [
-    './docs/**/*.{md,vue,ts,js}',
-    './docs/.vitepress/**/*.{vue,ts,js}',
+    // Only theme source files — Tailwind classes live here
+    './docs/.vitepress/theme/**/*.{vue,ts}',
+    // Exclude cache, dist, and other generated dirs automatically (no globs for them)
   ],
   theme: {
     extend: {

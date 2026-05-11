@@ -4,12 +4,12 @@ import { ref, inject } from 'vue'
 import { inBrowser } from 'vitepress'
 import HomeBackground from '../HomeBackground.vue'
 
-const openAIModal = inject<(query?: string) => void>('openAIModal')!
+const openAIModal = inject<(query?: string) => void>('openAIModal')
 
 const query = ref('')
 
 function handleSearch() {
-  openAIModal(query.value.trim() || undefined)
+  openAIModal?.(query.value.trim() || undefined)
 }
 
 function scrollToTopics() {
@@ -43,7 +43,7 @@ function scrollToTopics() {
         <button class="hero-search-btn" @click="handleSearch">搜索</button>
       </div>
       <div class="hero-actions">
-        <button class="hero-btn-primary" @click="openAIModal()">
+        <button class="hero-btn-primary" @click="openAIModal?.()">
           ⚡ 向AI提问
         </button>
         <button class="hero-btn-outline" @click="scrollToTopics">

@@ -1,6 +1,8 @@
 node_modules
 .vitepress/dist
 .vitepress/cache
+docs/.vitepress/dist
+docs/.vitepress/cache
 .idea
 CLAUDE.md
 .DS_Store
@@ -11,3 +13,5 @@ graphrag_quickstart
 .impeccable/
 docs/superpowers/
 .tweak/
+.env.local
+docs/.env.local

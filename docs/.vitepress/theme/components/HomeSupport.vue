@@ -5,28 +5,20 @@ import FindWaysSection from './sections/FindWaysSection.vue'
 import AIFeatureSection from './sections/AIFeatureSection.vue'
 import TopicsGrid from './sections/TopicsGrid.vue'
 import FooterCTA from './sections/FooterCTA.vue'
-import AIModal from './AIModal.vue'
 import { useAIModal } from '../composables/useAIModal'
 
-const { modalOpen, initialQuery, openAIModal } = useAIModal()
+const { openAIModal } = useAIModal()
 
-// 子组件仍通过 inject 使用
+// 子组件通过 inject 使用
 provide('openAIModal', openAIModal)
 </script>
 
 <template>
-  <div class="home-support">
+  <div class="min-h-screen">
     <HeroSection />
     <FindWaysSection />
     <AIFeatureSection />
     <TopicsGrid />
     <FooterCTA />
-    <AIModal v-model="modalOpen" :initial-query="initialQuery" />
   </div>
 </template>
-
-<style scoped>
-.home-support {
-  min-height: 100vh;
-}
-</style>

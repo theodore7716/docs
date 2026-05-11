@@ -1,6 +1,7 @@
 <!-- docs/.vitepress/theme/components/sections/HeroSection.vue -->
 <script setup lang="ts">
 import { ref, inject } from 'vue'
+import { inBrowser } from 'vitepress'
 import HomeBackground from '../HomeBackground.vue'
 
 const openAIModal = inject<(query?: string) => void>('openAIModal')!
@@ -12,6 +13,7 @@ function handleSearch() {
 }
 
 function scrollToTopics() {
+  if (!inBrowser) return
   document.getElementById('topics-section')?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
@@ -35,6 +37,7 @@ function scrollToTopics() {
           type="text"
           class="hero-input"
           placeholder="输入关键词或问题，如「如何打开杠杆」"
+          aria-label="搜索关键词"
           @keydown.enter="handleSearch"
         />
         <button class="hero-search-btn" @click="handleSearch">搜索</button>

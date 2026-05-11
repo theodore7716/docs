@@ -11,3 +11,5 @@ graphrag_quickstart
 .impeccable/
 docs/superpowers/
 .tweak/
+.env.local
+docs/.env.local

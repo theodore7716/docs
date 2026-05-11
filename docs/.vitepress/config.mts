@@ -1,6 +1,12 @@
 import { defineConfig, type Plugin } from 'vitepress'
+import { loadEnv } from 'vite'
+import { fileURLToPath } from 'url'
 import fs from 'fs'
 import path from 'path'
+
+// 读取 docs/.env.local（不入 git）中的私密配置
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
+const env = loadEnv('development', path.resolve(__dirname, '..'), '')
 
 // 访问 /some/page.md 返回原始 markdown 源码（开发模式 + 生产构建）
 function rawMarkdownPlugin(): Plugin {
@@ -386,5 +392,14 @@ export default defineConfig({
 
   vite: {
     plugins: [rawMarkdownPlugin()],
+    server: {
+      proxy: {
+        '/api/ai': {
+          target: env.VITE_AI_API_HOST,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/ai/, '/api'),
+        },
+      },
+    },
   },
 })

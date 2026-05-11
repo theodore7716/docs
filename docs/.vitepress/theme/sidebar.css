@@ -177,3 +177,14 @@
 .VPSidebarItem.is-active .sidebar-item-icon--sub {
   color: var(--vp-c-brand-1);
 }
+
+/* ─── AI Drawer push layout ──────────────────────────────── */
+#VPContent {
+  transition: margin-right 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 481px) {
+  html.ai-drawer-open #VPContent {
+    margin-right: 380px;
+  }
+}

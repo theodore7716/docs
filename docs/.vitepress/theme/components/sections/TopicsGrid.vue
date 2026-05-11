@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { data as topicCounts } from '../../../topic-counts.data'
-import type { TopicKey } from '../../../topic-counts.data'
+import { data as _topicCountsRaw } from '../../../topic-counts.data'
+import type { TopicKey, TopicCounts } from '../../../topic-counts.data'
+
+const topicCounts = _topicCountsRaw as TopicCounts
 
 const TOPICS: { key: TopicKey; icon: string; label: string; path: string }[] = [
   { key: 'getting-started',          icon: '⚡', label: '新手入门',       path: '/getting-started/' },
@@ -25,11 +27,12 @@ const TOPICS: { key: TopicKey; icon: string; label: string; path: string }[] = [
           :key="t.key"
           :href="t.path"
           class="topic-card"
+          :aria-label="`${t.label}，${topicCounts[t.key]} 篇文档`"
         >
           <span class="topic-icon" aria-hidden="true">{{ t.icon }}</span>
           <h3 class="topic-name">{{ t.label }}</h3>
           <p class="topic-count">{{ topicCounts[t.key] }} 篇文档</p>
-          <span class="topic-link">浏览文档 →</span>
+          <span class="topic-link" aria-hidden="true">浏览文档 →</span>
         </a>
       </div>
     </div>

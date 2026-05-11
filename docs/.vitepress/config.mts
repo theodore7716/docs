@@ -269,6 +269,7 @@ export default defineConfig({
   title: 'Longbridge Docs',
   description: 'Longbridge Docs',
   base: '/',
+  appearance: 'light',
   ignoreDeadLinks: true,
   cleanUrls: true,
 

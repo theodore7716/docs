@@ -32,6 +32,7 @@ watch(
     if (!open) {
       messages.value = []
       query.value = ''
+      isLoading.value = false
       return
     }
     nextTick(() => {

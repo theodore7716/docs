@@ -13,13 +13,13 @@ function tryAI() {
     <div class="ai-feature-inner">
       <div class="af-text">
         <span class="af-label">AI 智能助手</span>
-        <h2 class="af-title">用自然语言提问<br>秒级获得专业解答</h2>
+        <h2 class="af-title">用自然语言提问，<br>秒级获得专业解答</h2>
         <ul class="af-list">
           <li>基于 2,400+ 专业文档实时检索</li>
           <li>每日自动同步最新文档</li>
           <li>支持追问与多轮对话</li>
         </ul>
-        <button class="af-btn" @click="tryAI">立即体验 AI 助手 →</button>
+        <button type="button" class="af-btn" @click="tryAI">立即体验 AI 助手 →</button>
       </div>
       <div class="af-demo" aria-hidden="true">
         <div class="chat-window">

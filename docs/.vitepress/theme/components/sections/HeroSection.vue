@@ -2,7 +2,6 @@
 <script setup lang="ts">
 import { ref, inject } from 'vue'
 import { inBrowser } from 'vitepress'
-import HomeBackground from '../HomeBackground.vue'
 
 const openAIModal = inject<(query?: string) => void>('openAIModal')
 
@@ -20,7 +19,6 @@ function scrollToTopics() {
 
 <template>
   <section class="hero">
-    <HomeBackground />
     <div class="hero-inner">
       <div class="hero-badge">✨ 长桥官方帮助中心 · AI 智答 · 持续更新</div>
       <h1 class="hero-h1">
@@ -60,6 +58,35 @@ function scrollToTopics() {
   padding: 80px 24px 72px;
   text-align: center;
   overflow: hidden;
+  background: var(--vp-c-bg);
+}
+
+/* 缓慢漂移的点阵背景 */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: -56px;
+  background-image: radial-gradient(circle, rgba(0, 184, 184, 0.08) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  animation: dot-drift 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 四周渐隐，保持内容区干净 */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 45%, transparent 35%, var(--vp-c-bg) 88%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes dot-drift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(28px, 28px); }
 }
 .hero-inner {
   position: relative;

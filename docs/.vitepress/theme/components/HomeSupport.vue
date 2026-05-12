@@ -1,24 +1,43 @@
 <script setup lang="ts">
 import { provide } from 'vue'
-import HeroSection from './sections/HeroSection.vue'
-import FindWaysSection from './sections/FindWaysSection.vue'
-import AIFeatureSection from './sections/AIFeatureSection.vue'
-import TopicsGrid from './sections/TopicsGrid.vue'
-import FooterCTA from './sections/FooterCTA.vue'
+import { useLocalStorage } from '@vueuse/core'
+import AskHero from './sections/AskHero.vue'
+import JourneyHeader from './sections/JourneyHeader.vue'
+import JourneySteps from './sections/JourneySteps.vue'
+import CategoryGroups from './sections/CategoryGroups.vue'
+import FooterMini from './sections/FooterMini.vue'
 import { useAIModal } from '../composables/useAIModal'
+import { type Market } from '../data/journey'
 
 const { openAIModal } = useAIModal()
+const activeMarket = useLocalStorage<Market>('lb-journey-market', 'hk')
 
-// 子组件通过 inject 使用
 provide('openAIModal', openAIModal)
+provide('journeyMarket', activeMarket)
 </script>
 
 <template>
   <div class="min-h-screen">
-    <HeroSection />
-    <FindWaysSection />
-    <AIFeatureSection />
-    <TopicsGrid />
-    <FooterCTA />
+    <!-- V1 首屏：Ask-First 对话台 -->
+    <AskHero />
+
+    <!-- 视觉断层 + V2 主体：Journey 旅程 -->
+    <div class="home-journey-section">
+      <JourneyHeader />
+      <JourneySteps />
+    </div>
+
+    <!-- 第三屏：按产品类目 -->
+    <CategoryGroups />
+
+    <!-- 底部 -->
+    <FooterMini />
   </div>
 </template>
+
+<style scoped>
+.home-journey-section {
+  background: var(--vp-c-bg-alt);
+  padding-top: 96px;
+}
+</style>

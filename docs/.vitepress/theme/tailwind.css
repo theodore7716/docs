@@ -1,4 +1,21 @@
 /* ============================================================
+   Base style patch for shadcn-vue (preflight: false 时补充)
+   ============================================================ */
+@layer base {
+  *, ::before, ::after {
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: var(--vp-c-border);
+    border-width: 0;
+  }
+  button, [role="button"] { cursor: pointer; }
+  input::placeholder, textarea::placeholder {
+    color: var(--vp-c-text-3);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
    Longbridge Docs — 颜色 Token 体系（Longbridge UX 5.0 / DESIGN.md 对齐）
    ============================================================ */
 

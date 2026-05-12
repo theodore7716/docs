@@ -6,7 +6,7 @@ import Breadcrumb from '../components/Breadcrumb/index.vue'
 import DocBackground from '../components/DocBackground.vue'
 import HomeNavbar from '../components/HomeNavbar.vue'
 import PageHero from '../components/PageHero.vue'
-import AsideAI from '../components/AsideAI.vue'
+// import AsideAI from '../components/AsideAI.vue'
 import PageFeedback from '../components/PageFeedback.vue'
 import TweakPanel from '../components/TweakPanel.vue'
 import AiChatDrawer from '../components/AiChatDrawer.vue'
@@ -56,11 +56,10 @@ watch(modalOpen, (open) => {
       <DocBackground v-if="isDocPage" />
     </template>
     <template #doc-before>
-      <Breadcrumb />
+      <!-- <Breadcrumb /> -->
       <PageHero v-if="isDocPage" />
     </template>
     <template #aside-outline-after>
-      <AsideAI v-if="isDocPage" />
     </template>
     <template #doc-after>
       <PageFeedback v-if="isDocPage" />

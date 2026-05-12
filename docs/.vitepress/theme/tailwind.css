@@ -1636,8 +1636,23 @@ html.ai-resizing #VPContent {
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--vp-c-text-1);
-  margin: 0 0 12px;
+  margin: 0;
 }
+.lb-title-row { display: flex; align-items: flex-start; gap: 8px; margin: 0 0 12px; }
+.lb-title-row .lb-title { margin: 0; flex: 1; }
+.lb-copy-btn {
+  flex-shrink: 0;
+  margin-top: 8px;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-border);
+  background: transparent;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.lb-copy-btn:hover { color: var(--vp-c-text-1); border-color: var(--vp-c-text-2); }
 .lb-doc-hero .lb-lead {
   font-size: 16px;
   line-height: 1.6;

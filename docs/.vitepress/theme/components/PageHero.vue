@@ -15,11 +15,11 @@ const lead = computed(() => frontmatter.value.description || '')
 const copied = ref(false)
 
 function copyLink() {
-  if (!inBrowser) return
+  if (!inBrowser || !navigator.clipboard) return
   navigator.clipboard.writeText(window.location.href).then(() => {
     copied.value = true
     setTimeout(() => { copied.value = false }, 2000)
-  })
+  }).catch(() => {})
 }
 </script>
 

@@ -2,11 +2,9 @@
 import { computed, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useData, inBrowser } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import Breadcrumb from '../components/Breadcrumb/index.vue'
 import DocBackground from '../components/DocBackground.vue'
 import HomeNavbar from '../components/HomeNavbar.vue'
 import PageHero from '../components/PageHero.vue'
-// import AsideAI from '../components/AsideAI.vue'
 import PageFeedback from '../components/PageFeedback.vue'
 import TweakPanel from '../components/TweakPanel.vue'
 import AiChatDrawer from '../components/AiChatDrawer.vue'
@@ -68,7 +66,7 @@ watch(modalOpen, (open) => {
       <TweakPanel v-if="isDev" />
       <!-- 全局 AI 助手抽屉 -->
       <AiChatDrawer v-model="modalOpen" :initial-query="initialQuery" />
-      <!-- 非首页浮动触发按钮（移动端保留，桌面端由 AsideAI 卡片承担） -->
+      <!-- 非首页浮动触发按钮（移动端 AI 入口） -->
       <button
         v-if="!isHomePage"
         class="ai-fab-mobile fixed bottom-7 right-7 w-12 h-12 rounded-full bg-brand-1 text-white border-0 cursor-pointer flex items-center justify-center z-[999] transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5"

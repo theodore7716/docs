@@ -368,6 +368,10 @@
   html.ai-drawer-open #VPContent {
     padding-right: var(--ai-drawer-width, 380px) !important;
   }
+
+  html.ai-drawer-open .VPDocAside {
+    display: none !important;
+  }
 }
 
 html.ai-resizing #VPContent {

@@ -6,6 +6,7 @@ import { stream } from 'fetch-event-stream'
 import MarkdownRender from 'markstream-vue'
 import { useAIModal } from '../composables/useAIModal'
 import RiveThinkingIcon from './RiveThinkingIcon.vue'
+import { useI18n } from '../../i18n/useI18n'
 
 import { AI_ENDPOINT, AI_HEADERS } from '../config/ai'
 
@@ -19,6 +20,7 @@ const emit = defineEmits<{
 }>()
 
 const { messages, clearMessages } = useAIModal()
+const { t } = useI18n()
 
 const inputRef = ref<HTMLTextAreaElement>()
 const messagesRef = ref<HTMLDivElement>()
@@ -181,7 +183,7 @@ async function submitText(text: string) {
       assistantMsg.final = true
       return
     }
-    assistantMsg.content = assistantMsg.content || '抱歉，出现了错误，请稍后重试。'
+    assistantMsg.content = assistantMsg.content || t('ai.error')
     assistantMsg.loading = false
     assistantMsg.final = true
   } finally {
@@ -239,13 +241,13 @@ function toggleExpand() {
             <path d="M7.111 2.34728C7.29334 1.80026 8.06709 1.80026 8.24942 2.34728L9.5054 6.1152C9.56512 6.29437 9.70571 6.43496 9.88487 6.49468L13.6528 7.75065C14.1998 7.93299 14.1998 8.70673 13.6528 8.88907L9.88487 10.145C9.70571 10.2048 9.56512 10.3454 9.5054 10.5245L8.24942 14.2924C8.06709 14.8395 7.29334 14.8395 7.111 14.2924L5.85503 10.5245C5.79531 10.3454 5.65472 10.2048 5.47556 10.145L1.70763 8.88907C1.16061 8.70673 1.16061 7.93299 1.70763 7.75065L5.47556 6.49468C5.65472 6.43496 5.79531 6.29437 5.85503 6.1152L7.111 2.34728Z" fill="currentColor"/>
             <path d="M13.0648 1.0138C13.1937 0.665555 13.6862 0.665555 13.8151 1.0138L14.0676 1.69612C14.1081 1.80561 14.1944 1.89194 14.3039 1.93245L14.9862 2.18493C15.3345 2.31379 15.3345 2.80635 14.9862 2.93521L14.3039 3.18769C14.1944 3.22821 14.1081 3.31453 14.0676 3.42402L13.8151 4.10634C13.6862 4.45459 13.1937 4.45459 13.0648 4.10634L12.8123 3.42402C12.7718 3.31453 12.6855 3.22821 12.576 3.18769L11.8937 2.93521C11.5454 2.80635 11.5454 2.31379 11.8937 2.18493L12.576 1.93245C12.6855 1.89194 12.7718 1.80561 12.8123 1.69612L13.0648 1.0138Z" fill="currentColor"/>
           </svg>
-          <span>Assistant</span>
+          <span>{{ t('ai.title') }}</span>
         </div>
         <div class="ai-drawer-header-actions">
           <button
             v-if="messages.length > 0"
             class="ai-header-btn"
-            title="清空对话"
+            :title="t('ai.clearChat')"
             @click="clearMessages"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -256,7 +258,7 @@ function toggleExpand() {
             </svg>
           </button>
           <!-- Expand / shrink -->
-          <button class="ai-header-btn" :title="drawerWidth >= MAX_WIDTH ? '收起' : '展开'" @click="toggleExpand">
+          <button class="ai-header-btn" :title="drawerWidth >= MAX_WIDTH ? t('ai.collapse') : t('ai.expand')" @click="toggleExpand">
             <svg v-if="drawerWidth < MAX_WIDTH" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
             </svg>
@@ -264,15 +266,13 @@ function toggleExpand() {
               <path d="M4 14h6v6M14 4h6v6M10 20l-7-7M20 10l-7 7" />
             </svg>
           </button>
-          <button class="ai-header-btn" @click="close" aria-label="关闭">
+          <button class="ai-header-btn" @click="close" :aria-label="t('ai.close')">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
         </div>
       </div>
-      <!-- Disclaimer -->
-      <p class="ai-disclaimer">Responses are generated using AI and may contain mistakes.</p>
 
       <!-- Messages -->
       <div ref="messagesRef" class="ai-messages" aria-live="polite" aria-atomic="false" @scroll="checkAtBottom">
@@ -291,7 +291,7 @@ function toggleExpand() {
                 <ClientOnly>
                   <RiveThinkingIcon :size="16" />
                 </ClientOnly>
-                <span class="ai-thinking-text">思考中</span>
+                <span class="ai-thinking-text">{{ t('ai.thinking') }}</span>
               </div>
               <ClientOnly v-else>
                 <MarkdownRender
@@ -307,7 +307,7 @@ function toggleExpand() {
                 <button
                   class="ai-action-btn"
                   :class="{ copied: copiedIndex === i }"
-                  :aria-label="copiedIndex === i ? '已复制' : '复制'"
+                  :aria-label="copiedIndex === i ? t('ai.copied') : t('ai.copy')"
                   @click="copy(msg.content, i)"
                 >
                   <svg v-if="copiedIndex === i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -317,14 +317,14 @@ function toggleExpand() {
                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                     <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
                   </svg>
-                  <span class="ai-action-tooltip">{{ copiedIndex === i ? '已复制' : '复制' }}</span>
+                  <span class="ai-action-tooltip">{{ copiedIndex === i ? t('ai.copied') : t('ai.copy') }}</span>
                 </button>
-                <button class="ai-action-btn" aria-label="重新生成" @click="retry(i)">
+                <button class="ai-action-btn" :aria-label="t('ai.regenerate')" @click="retry(i)">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="1 4 1 10 7 10" />
                     <path d="M3.51 15a9 9 0 1 0 .49-4" />
                   </svg>
-                  <span class="ai-action-tooltip">重新生成</span>
+                  <span class="ai-action-tooltip">{{ t('ai.regenerate') }}</span>
                 </button>
               </div>
             </template>
@@ -338,12 +338,11 @@ function toggleExpand() {
           v-if="!isAtBottom && messages.length > 0"
           class="ai-scroll-latest"
           @click="scrollToLatest"
-          aria-label="滚动到最新消息"
+          :aria-label="t('ai.scrollToLatest')"
         >
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
-          <span>最新消息</span>
         </button>
       </Transition>
 
@@ -354,14 +353,14 @@ function toggleExpand() {
             ref="inputRef"
             v-model="query"
             class="ai-input"
-            placeholder="Ask a question..."
+            :placeholder="t('ai.placeholder')"
             rows="1"
             :disabled="isLoading"
             @keydown="onKeydown"
           />
           <div class="ai-input-footer">
             <!-- Attachment placeholder (visual only) -->
-            <button class="ai-attach-btn" disabled aria-label="附件" tabindex="-1">
+            <button class="ai-attach-btn" disabled :aria-label="t('ai.attach')" tabindex="-1">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
               </svg>
@@ -371,7 +370,7 @@ function toggleExpand() {
               v-if="isLoading"
               class="ai-send-btn ai-stop-btn"
               @click="stop"
-              aria-label="停止"
+              :aria-label="t('ai.stop')"
             >
               <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
                 <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -382,7 +381,7 @@ function toggleExpand() {
               class="ai-send-btn"
               :disabled="!query.trim()"
               @click="submit"
-              aria-label="发送"
+              :aria-label="t('ai.send')"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 19V5M5 12l7-7 7 7" />
@@ -391,6 +390,8 @@ function toggleExpand() {
           </div>
         </div>
       </div>
+      <!-- Disclaimer -->
+      <p class="ai-disclaimer">{{ t('ai.disclaimer') }}</p>
     </div>
   </Transition>
 </template>
@@ -447,7 +448,7 @@ function toggleExpand() {
 
 /* Disclaimer */
 .ai-disclaimer {
-  @apply m-0 pt-2.5 px-5 pb-3 text-xs leading-normal text-center;
+  @apply m-0 pt-2 px-5 pb-3 text-xs leading-normal text-center;
   color: var(--vp-c-text-3);
   flex-shrink: 0;
 }
@@ -467,7 +468,7 @@ function toggleExpand() {
 .ai-messages {
   flex: 1;
   overflow-y: auto;
-  @apply pt-5 px-5 pb-2 flex flex-col gap-4;
+  @apply pt-2 px-5 pb-2 flex flex-col gap-4;
   scrollbar-width: thin;
   scrollbar-color: var(--vp-c-border) transparent;
 }

@@ -1,6 +1,13 @@
+<script setup lang="ts">
+import { useBreadcrumb } from '../../composables/useBreadcrumb'
+import { useI18n } from '../../../i18n/useI18n'
+const { breadcrumbItems } = useBreadcrumb()
+const { t } = useI18n()
+</script>
+
 <template>
   <div v-if="breadcrumbItems.length > 1" class="pb-2 mb-3">
-    <nav class="flex items-center" aria-label="面包屑导航">
+    <nav class="flex items-center" :aria-label="t('common.breadcrumbAria')">
       <ol class="flex items-center m-0 p-0 list-none">
         <li
           v-for="(item, index) in breadcrumbItems"
@@ -24,9 +31,3 @@
     </nav>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useBreadcrumb } from '../../composables/useBreadcrumb'
-
-const { breadcrumbItems } = useBreadcrumb()
-</script>

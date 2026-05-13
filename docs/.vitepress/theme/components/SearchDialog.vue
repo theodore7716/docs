@@ -6,9 +6,11 @@ import { useSearchDialog } from '../composables/useSearchDialog'
 import { useDocsSearch, type DocSearchItem } from '../composables/useDocsSearch'
 import { useSearchHistory } from '../composables/useSearchHistory'
 import { useAIModal } from '../composables/useAIModal'
+import { useI18n } from '../../i18n/useI18n'
 
 const router = useRouter()
 const { lang } = useData()
+const { t } = useI18n()
 const { isOpen, close } = useSearchDialog()
 const { results, isSearching, search, clear } = useDocsSearch()
 const { history, addToHistory, removeFromHistory, clearHistory } = useSearchHistory()
@@ -177,7 +179,7 @@ onBeforeUnmount(() => {
       <div v-if="isOpen" class="sdlg-root" @keydown.stop>
         <div class="sdlg-backdrop" @click="close" />
 
-        <div class="sdlg-panel" role="dialog" aria-label="搜索文档" aria-modal="true">
+        <div class="sdlg-panel" role="dialog" :aria-label="t('search.dialogAriaLabel')" aria-modal="true">
           <!-- ── Input row ── -->
           <div class="sdlg-input-row">
             <Search :size="18" class="sdlg-search-icon" aria-hidden="true" />
@@ -186,13 +188,13 @@ onBeforeUnmount(() => {
               v-model="query"
               class="sdlg-input"
               type="search"
-              placeholder="搜索文档..."
+              :placeholder="t('search.placeholder')"
               autocomplete="off"
               spellcheck="false"
               @input="handleInput"
               @keydown="handleKeydown"
             />
-            <kbd class="sdlg-esc" @click="close" role="button" tabindex="-1">ESC</kbd>
+            <kbd class="sdlg-esc" @click="close" role="button" tabindex="-1">{{ t('search.esc') }}</kbd>
           </div>
 
           <!-- ── Body ── -->
@@ -201,8 +203,8 @@ onBeforeUnmount(() => {
             <!-- ── History mode (empty query) ── -->
             <template v-if="isHistoryMode">
               <div class="sdlg-section-header">
-                <span>Recent searches</span>
-                <button type="button" class="sdlg-clear-btn" @click="clearHistory">Clear all</button>
+                <span>{{ t('search.recentSearches') }}</span>
+                <button type="button" class="sdlg-clear-btn" @click="clearHistory">{{ t('search.clearAll') }}</button>
               </div>
               <div ref="listRef" class="sdlg-list">
                 <a
@@ -235,7 +237,7 @@ onBeforeUnmount(() => {
                     type="button"
                     class="sdlg-history-remove"
                     :class="{ 'sdlg-history-remove--visible': selectedIndex === i }"
-                    title="移除记录"
+                    :title="t('search.removeItem')"
                     @click="removeHistory($event, item.id)"
                   >
                     <X :size="12" />
@@ -248,7 +250,7 @@ onBeforeUnmount(() => {
             <template v-else>
               <!-- AI row: always first -->
               <div v-if="hasAiRow" class="sdlg-ai-section">
-                <span class="sdlg-ai-label">Ask AI assistant</span>
+                <span class="sdlg-ai-label">{{ t('search.askAiLabel') }}</span>
                 <button
                   type="button"
                   class="sdlg-ai-item"
@@ -258,7 +260,7 @@ onBeforeUnmount(() => {
                   @mouseenter="selectedIndex = 0"
                 >
                   <Sparkles :size="14" class="sdlg-sparkle" aria-hidden="true" />
-                  <span>Can you tell me about {{ query }} ?</span>
+                  <span>{{ t('search.askAiTemplate', { query }) }}</span>
                 </button>
               </div>
 
@@ -306,7 +308,7 @@ onBeforeUnmount(() => {
                 </a>
 
                 <div v-if="results.length === 0 && query.trim() && !isSearching" class="sdlg-empty">
-                  无法找到相关结果
+                  {{ t('search.empty') }}
                 </div>
               </div>
             </template>

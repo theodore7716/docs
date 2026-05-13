@@ -1,13 +1,31 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter } from 'vitepress'
 import { newUserSteps } from '../../data/new-user-path'
 import { useI18n } from '../../../i18n/useI18n'
 
 const router = useRouter()
 const { t } = useI18n()
+const currentStep = ref(0)
 
 function navigate(path: string) {
   router.go(path)
+}
+
+function selectStep(index: number) {
+  currentStep.value = index
+}
+
+function nextStep() {
+  if (currentStep.value < newUserSteps.length - 1) {
+    currentStep.value += 1
+  }
+}
+
+function prevStep() {
+  if (currentStep.value > 0) {
+    currentStep.value -= 1
+  }
 }
 </script>
 
@@ -22,34 +40,62 @@ function navigate(path: string) {
         <p class="new-user-path__caption">{{ t('newUserPath.caption') }}</p>
       </div>
 
-      <!-- Step Rail -->
-      <div class="new-user-path__rail" role="list">
-        <template v-for="(step, i) in newUserSteps" :key="step.id">
-          <!-- 卡片 -->
-          <button
-            class="nup-step"
-            role="listitem"
-            :aria-label="`步骤 ${step.num}: ${step.title}`"
-            @click="navigate(step.path)"
-          >
-            <span class="nup-step__num">{{ step.num }}</span>
-            <span class="nup-step__title">{{ step.title }}</span>
-            <span class="nup-step__sub">{{ step.subtitle }}</span>
-            <span class="nup-step__duration">{{ step.durationLabel }}</span>
-          </button>
-
-          <!-- 连接线（最后一个卡片后不渲染） -->
-          <div
-            v-if="i < newUserSteps.length - 1"
-            class="nup-connector"
-            aria-hidden="true"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </template>
+      <!-- Segmented Tabs -->
+      <div class="nup-tabs" role="tablist">
+        <button
+          v-for="(step, i) in newUserSteps"
+          :key="step.id"
+          class="nup-tab"
+          :class="{ 'nup-tab--active': currentStep === i }"
+          role="tab"
+          :aria-selected="currentStep === i"
+          @click="selectStep(i)"
+        >
+          <span class="nup-tab__dot"></span>
+          <span class="nup-tab__text">{{ step.num }} {{ step.title }}</span>
+        </button>
       </div>
+
+      <!-- Step Panel -->
+      <Transition name="nup-panel" mode="out-in">
+        <div :key="currentStep" class="nup-panel">
+          <div class="nup-panel__num">{{ newUserSteps[currentStep].num }}</div>
+          <div class="nup-panel__body">
+            <div class="nup-panel__title">{{ newUserSteps[currentStep].title }}</div>
+            <div class="nup-panel__sub">{{ newUserSteps[currentStep].subtitle }}</div>
+            <div class="nup-panel__meta">
+              <span class="nup-panel__time">预计 {{ newUserSteps[currentStep].durationLabel }}</span>
+              <button
+                class="nup-panel__cta"
+                @click="navigate(newUserSteps[currentStep].path)"
+              >
+                查看文档 →
+              </button>
+            </div>
+          </div>
+        </div>
+      </Transition>
+
+      <!-- Navigation -->
+      <div class="nup-nav">
+        <button
+          class="nup-nav__btn"
+          :disabled="currentStep === 0"
+          @click="prevStep"
+        >
+          ← 上一步
+        </button>
+        <span class="nup-nav__progress">第 {{ currentStep + 1 }} 步 / 共 {{ newUserSteps.length }} 步</span>
+        <button
+          class="nup-nav__btn"
+          :disabled="currentStep === newUserSteps.length - 1"
+          @click="nextStep"
+        >
+          下一步 →
+        </button>
+      </div>
+
+      <p class="nup-note">每步点击可跳转到对应文档，所有步骤均可独立进入</p>
 
     </div>
   </section>
@@ -67,7 +113,7 @@ function navigate(path: string) {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 36px;
 }
 
 /* ── 标题区 ── */
@@ -101,117 +147,257 @@ function navigate(path: string) {
   margin: 0;
 }
 
-/* ── Rail ── */
-.new-user-path__rail {
+/* ── Segmented Tabs ── */
+.nup-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--vp-c-bg);
+  border-radius: 12px;
+  padding: 4px;
+  width: fit-content;
+}
+
+.nup-tab {
+  all: unset;
+  height: 36px;
+  border-radius: 9px;
+  padding: 0 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  font-variant-numeric: tabular-nums;
   display: flex;
   align-items: center;
-  gap: 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: 4px;
-}
-
-.new-user-path__rail::-webkit-scrollbar {
-  display: none;
-}
-
-/* ── 连接线 ── */
-.nup-connector {
-  flex-shrink: 0;
-  color: var(--vp-c-divider);
-  transition: color 200ms ease-out;
-  padding: 0 4px;
-}
-
-/* ── 步骤卡 ── */
-.nup-step {
-  all: unset;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   gap: 6px;
-  padding: 20px 22px;
-  min-width: 160px;
-  background: var(--vp-c-bg);
+  transition: background 150ms ease-out, color 150ms ease-out, box-shadow 150ms ease-out;
+  white-space: nowrap;
+}
+
+.nup-tab:hover:not(.nup-tab--active) {
+  background: rgba(0, 184, 184, 0.08);
+  color: var(--vp-c-text-1);
+}
+
+.nup-tab.nup-tab--active {
+  background: var(--vp-c-bg-alt);
+  color: var(--vp-c-brand-1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.nup-tab__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.nup-tab__text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Step Panel ── */
+.nup-panel {
   border: 1px solid var(--vp-c-border);
-  border-radius: 14px;
-  cursor: pointer;
-  text-align: left;
-  box-sizing: border-box;
-  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background: var(--vp-c-bg);
+  min-height: 160px;
 }
 
-.nup-step:hover {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* hover 时让相邻连接线也变色：通过父容器 hover 处理 */
-.nup-step:hover + .nup-connector {
-  color: rgba(0, 184, 184, 0.4);
-}
-
-.nup-step__num {
-  font-size: 26px;
+.nup-panel__num {
+  font-size: 56px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  letter-spacing: -0.03em;
   color: var(--vp-c-brand-1);
   font-variant-numeric: tabular-nums;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 90px;
+  text-align: center;
 }
 
-.nup-step__title {
-  font-size: 15px;
+.nup-panel__body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nup-panel__title {
+  font-size: 20px;
   font-weight: 600;
   color: var(--vp-c-text-1);
   line-height: 1.4;
 }
 
-.nup-step__sub {
-  font-size: 13px;
+.nup-panel__sub {
+  font-size: 15px;
   color: var(--vp-c-text-2);
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
-.nup-step__duration {
+.nup-panel__meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.nup-panel__time {
+  font-size: 13px;
+  color: var(--vp-c-text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.nup-panel__cta {
+  all: unset;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-1);
+  background: rgba(0, 184, 184, 0.12);
+  border: 1px solid rgba(0, 184, 184, 0.2);
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 150ms ease-out, border-color 150ms ease-out;
+  white-space: nowrap;
+}
+
+.nup-panel__cta:hover {
+  background: rgba(0, 184, 184, 0.20);
+  border-color: rgba(0, 184, 184, 0.4);
+  color: var(--vp-c-brand-1);
+}
+
+/* ── Navigation ── */
+.nup-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.nup-nav__btn {
+  all: unset;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  background: none;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color 150ms ease-out, color 150ms ease-out;
+  white-space: nowrap;
+}
+
+.nup-nav__btn:hover:not(:disabled) {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.nup-nav__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nup-nav__progress {
   font-size: 12px;
   color: var(--vp-c-text-3);
   font-variant-numeric: tabular-nums;
-  margin-top: 4px;
+  white-space: nowrap;
+}
+
+.nup-note {
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+  text-align: center;
+  margin: 0;
+  margin-top: 8px;
+}
+
+/* ── Transition ── */
+.nup-panel-enter-active,
+.nup-panel-leave-active {
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.nup-panel-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.nup-panel-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
 }
 
 /* ── 响应式 ── */
-@media (max-width: 1024px) {
-  .new-user-path__rail {
-    /* 给移动端滚动加首卡 padding，露出第二卡提示可继续滑动 */
-    padding-left: 0;
-  }
-}
-
 @media (max-width: 768px) {
   .new-user-path {
-    padding: 64px 0 64px 20px;
+    padding: 64px 16px;
   }
 
   .new-user-path__inner {
-    gap: 36px;
-    padding-right: 20px;
+    gap: 28px;
   }
 
-  .new-user-path__rail {
-    padding-right: 20px;
-    /* 让第一卡从 section 左边距开始，最后露出下一卡 */
+  .nup-tabs {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
 
-  .nup-step {
-    min-width: 148px;
+  .nup-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nup-tab {
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  .nup-panel {
+    flex-direction: column;
+    padding: 24px;
+    min-height: auto;
+    gap: 16px;
+  }
+
+  .nup-panel__num {
+    width: 100%;
+    text-align: left;
+  }
+
+  .nup-nav {
+    justify-content: center;
+  }
+
+  .nup-nav__btn {
+    font-size: 12px;
+    padding: 5px 12px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nup-step,
-  .nup-connector {
+  .nup-tab,
+  .nup-panel,
+  .nup-nav__btn,
+  .nup-panel__cta {
     transition: none !important;
   }
 }

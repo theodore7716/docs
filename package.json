@@ -17,8 +17,12 @@
   },
   "dependencies": {
     "@vueuse/core": "^14.3.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "fetch-event-stream": "^0.1.6",
     "lucide-vue-next": "^1.0.0",
-    "markstream-vue": "^0.0.14-beta.8"
+    "markstream-vue": "^0.0.14-beta.8",
+    "radix-vue": "^1.9.17",
+    "tailwind-merge": "^3.6.0"
   }
 }

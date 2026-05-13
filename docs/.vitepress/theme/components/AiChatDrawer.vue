@@ -411,7 +411,6 @@ function toggleExpand() {
   width: var(--ai-drawer-width, 380px);
   background: var(--vp-c-bg);
   border-left: 1px solid var(--vp-c-border);
-  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.12);
   /* Higher than VPNav (z-index:20) and HomeNavbar (z-index:100) so the drawer
      properly covers the top-right corner without pushing nav bars. */
   z-index: 200;

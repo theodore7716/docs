@@ -1,70 +1,95 @@
 /* ============================================================
+   Base style patch for shadcn-vue (preflight: false 时补充)
+   ============================================================ */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: var(--vp-c-border);
+    border-width: 0;
+  }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--vp-c-text-3);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
    Longbridge Docs — 颜色 Token 体系（Longbridge UX 5.0 / DESIGN.md 对齐）
    ============================================================ */
 
 :root {
   /* ── Brand ── */
-  --vp-c-brand-1: #00B8B8;
+  --vp-c-brand-1: #00b8b8;
   --vp-c-brand-2: #1ac7c7;
   --vp-c-brand-3: #33cdcd;
   --vp-c-brand-soft: rgba(0, 184, 184, 0.12);
-  --vp-c-brand-aux: #E5F8F8;
+  --vp-c-brand-aux: #e5f8f8;
 
   /* ── Text（覆盖 VitePress 默认，对齐 DESIGN.md）── */
-  --vp-c-text-1: #0A0E19;
-  --vp-c-text-2: #6C6E75;
-  --vp-c-text-3: #A9ABAE;
+  --vp-c-text-1: #0a0e19;
+  --vp-c-text-2: #6c6e75;
+  --vp-c-text-3: #a9abae;
 
   /* ── Background ── */
-  --vp-c-bg: #FFFFFF;
-  --vp-c-bg-soft: #F3F5F6;
-  --vp-c-bg-alt: #F3F5F6;
-  --vp-c-bg-elv: #FFFFFF;
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: #f3f5f6;
+  --vp-c-bg-alt: #f3f5f6;
+  --vp-c-bg-elv: #ffffff;
 
   /* ── Divider / Border ── */
-  --vp-c-divider: #DDDDDF;
-  --vp-c-border: #E6E7E8;
+  --vp-c-divider: #dddddf;
+  --vp-c-border: #e6e7e8;
 
   /* ── Status（theme-invariant）── */
-  --lb-c-up: #00ADA2;
-  --lb-c-down: #FF3A75;
-  --lb-c-success: #00CC92;
-  --lb-c-warning: #FF9728;
-  --lb-c-danger: #F7415F;
-  --lb-c-info: #2A99FE;
+  --lb-c-up: #00ada2;
+  --lb-c-down: #ff3a75;
+  --lb-c-success: #00cc92;
+  --lb-c-warning: #ff9728;
+  --lb-c-danger: #f7415f;
+  --lb-c-info: #2a99fe;
 
   /* ── AI 模块（始终深色，不随主题切换）── */
-  --lb-ai-bg: #0A0E19;
+  --lb-ai-bg: #0a0e19;
   --lb-ai-surface: #232630;
-  --lb-ai-border: #2C3039;
-  --lb-ai-divider: #3B3E47;
-  --lb-ai-text-1: #FFFFFF;
-  --lb-ai-text-2: #9D9FA3;
-  --lb-ai-text-3: #60626A;
-  --lb-ai-accent: #00F0C4;
-  --lb-ai-accent-aux: #09252A;
-  --lb-ai-on-accent: #0A0E19;
+  --lb-ai-border: #2c3039;
+  --lb-ai-divider: #3b3e47;
+  --lb-ai-text-1: #ffffff;
+  --lb-ai-text-2: #9d9fa3;
+  --lb-ai-text-3: #60626a;
+  --lb-ai-accent: #00f0c4;
+  --lb-ai-accent-aux: #09252a;
+  --lb-ai-on-accent: #0a0e19;
   --lb-ai-bubble-user-bg: rgba(255, 255, 255, 0.08);
   --lb-ai-bubble-user-fg: rgba(255, 255, 255, 0.82);
   --lb-ai-bubble-ai-bg: rgba(0, 240, 196, 0.14);
-  --lb-ai-bubble-ai-fg: rgba(0, 240, 196, 0.90);
+  --lb-ai-bubble-ai-fg: rgba(0, 240, 196, 0.9);
 
   /* ── 分类卡片色板 ── */
-  --lb-cat-blue: #3B82F6;
-  --lb-cat-cyan: #06B6D4;
-  --lb-cat-teal: #14B8A6;
-  --lb-cat-green: #22C55E;
-  --lb-cat-lime: #84CC16;
-  --lb-cat-yellow: #EAB308;
-  --lb-cat-amber: #F59E0B;
-  --lb-cat-orange: #F97316;
-  --lb-cat-red: #EF4444;
-  --lb-cat-pink: #EC4899;
-  --lb-cat-fuchsia: #D946EF;
-  --lb-cat-purple: #A855F7;
-  --lb-cat-violet: #8B5CF6;
-  --lb-cat-indigo: #6366F1;
-  --lb-cat-slate: #64748B;
+  --lb-cat-blue: #3b82f6;
+  --lb-cat-cyan: #06b6d4;
+  --lb-cat-teal: #14b8a6;
+  --lb-cat-green: #22c55e;
+  --lb-cat-lime: #84cc16;
+  --lb-cat-yellow: #eab308;
+  --lb-cat-amber: #f59e0b;
+  --lb-cat-orange: #f97316;
+  --lb-cat-red: #ef4444;
+  --lb-cat-pink: #ec4899;
+  --lb-cat-fuchsia: #d946ef;
+  --lb-cat-purple: #a855f7;
+  --lb-cat-violet: #8b5cf6;
+  --lb-cat-indigo: #6366f1;
+  --lb-cat-slate: #64748b;
 
   /* ── SVG 插画 mint 色板 ── */
   --lb-illu-mint-50: #c4f0ea;
@@ -75,8 +100,8 @@
   /* ── HomeGraphBg 浅色 ── */
   --lb-graph-bg: #e8faf8;
   --lb-graph-sf: #f2fdf9;
-  --lb-graph-alt: #EAEBEC;
-  --lb-graph-bdr: #DDDDDF;
+  --lb-graph-alt: #eaebec;
+  --lb-graph-bdr: #dddddf;
 
   /* ── 反色 CTA 按钮（登录/注册）── */
   --lb-cta-bg: #0d0d0d;
@@ -86,26 +111,26 @@
 
 .dark {
   /* ── Brand ── */
-  --vp-c-brand-1: #00F0C4;
+  --vp-c-brand-1: #00f0c4;
   --vp-c-brand-2: #32eadc;
   --vp-c-brand-3: #2ed4c7;
   --vp-c-brand-soft: rgba(0, 240, 196, 0.12);
-  --vp-c-brand-aux: #09252A;
+  --vp-c-brand-aux: #09252a;
 
   /* ── Text ── */
-  --vp-c-text-1: #FFFFFF;
-  --vp-c-text-2: #9D9FA3;
-  --vp-c-text-3: #60626A;
+  --vp-c-text-1: #ffffff;
+  --vp-c-text-2: #9d9fa3;
+  --vp-c-text-3: #60626a;
 
   /* ── Background ── */
-  --vp-c-bg: #0A0E19;
+  --vp-c-bg: #0a0e19;
   --vp-c-bg-soft: #232630;
   --vp-c-bg-alt: #232630;
   --vp-c-bg-elv: #232630;
 
   /* ── Divider / Border ── */
-  --vp-c-divider: #3B3E47;
-  --vp-c-border: #2C3039;
+  --vp-c-divider: #3b3e47;
+  --vp-c-border: #2c3039;
 
   /* ── HomeGraphBg 暗色 ── */
   --lb-graph-bg: #1b2b2b;
@@ -155,7 +180,6 @@
    ============================================================ */
 
 @layer base {
-
   /* h2: default is margin: 48px 0 16px + padding-top: 24px = 72px total gap */
   .vp-doc h2 {
     @apply mt-8 mb-3 pt-4;
@@ -184,7 +208,7 @@
     @apply my-2.5;
   }
 
-  .vp-doc li+li {
+  .vp-doc li + li {
     @apply mt-1;
   }
 }
@@ -208,7 +232,7 @@
   }
 
   /* Remove default group separator lines and add chapter spacing */
-  .VPSidebar .group+.group {
+  .VPSidebar .group + .group {
     border-top: none !important;
     @apply pt-0 mt-5;
   }
@@ -221,55 +245,55 @@
 
   /* ─── Top-level section headers (level-0) ───────────────── */
 
-  .VPSidebarItem.level-0>.item {
+  .VPSidebarItem.level-0 > .item {
     @apply py-0 px-1;
   }
 
-  .VPSidebarItem.level-0>.item>.link,
-  .VPSidebarItem.level-0>.item>.text {
+  .VPSidebarItem.level-0 > .item > .link,
+  .VPSidebarItem.level-0 > .item > .text {
     @apply py-1.5 px-2.5 font-semibold text-sm flex items-center;
     border-radius: 8px;
     color: var(--vp-c-text-1);
   }
 
   /* Fixed expand: hide top-level caret */
-  .VPSidebarItem.level-0>.item>.caret {
+  .VPSidebarItem.level-0 > .item > .caret {
     @apply hidden;
   }
 
   /* Top-level hover: subtle gray, no brand fill */
-  .VPSidebarItem.level-0>.item>.link:hover {
+  .VPSidebarItem.level-0 > .item > .link:hover {
     background: var(--vp-c-default-soft);
     color: var(--vp-c-text-1);
   }
 
   /* Top-level active: section headers are never pill-highlighted. */
-  .VPSidebarItem.level-0.is-active>.item>.link {
+  .VPSidebarItem.level-0.is-active > .item > .link {
     background: transparent !important;
     color: var(--vp-c-text-1);
   }
 
   /* ─── Level-1 group headers ──────────────────────────────── */
 
-  .VPSidebarItem.level-1>.item {
+  .VPSidebarItem.level-1 > .item {
     @apply py-0 px-1;
   }
 
-  .VPSidebarItem.level-1>.item>.link,
-  .VPSidebarItem.level-1>.item>.text {
+  .VPSidebarItem.level-1 > .item > .link,
+  .VPSidebarItem.level-1 > .item > .text {
     @apply py-1.5 px-2.5 font-medium text-sm flex items-center;
     border-radius: 8px;
     color: var(--vp-c-text-2);
   }
 
   /* Lighter caret for level-1 */
-  .VPSidebarItem.level-1>.item>.caret {
+  .VPSidebarItem.level-1 > .item > .caret {
     opacity: 0.5;
   }
 
   /* Level-1 hover */
-  .VPSidebarItem.level-1>.item>.link:hover,
-  .VPSidebarItem.level-1:not(.is-link)>.item>.text:hover {
+  .VPSidebarItem.level-1 > .item > .link:hover,
+  .VPSidebarItem.level-1:not(.is-link) > .item > .text:hover {
     background: var(--vp-c-default-soft);
     color: var(--vp-c-text-1);
   }
@@ -290,13 +314,13 @@
     vertical-align: middle;
   }
 
-  .VPSidebarItem.level-0>.item>.link:hover .sidebar-item-icon,
-  .VPSidebarItem.level-0.is-active>.item>.link .sidebar-item-icon {
+  .VPSidebarItem.level-0 > .item > .link:hover .sidebar-item-icon,
+  .VPSidebarItem.level-0.is-active > .item > .link .sidebar-item-icon {
     color: var(--vp-c-brand-1);
   }
 
-  .VPSidebarItem.level-1>.item>.link:hover .sidebar-item-icon--sub,
-  .VPSidebarItem.level-1.is-active>.item>.link .sidebar-item-icon--sub {
+  .VPSidebarItem.level-1 > .item > .link:hover .sidebar-item-icon--sub,
+  .VPSidebarItem.level-1.is-active > .item > .link .sidebar-item-icon--sub {
     color: var(--vp-c-brand-1);
   }
 
@@ -306,10 +330,12 @@
     border-radius: 10px;
     @apply pt-1.5 pr-3 pb-1.5 pl-4 flex items-center text-sm;
     color: var(--vp-c-text-2);
-    transition: background 0.12s, color 0.12s;
+    transition:
+      background 0.12s,
+      color 0.12s;
   }
 
-  .VPSidebarItem.is-link .VPLink>p {
+  .VPSidebarItem.is-link .VPLink > p {
     @apply pt-0 pb-0 m-0;
   }
 
@@ -320,14 +346,16 @@
 
   /* ─── Active leaf ────────────────────────────────────────── */
 
-  .VPSidebarItem.is-active>.item>.link {
+  .VPSidebarItem.is-active > .item > .link {
     background: var(--vp-c-brand-soft);
     border-radius: 10px;
   }
 
   .VPSidebarItem.is-active .VPLink {
     color: var(--vp-c-brand-1);
-    text-shadow: -0.2px 0 0 currentColor, 0.2px 0 0 currentColor;
+    text-shadow:
+      -0.2px 0 0 currentColor,
+      0.2px 0 0 currentColor;
   }
 
   .VPSidebarItem.is-active .VPLink:hover {
@@ -357,9 +385,17 @@
   html.ai-drawer-open .VPDocAside {
     @apply !hidden;
   }
+
+  html.ai-drawer-open .hn-root {
+    margin-right: var(--ai-drawer-width, 380px);
+  }
 }
 
 html.ai-resizing #VPContent {
+  transition: none !important;
+}
+
+html.ai-resizing .hn-root {
   transition: none !important;
 }
 
@@ -529,7 +565,7 @@ html.ai-resizing #VPContent {
     @apply !p-0 !m-0;
   }
 
-  .VPLocalSearchBox .excerpt .steps>ol {
+  .VPLocalSearchBox .excerpt .steps > ol {
     counter-reset: none;
     list-style: decimal !important;
   }
@@ -642,7 +678,6 @@ html.ai-resizing #VPContent {
    @layer components — Vue 组件样式迁移（原 <style scoped>）
    ============================================================ */
 @layer components {
-
   /* ─── Tabs.vue ─── */
   .tab-line-btn {
     @apply py-1 px-3 text-sm font-medium;
@@ -651,7 +686,9 @@ html.ai-resizing #VPContent {
     background: transparent;
     border: none;
     border-bottom: 2px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
+    transition:
+      color 0.15s,
+      border-color 0.15s;
   }
 
   .tab-line-active {
@@ -706,7 +743,11 @@ html.ai-resizing #VPContent {
     aspect-ratio: 1;
     top: -18vh;
     right: -8vw;
-    background: radial-gradient(circle at 38% 38%, rgba(0, 184, 184, 0.07) 0%, transparent 64%);
+    background: radial-gradient(
+      circle at 38% 38%,
+      rgba(0, 184, 184, 0.07) 0%,
+      transparent 64%
+    );
     filter: blur(72px);
     animation: doc-drift-a 38s ease-in-out infinite alternate;
   }
@@ -716,17 +757,29 @@ html.ai-resizing #VPContent {
     aspect-ratio: 1;
     bottom: -14vh;
     left: -6vw;
-    background: radial-gradient(circle at 58% 58%, rgba(0, 184, 184, 0.05) 0%, transparent 64%);
+    background: radial-gradient(
+      circle at 58% 58%,
+      rgba(0, 184, 184, 0.05) 0%,
+      transparent 64%
+    );
     filter: blur(88px);
     animation: doc-drift-b 48s ease-in-out infinite alternate;
   }
 
   html.dark .doc-bg .orb-a {
-    background: radial-gradient(circle at 38% 38%, rgba(0, 240, 196, 0.06) 0%, transparent 64%);
+    background: radial-gradient(
+      circle at 38% 38%,
+      rgba(0, 240, 196, 0.06) 0%,
+      transparent 64%
+    );
   }
 
   html.dark .doc-bg .orb-b {
-    background: radial-gradient(circle at 58% 58%, rgba(0, 240, 196, 0.04) 0%, transparent 64%);
+    background: radial-gradient(
+      circle at 58% 58%,
+      rgba(0, 240, 196, 0.04) 0%,
+      transparent 64%
+    );
   }
 
   /* ─── HomeBackground.vue ─── */
@@ -737,20 +790,36 @@ html.ai-resizing #VPContent {
     pointer-events: none;
     z-index: 0;
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      ),
       linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
     mask-image:
-      linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+      linear-gradient(
+        to right,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      ),
       linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
     -webkit-mask-composite: destination-in;
     mask-composite: intersect;
   }
 
   .mesh-bg::before {
-    content: '';
+    content: "";
     @apply absolute;
     inset: 0;
-    background-image: radial-gradient(circle, rgba(0, 240, 196, 0.10) 1px, transparent 1px);
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 240, 196, 0.1) 1px,
+      transparent 1px
+    );
     background-size: 28px 28px;
     background-position: 14px 14px;
   }
@@ -766,7 +835,11 @@ html.ai-resizing #VPContent {
     width: 58%;
     top: -42%;
     right: -6%;
-    background: radial-gradient(circle at 40% 40%, rgba(0, 240, 196, 0.22) 0%, transparent 66%);
+    background: radial-gradient(
+      circle at 40% 40%,
+      rgba(0, 240, 196, 0.22) 0%,
+      transparent 66%
+    );
     filter: blur(52px);
     animation: drift-a 7s ease-in-out infinite alternate;
   }
@@ -775,7 +848,11 @@ html.ai-resizing #VPContent {
     width: 48%;
     bottom: -38%;
     left: -4%;
-    background: radial-gradient(circle at 55% 55%, rgba(0, 240, 196, 0.15) 0%, transparent 66%);
+    background: radial-gradient(
+      circle at 55% 55%,
+      rgba(0, 240, 196, 0.15) 0%,
+      transparent 66%
+    );
     filter: blur(68px);
     animation: drift-b 9s ease-in-out infinite alternate;
   }
@@ -784,7 +861,11 @@ html.ai-resizing #VPContent {
     width: 34%;
     top: 8%;
     left: 31%;
-    background: radial-gradient(circle at 50% 45%, rgba(50, 234, 220, 0.20) 0%, transparent 64%);
+    background: radial-gradient(
+      circle at 50% 45%,
+      rgba(50, 234, 220, 0.2) 0%,
+      transparent 64%
+    );
     filter: blur(80px);
     animation: drift-c 5s ease-in-out infinite alternate;
   }
@@ -857,10 +938,14 @@ html.ai-resizing #VPContent {
   }
 
   .hero::before {
-    content: '';
+    content: "";
     @apply absolute;
     inset: -56px;
-    background-image: radial-gradient(circle, rgba(0, 184, 184, 0.08) 1.5px, transparent 1.5px);
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 184, 184, 0.08) 1.5px,
+      transparent 1.5px
+    );
     background-size: 28px 28px;
     animation: dot-drift 20s linear infinite;
     pointer-events: none;
@@ -868,10 +953,14 @@ html.ai-resizing #VPContent {
   }
 
   .hero::after {
-    content: '';
+    content: "";
     @apply absolute;
     inset: 0;
-    background: radial-gradient(ellipse 90% 70% at 50% 45%, transparent 35%, var(--vp-c-bg) 88%);
+    background: radial-gradient(
+      ellipse 90% 70% at 50% 45%,
+      transparent 35%,
+      var(--vp-c-bg) 88%
+    );
     pointer-events: none;
     z-index: 0;
   }
@@ -911,7 +1000,9 @@ html.ai-resizing #VPContent {
     border: 1px solid var(--vp-c-divider);
     border-radius: 12px;
     overflow: hidden;
-    transition: border-color .2s, box-shadow .2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
   }
 
   .hero-search-wrap:focus-within {
@@ -948,7 +1039,7 @@ html.ai-resizing #VPContent {
     @apply py-3 px-7 text-base font-semibold;
     border-radius: 6px;
     cursor: pointer;
-    transition: opacity .15s;
+    transition: opacity 0.15s;
   }
 
   .hero-btn-primary:hover {
@@ -962,7 +1053,7 @@ html.ai-resizing #VPContent {
     @apply py-3 px-7 text-base font-semibold;
     border-radius: 6px;
     cursor: pointer;
-    transition: background .15s;
+    transition: background 0.15s;
   }
 
   .hero-btn-outline:hover {
@@ -1075,7 +1166,7 @@ html.ai-resizing #VPContent {
   }
 
   .af-list li::before {
-    content: '✓';
+    content: "✓";
     @apply absolute font-bold;
     left: 0;
     color: var(--vp-c-brand-1);
@@ -1189,7 +1280,10 @@ html.ai-resizing #VPContent {
     border: 1px solid var(--vp-c-divider);
     background: var(--vp-c-bg);
     text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
   }
 
   .topic-card:hover {
@@ -1230,7 +1324,10 @@ html.ai-resizing #VPContent {
     border: 1px solid var(--vp-c-divider);
     background: var(--vp-c-bg);
     text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
     @apply max-md:p-5 max-sm:flex-col max-sm:items-start flex items-center gap-5 py-7 px-8 mb-4;
   }
 
@@ -1292,7 +1389,10 @@ html.ai-resizing #VPContent {
     border: 1px solid var(--vp-c-divider);
     background: var(--vp-c-bg);
     text-decoration: none;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s,
+      transform 0.2s;
   }
 
   .small-card:hover {
@@ -1323,6 +1423,7 @@ html.ai-resizing #VPContent {
     z-index: 100;
     background: var(--vp-c-bg);
     border-bottom: 1px solid var(--vp-c-divider);
+    transition: margin-right 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hn-top-bar {
@@ -1365,7 +1466,7 @@ html.ai-resizing #VPContent {
     @apply flex items-center gap-2 h-8 min-w-56 py-0 px-3.5 text-sm font-medium;
     background: var(--vp-c-bg-soft);
     border: 1px solid var(--vp-c-border);
-    border-radius: 6px;
+    border-radius: 99px;
     cursor: pointer;
     color: var(--vp-c-text-3);
     white-space: nowrap;
@@ -1384,7 +1485,7 @@ html.ai-resizing #VPContent {
     @apply inline-flex items-center justify-center h-4 min-w-5 py-0 px-1 text-xs font-medium;
     background: var(--vp-c-default-soft);
     border-radius: 5px;
-    font-family: 'Geist Mono', monospace;
+    font-family: "Geist Mono", monospace;
     color: var(--vp-c-text-3);
     letter-spacing: 0.2px;
   }
@@ -1443,7 +1544,9 @@ html.ai-resizing #VPContent {
     color: var(--vp-c-text-2);
     text-decoration: none;
     white-space: nowrap;
-    transition: color 0.15s, background 0.15s;
+    transition:
+      color 0.15s,
+      background 0.15s;
     @apply max-md:hidden flex items-center gap-1 h-8 py-0 px-2.5 text-sm font-medium;
   }
 
@@ -1486,7 +1589,7 @@ html.ai-resizing #VPContent {
   }
 
   .hn-bottom-inner {
-    @apply max-w-screen-2xl max-lg:px-6 px-3 w-full h-full flex items-center justify-between;
+    @apply max-w-7xl w-full mx-auto px-3 h-full flex items-center justify-between;
   }
 
   .hn-tabs {
@@ -1522,7 +1625,9 @@ html.ai-resizing #VPContent {
     border-radius: 6px;
     color: var(--vp-c-text-2);
     text-decoration: none;
-    transition: background 0.15s, color 0.15s;
+    transition:
+      background 0.15s,
+      color 0.15s;
   }
 
   .hn-extra-btn:hover {
@@ -1562,7 +1667,10 @@ html.ai-resizing #VPContent {
     background: var(--vp-c-bg);
     text-decoration: none;
     overflow: hidden;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s,
+      border-color 0.2s;
   }
 
   .card:hover {
@@ -1740,7 +1848,9 @@ html.ai-resizing #VPContent {
     @apply w-4 h-4;
     color: var(--vp-c-text-3);
     flex-shrink: 0;
-    transition: color 0.15s, transform 0.15s;
+    transition:
+      color 0.15s,
+      transform 0.15s;
   }
 
   .item:hover .item-arrow {
@@ -1790,7 +1900,9 @@ html.ai-resizing #VPContent {
     border-radius: 10px;
     border: 1px solid var(--vp-c-divider);
     background: var(--vp-c-bg);
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
   }
 
   .tile:hover {
@@ -1843,7 +1955,9 @@ html.ai-resizing #VPContent {
   .tile-arrow {
     @apply w-4 h-4;
     color: var(--vp-c-text-3);
-    transition: color 0.15s, transform 0.15s;
+    transition:
+      color 0.15s,
+      transform 0.15s;
   }
 
   .tile:hover .tile-arrow {
@@ -1855,7 +1969,7 @@ html.ai-resizing #VPContent {
   .home {
     background: #1b1b1f;
     --vp-c-text-1: rgba(255, 255, 255, 0.86);
-    --vp-c-text-2: rgba(235, 235, 235, 0.60);
+    --vp-c-text-2: rgba(235, 235, 235, 0.6);
     --vp-c-text-3: rgba(235, 235, 235, 0.38);
     --vp-c-divider: #2e2e32;
     --vp-c-bg: #1b1b1f;
@@ -1926,14 +2040,16 @@ html.ai-resizing #VPContent {
   }
 
   .shimmer-text {
-    background: linear-gradient(90deg,
-        var(--vp-c-text-1) 0%,
-        var(--vp-c-text-1) 30%,
-        var(--vp-c-brand-1) 44%,
-        #fff 50%,
-        var(--vp-c-brand-1) 56%,
-        var(--vp-c-text-1) 70%,
-        var(--vp-c-text-1) 100%);
+    background: linear-gradient(
+      90deg,
+      var(--vp-c-text-1) 0%,
+      var(--vp-c-text-1) 30%,
+      var(--vp-c-brand-1) 44%,
+      #fff 50%,
+      var(--vp-c-brand-1) 56%,
+      var(--vp-c-text-1) 70%,
+      var(--vp-c-text-1) 100%
+    );
     background-size: 250% 100%;
     background-clip: text;
     -webkit-background-clip: text;
@@ -1959,8 +2075,8 @@ html.ai-resizing #VPContent {
     @apply flex flex-col items-center gap-1.5 py-0 px-6 relative;
   }
 
-  .stat-item+.stat-item::before {
-    content: '';
+  .stat-item + .stat-item::before {
+    content: "";
     @apply absolute h-4/5 w-0.5;
     left: 0;
     top: 10%;
@@ -2014,7 +2130,9 @@ html.ai-resizing #VPContent {
     color: white;
     border-radius: 8px;
     text-decoration: none;
-    transition: opacity 0.15s, transform 0.15s;
+    transition:
+      opacity 0.15s,
+      transform 0.15s;
   }
 
   .btn-primary:hover {
@@ -2028,7 +2146,9 @@ html.ai-resizing #VPContent {
     color: var(--vp-c-text-1);
     border-radius: 8px;
     text-decoration: none;
-    transition: border-color 0.15s, background 0.15s;
+    transition:
+      border-color 0.15s,
+      background 0.15s;
   }
 
   .btn-ghost:hover {
@@ -2089,9 +2209,11 @@ html.ai-resizing #VPContent {
   }
 
   .feat-links a::after {
-    content: '→';
+    content: "→";
     color: var(--vp-c-text-3);
-    transition: color 0.15s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      color 0.15s,
+      transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     flex-shrink: 0;
     @apply ml-2;
   }
@@ -2180,7 +2302,9 @@ html.ai-resizing #VPContent {
     @apply w-4 h-4;
     color: var(--vp-c-text-3);
     flex-shrink: 0;
-    transition: color 0.15s, transform 0.15s;
+    transition:
+      color 0.15s,
+      transform 0.15s;
   }
 
   .task-link:hover .task-arrow {
@@ -2201,7 +2325,7 @@ html.ai-resizing #VPContent {
   }
 
   .c-bdr {
-    stroke: #EAEBEC;
+    stroke: #eaebec;
   }
 
   html.dark .c-bg {
@@ -2274,7 +2398,7 @@ html.ai-resizing #VPContent {
       @apply hidden;
     }
 
-    .stat-item:nth-child(odd)+.stat-item::before {
+    .stat-item:nth-child(odd) + .stat-item::before {
       @apply hidden;
     }
 
@@ -2298,7 +2422,6 @@ html.ai-resizing #VPContent {
       @apply pt-6 px-4 pb-16;
     }
   }
-
 }
 
 /* ─── @keyframes (outside @layer for browser compat) ─── */
@@ -2316,7 +2439,7 @@ html.ai-resizing #VPContent {
 
 @keyframes doc-drift-a {
   0% {
-    transform: translate(0%, 0%) scale(1.00);
+    transform: translate(0%, 0%) scale(1);
   }
 
   35% {
@@ -2334,7 +2457,7 @@ html.ai-resizing #VPContent {
 
 @keyframes doc-drift-b {
   0% {
-    transform: translate(0%, 0%) scale(1.00);
+    transform: translate(0%, 0%) scale(1);
   }
 
   40% {
@@ -2348,7 +2471,7 @@ html.ai-resizing #VPContent {
 
 @keyframes drift-a {
   0% {
-    transform: translate(0%, 0%) scale(1.00);
+    transform: translate(0%, 0%) scale(1);
   }
 
   30% {
@@ -2366,7 +2489,7 @@ html.ai-resizing #VPContent {
 
 @keyframes drift-b {
   0% {
-    transform: translate(0%, 0%) scale(1.00);
+    transform: translate(0%, 0%) scale(1);
   }
 
   35% {
@@ -2384,11 +2507,11 @@ html.ai-resizing #VPContent {
 
 @keyframes drift-c {
   0% {
-    transform: translate(0%, 0%) scale(1.00);
+    transform: translate(0%, 0%) scale(1);
   }
 
   50% {
-    transform: translate(-18%, 22%) scale(1.10);
+    transform: translate(-18%, 22%) scale(1.1);
   }
 
   100% {
@@ -2466,7 +2589,9 @@ html.ai-resizing #VPContent {
   background: transparent;
   color: var(--vp-c-text-3);
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .lb-copy-btn:hover {
@@ -2481,7 +2606,7 @@ html.ai-resizing #VPContent {
 }
 
 /* 隐藏 markdown 首 H1，由 PageHero 接管 */
-.vp-doc>div>h1:first-child {
+.vp-doc > div > h1:first-child {
   @apply hidden;
 }
 
@@ -2540,7 +2665,9 @@ html.ai-resizing #VPContent {
   @apply relative pl-3;
   color: var(--vp-c-text-2);
   border-left: 2px solid transparent;
-  transition: color .15s, border-color .15s;
+  transition:
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .VPDocOutlineItem .outline-link:hover {
@@ -2564,13 +2691,13 @@ html.ai-resizing #VPContent {
 }
 
 /* F.8 — Sidebar active 由 pill 改为左竖条 */
-.VPSidebarItem.is-active>.item>.VPLink {
+.VPSidebarItem.is-active > .item > .VPLink {
   background: transparent !important;
   border-radius: 0;
   @apply relative;
 }
 
-.VPSidebarItem.is-active>.item>.VPLink::before {
+.VPSidebarItem.is-active > .item > .VPLink::before {
   content: "";
   @apply absolute w-0.5;
   left: 0;
@@ -2580,7 +2707,7 @@ html.ai-resizing #VPContent {
   border-radius: 2px;
 }
 
-.dark .VPSidebarItem.is-active>.item>.VPLink::before {
+.dark .VPSidebarItem.is-active > .item > .VPLink::before {
   background: var(--vp-c-brand-2);
 }
 
@@ -2603,7 +2730,9 @@ html.ai-resizing #VPContent {
   background: transparent;
   cursor: pointer;
   color: var(--vp-c-text-1);
-  transition: border-color .15s, background .15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 }
 
 .lb-pfb-btn:hover {

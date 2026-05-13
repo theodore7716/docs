@@ -1,5 +1,6 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { inBrowser } from 'vitepress'
 import 'markstream-vue/index.css'
 import './tailwind.css'
 import Layout from './layouts/Layout.vue'
@@ -12,6 +13,18 @@ import TabItem from './components/TabItem.vue'
 import LinkGraph from './components/LinkGraph.vue'
 import HomeSupport from './components/HomeSupport.vue'
 import HomeNavbar from './components/HomeNavbar.vue'
+
+// Register Cmd/Ctrl+K interceptor BEFORE any VitePress component mounts,
+// so our handler always wins the capture-phase race.
+if (inBrowser) {
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault()
+      e.stopImmediatePropagation()
+      window.dispatchEvent(new CustomEvent('lb:search:toggle'))
+    }
+  }, { capture: true, passive: false })
+}
 
 export default {
   extends: DefaultTheme,

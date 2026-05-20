@@ -4,7 +4,7 @@ import { ref, watch, nextTick, onMounted, computed } from 'vue'
 import { useLocalStorage, useMediaQuery } from '@vueuse/core'
 import { stream } from 'fetch-event-stream'
 import MarkdownRender from 'markstream-vue'
-import { useAIModal } from '../composables/useAIModal'
+import { useAIModal, newMessageId, messageText, type Message, type MessagePart, type TextPart } from '../composables/useAIModal'
 import RiveThinkingIcon from './RiveThinkingIcon.vue'
 import { useI18n } from '../../i18n/useI18n'
 import { Trash2, Maximize2, Minimize2, X } from 'lucide-vue-next'
@@ -28,7 +28,7 @@ const messagesRef = ref<HTMLDivElement>()
 const query = ref('')
 const isLoading = ref(false)
 const currentController = ref<AbortController | null>(null)
-const copiedIndex = ref<number | null>(null)
+const copiedId = ref<string | null>(null)
 const isAtBottom = ref(true)
 
 function checkAtBottom() {
@@ -82,10 +82,21 @@ function startResize(e: MouseEvent) {
   document.addEventListener('mouseup', onUp)
 }
 
-async function copy(content: string, index: number) {
-  await navigator.clipboard.writeText(content)
-  copiedIndex.value = index
-  setTimeout(() => { copiedIndex.value = null }, 2000)
+async function copy(msg: Message) {
+  await navigator.clipboard.writeText(messageText(msg))
+  copiedId.value = msg.id
+  setTimeout(() => {
+    if (copiedId.value === msg.id) copiedId.value = null
+  }, 2000)
+}
+
+function appendAssistantText(msg: Message, piece: string) {
+  const last = msg.parts[msg.parts.length - 1]
+  if (last && last.type === 'text') {
+    last.text += piece
+  } else {
+    msg.parts.push({ type: 'text', text: piece })
+  }
 }
 
 watch(
@@ -124,12 +135,26 @@ function scrollToBottom() {
 
 watch(query, () => nextTick(autoGrow))
 
-async function submitText(text: string) {
-  const trimmed = text.trim()
-  if (!trimmed || isLoading.value) return
+async function submitParts(parts: MessagePart[]) {
+  if (!parts.length || isLoading.value) return
+  const hasContent = parts.some(p => p.type !== 'text' || p.text.trim().length > 0)
+  if (!hasContent) return
 
-  messages.value.push({ role: 'user', content: trimmed })
-  messages.value.push({ role: 'assistant', content: '', loading: true, final: false })
+  const userMsg: Message = {
+    id: newMessageId(),
+    role: 'user',
+    parts,
+    final: true,
+  }
+  const assistantMsg: Message = {
+    id: newMessageId(),
+    role: 'assistant',
+    parts: [],
+    loading: true,
+    final: false,
+  }
+  messages.value.push(userMsg)
+  messages.value.push(assistantMsg)
 
   isLoading.value = true
   scrollToBottom()
@@ -137,14 +162,19 @@ async function submitText(text: string) {
   const controller = new AbortController()
   currentController.value = controller
 
-  const assistantMsg = messages.value[messages.value.length - 1]
   let firstChunk = true
 
   try {
     const iter = await stream(AI_ENDPOINT, {
       method: 'POST',
       headers: AI_HEADERS,
-      body: JSON.stringify({ message: trimmed }),
+      body: JSON.stringify({
+        message: {
+          id: userMsg.id,
+          role: userMsg.role,
+          parts: userMsg.parts,
+        },
+      }),
       signal: controller.signal,
     })
 
@@ -161,10 +191,8 @@ async function submitText(text: string) {
             : (parsed.delta?.content ?? parsed.content ?? parsed.text ?? '')
         } else {
           piece = String(parsed)
-          piece = String(parsed)
         }
       } catch {
-        piece = event.data
         piece = event.data
       }
 
@@ -173,7 +201,7 @@ async function submitText(text: string) {
         assistantMsg.loading = false
         firstChunk = false
       }
-      assistantMsg.content += piece
+      appendAssistantText(assistantMsg, piece)
       scrollToBottom()
     }
 
@@ -185,15 +213,21 @@ async function submitText(text: string) {
       assistantMsg.final = true
       return
     }
-    assistantMsg.content = assistantMsg.content || t('ai.error')
+    if (!messageText(assistantMsg)) {
+      appendAssistantText(assistantMsg, t('ai.error'))
+    }
     assistantMsg.loading = false
     assistantMsg.final = true
   } finally {
     isLoading.value = false
     currentController.value = null
-    currentController.value = null
-    currentController.value = null
   }
+}
+
+async function submitText(text: string) {
+  const trimmed = text.trim()
+  if (!trimmed) return
+  await submitParts([{ type: 'text', text: trimmed }])
 }
 
 async function submit() {
@@ -207,12 +241,15 @@ function stop() {
   currentController.value?.abort()
 }
 
-function retry(assistantIndex: number) {
+function retry(assistantId: string) {
   if (isLoading.value) return
+  const assistantIndex = messages.value.findIndex(m => m.id === assistantId)
+  if (assistantIndex <= 0) return
   const userMsg = messages.value[assistantIndex - 1]
   if (!userMsg || userMsg.role !== 'user') return
-  messages.value.splice(assistantIndex)
-  submitText(userMsg.content)
+  const partsCopy: MessagePart[] = userMsg.parts.map(p => ({ ...p }))
+  messages.value.splice(assistantIndex - 1)
+  submitParts(partsCopy)
 }
 
 function onKeydown(e: KeyboardEvent) {
@@ -344,15 +381,36 @@ function onDragEnd(e: TouchEvent) {
         <div v-if="messages.length === 0" class="ai-empty" />
 
         <div
-          v-for="(msg, i) in messages"
-          :key="i"
+          v-for="msg in messages"
+          :key="msg.id"
           class="ai-msg"
           :class="msg.role"
         >
           <div class="ai-msg-bubble">
-            <template v-if="msg.role === 'user'">{{ msg.content }}</template>
+            <template v-if="msg.role === 'user'">
+              <template v-for="(part, pi) in msg.parts" :key="`${msg.id}-${pi}`">
+                <span v-if="part.type === 'text'" class="ai-msg-text">{{ part.text }}</span>
+                <img
+                  v-else-if="part.type === 'file' && part.mediaType.startsWith('image/')"
+                  class="ai-msg-image"
+                  :src="part.url"
+                  :alt="part.filename ?? ''"
+                />
+                <a
+                  v-else-if="part.type === 'file'"
+                  class="ai-msg-file"
+                  :href="part.url"
+                  target="_blank"
+                  rel="noopener"
+                  :download="part.filename"
+                >
+                  <span class="ai-msg-file-name">{{ part.filename ?? part.mediaType }}</span>
+                  <span class="ai-msg-file-type">{{ part.mediaType }}</span>
+                </a>
+              </template>
+            </template>
             <template v-else>
-              <div v-if="msg.loading && !msg.content" class="ai-thinking">
+              <div v-if="msg.loading && !msg.parts.length" class="ai-thinking">
                 <ClientOnly>
                   <RiveThinkingIcon :size="16" />
                 </ClientOnly>
@@ -360,31 +418,50 @@ function onDragEnd(e: TouchEvent) {
               </div>
               <ClientOnly v-else>
                 <MarkdownRender
-                  :custom-id="`msg-${i}`"
-                  :content="msg.content"
+                  :custom-id="`msg-${msg.id}`"
+                  :content="messageText(msg)"
                   :final="!!msg.final"
                   :max-live-nodes="0"
                   :typewriter="!msg.final"
                   :fade="false"
                 />
+                <template v-for="(part, pi) in msg.parts" :key="`${msg.id}-f-${pi}`">
+                  <img
+                    v-if="part.type === 'file' && part.mediaType.startsWith('image/')"
+                    class="ai-msg-image"
+                    :src="part.url"
+                    :alt="part.filename ?? ''"
+                  />
+                  <a
+                    v-else-if="part.type === 'file'"
+                    class="ai-msg-file"
+                    :href="part.url"
+                    target="_blank"
+                    rel="noopener"
+                    :download="part.filename"
+                  >
+                    <span class="ai-msg-file-name">{{ part.filename ?? part.mediaType }}</span>
+                    <span class="ai-msg-file-type">{{ part.mediaType }}</span>
+                  </a>
+                </template>
               </ClientOnly>
               <div v-if="msg.final && !isLoading" class="ai-msg-actions">
                 <button
                   class="ai-action-btn"
-                  :class="{ copied: copiedIndex === i }"
-                  :aria-label="copiedIndex === i ? t('ai.copied') : t('ai.copy')"
-                  @click="copy(msg.content, i)"
+                  :class="{ copied: copiedId === msg.id }"
+                  :aria-label="copiedId === msg.id ? t('ai.copied') : t('ai.copy')"
+                  @click="copy(msg)"
                 >
-                  <svg v-if="copiedIndex === i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <svg v-if="copiedId === msg.id" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                   <svg v-else width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                     <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
                   </svg>
-                  <span class="ai-action-tooltip">{{ copiedIndex === i ? t('ai.copied') : t('ai.copy') }}</span>
+                  <span class="ai-action-tooltip">{{ copiedId === msg.id ? t('ai.copied') : t('ai.copy') }}</span>
                 </button>
-                <button class="ai-action-btn" :aria-label="t('ai.regenerate')" @click="retry(i)">
+                <button class="ai-action-btn" :aria-label="t('ai.regenerate')" @click="retry(msg.id)">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="1 4 1 10 7 10" />
                     <path d="M3.51 15a9 9 0 1 0 .49-4" />
@@ -600,6 +677,41 @@ function onDragEnd(e: TouchEvent) {
   @apply py-1 px-0 text-sm leading-relaxed flex flex-col gap-2;
   color: var(--vp-c-text-1);
 }
+
+/* parts: text / image / file */
+.user .ai-msg-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ai-msg-text { white-space: pre-wrap; }
+.ai-msg-image {
+  max-width: 100%;
+  max-height: 240px;
+  border-radius: 8px;
+  display: block;
+  object-fit: contain;
+}
+.ai-msg-file {
+  @apply inline-flex items-center gap-2 py-2 px-3 text-xs;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  max-width: 100%;
+}
+.ai-msg-file:hover { border-color: var(--vp-c-brand-1); color: var(--vp-c-brand-1); }
+.ai-msg-file-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ai-msg-file-type { color: var(--vp-c-text-3); }
+.user .ai-msg-file { background: rgba(255, 255, 255, 0.18); color: #fff; border-color: rgba(255, 255, 255, 0.3); }
+.user .ai-msg-file:hover { background: rgba(255, 255, 255, 0.28); color: #fff; }
+.user .ai-msg-file-type { color: rgba(255, 255, 255, 0.7); }
 
 /* Hide markstream-vue scroll-to-bottom button */
 .assistant .ai-msg-bubble :deep([class*="scroll"]),

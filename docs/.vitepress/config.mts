@@ -15,6 +15,11 @@ import zhHK from './i18n/locales/zh-HK'
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const env = loadEnv('development', path.resolve(__dirname, '..'), '')
 
+// dev proxy: 直接用完整 endpoint 路径作 key
+// vite proxy 是 prefix 匹配，整路径作 key 既能命中请求，又不会误拦其他路由
+const AI_ENDPOINT_PATH = env.VITE_AI_API_ENDPOINT || '/api/forward/v1/customer-service/docs/chat'
+const AI_PROXY_PREFIX = AI_ENDPOINT_PATH
+
 // 访问 /some/page.md 返回原始 markdown 源码（开发模式 + 生产构建）
 function rawMarkdownPlugin(): Plugin {
   return {
@@ -483,7 +488,7 @@ export default defineConfig({
     },
     server: {
       proxy: {
-        '/api/forward': {
+        [AI_PROXY_PREFIX]: {
           target: env.VITE_AI_API_HOST,
           changeOrigin: true,
         },

@@ -65,7 +65,7 @@ sidebar: true
 1. 检查网络连接，切换 Wi-Fi / 移动数据后重试
 2. 关闭 VPN 或代理后重试
 3. 强制重启 App 后重新下单
-4. 如问题持续，参阅 [APP 网络连接排查](./APP网络连接排查.md)
+4. 如问题持续，参阅 [APP 网络连接排查](/troubleshooting/network-connection)
 
 ## 股票停牌或暂停交易
 

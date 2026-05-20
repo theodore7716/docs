@@ -90,7 +90,7 @@ sidebar: true
 
 ---
 
-下一步：[买入第一只港股](./买入第一只港股.md)
+下一步：[买入第一只港股](/getting-started/buy-first-hk-stock)
 
 <!-- backlinks:start -->
 

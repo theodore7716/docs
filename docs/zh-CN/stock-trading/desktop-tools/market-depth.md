@@ -129,7 +129,7 @@ sidebar: true
 
 ![持仓信息](https://pub.pbkrs.com/uploads/2025/f90e4b3ea09e718a9433065f79e4a3d2)
 
-## 常见问题
+## 高级行情权限与功能限制
 
 ### 没有高级行情权限，是否影响交易？
 

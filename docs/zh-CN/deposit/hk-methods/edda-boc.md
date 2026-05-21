@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 中银香港 eDDA 授权入金
+# 中银香港 eDDA
 
 中银香港（BOC HK）的 eDDA 授权需在银行端操作，支持手机银行和网上银行两种方式。完成授权后再在长桥 App 发起入金，无需每次上传凭证。
 

@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 工银亚洲 FPS 转数快入金
+# 工银亚洲 FPS 转数快
 
 通过工银亚洲 App 或网上银行的 FPS 功能将资金转至长桥，转账完成后上传凭证即可。
 

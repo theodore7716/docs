@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 恒生银行 eDDA 授权入金
+# 恒生 eDDA
 
 恒生银行的 eDDA 授权通过网上银行的「P.P 支付平台」操作，授权完成后在长桥 App 发起入金，无需每次上传凭证。
 

@@ -1,9 +1,12 @@
 [
-  "market-overview",
   "data-plans",
+  "market-overview",
   "overview",
   "indicators",
   "financials",
   "money-flow",
-  "announcements"
+  "chip-distribution",
+  "announcements",
+  "us-market-depth",
+  "us-market-depth-desktop"
 ]

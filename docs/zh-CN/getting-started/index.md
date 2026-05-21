@@ -11,7 +11,7 @@ sidebar: true
 
 ### 关于长桥
 
-- [长桥证券背景与资质](/getting-started/about-longbridge) — 持牌资质、监管机构及 ICF 客户资产保障
+- [长桥证券背景与资质](/compliance-and-tax/about-longbridge) — 持牌资质、监管机构及 ICF 客户资产保障
 
 ### App 准备
 

@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# Straddle 跨式策略
+# 跨式策略
 
 Straddle 跨式策略包含 Long Straddle 买入跨式策略与 Short Straddle 卖出跨式策略，是期权交易中基于对市场波动预期进行操作的策略组合。
 

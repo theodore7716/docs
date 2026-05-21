@@ -82,6 +82,6 @@ sidebar: true
 
 ## 引用此页面的文档
 
-- [基金与理财](/funds-and-wealth)
+- [合规与税务](/compliance-and-tax)
 
 <!-- backlinks:end -->

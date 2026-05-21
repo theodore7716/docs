@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# Strangle 宽跨式策略
+# 宽跨式策略
 
 Strangle 宽跨式策略包含 Long Strangle 买入宽跨式策略与 Short Strangle 卖出宽跨式策略，通过对期权的买卖操作适应不同的市场波动预期。与 Straddle（跨式策略）相比，Strangle 选择不同行权价的期权，以较低成本换取更宽的价格区间。
 

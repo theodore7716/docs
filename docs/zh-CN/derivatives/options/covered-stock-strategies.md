@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# Covered Stock 股票担保策略
+# 股票担保策略
 
 Covered Stock 系列策略包括 Covered Call（备兑看涨）、Covered Put（备兑看跌）、Protective Call（保护性看涨）和 Protective Put（保护性看跌），通过期权与股票头寸的组合，在不同市场环境下管理风险并追求收益。
 

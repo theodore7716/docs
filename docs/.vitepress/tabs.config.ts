@@ -28,6 +28,12 @@ export const NAV_TABS: NavTab[] = [
     categories: ['derivatives'],
   },
   {
+    key: 'crypto',
+    label: 'data.navTabs.crypto',
+    path: '/crypto/',
+    categories: ['crypto'],
+  },
+  {
     key: 'funds-and-wealth',
     label: 'data.navTabs.funds-and-wealth',
     path: '/funds-and-wealth/',

@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 汇丰银行 FPS 转数快入金
+# 汇丰 FPS 转数快
 
 通过汇丰银行 App 的 FPS 功能将资金转至长桥，转账完成后上传凭证即可。
 

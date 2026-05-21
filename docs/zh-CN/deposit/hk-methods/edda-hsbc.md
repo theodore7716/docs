@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 汇丰银行 eDDA 授权入金
+# 汇丰 eDDA
 
 汇丰银行优先推荐在**长桥 App 内**完成 eDDA 授权。若 App 内多次授权失败，可改用网上银行授权。
 

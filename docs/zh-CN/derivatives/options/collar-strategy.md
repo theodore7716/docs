@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# Collar 领式策略
+# 领式策略
 
 Collar 领式策略包含 Long Collar 多头领式策略与 Short Collar 空头领式策略，是期权交易中用于风险管理和收益控制的策略，通过期权组合形成类似「领子」的收益上下限结构。
 

@@ -27,6 +27,6 @@ sidebar: true
 
 ## 引用此页面的文档
 
-- [入金](/deposit)
+- [合规与税务](/compliance-and-tax)
 
 <!-- backlinks:end -->

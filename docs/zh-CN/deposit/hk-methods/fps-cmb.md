@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 招行香港 FPS 转数快入金
+# 招行 FPS 转数快
 
 通过招商银行香港 App 的 FPS 功能将资金转至长桥，转账完成后上传凭证即可。
 

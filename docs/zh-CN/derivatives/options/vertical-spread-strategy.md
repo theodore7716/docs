@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# Vertical Spread 垂直策略
+# 垂直价差策略
 
 Vertical Spread 垂直策略包含四种子策略，适用于不同市场预期，通过同时买入和卖出相同标的、相同到期日但不同行权价的期权，在控制风险的同时实现收益目标。
 

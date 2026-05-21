@@ -1,13 +1,19 @@
 [
+  "options-getting-started",
   "options-basics",
-  "enable-options",
-  "期权交易入门",
-  "如何买入期权",
   "options-buyer",
   "options-seller",
-  "options-strategies",
-  "options-calculator",
+  "enable-options",
+  "how-to-buy-options",
   "options-chain",
   "options-fields",
-  "options-extended-hours"
+  "options-calculator",
+  "options-extended-hours",
+  "options-strategies",
+  "vertical-spread-strategy",
+  "straddle-strategy",
+  "strangle-strategy",
+  "collar-strategy",
+  "covered-stock-strategies",
+  "options-terms"
 ]

@@ -40,6 +40,6 @@ sidebar: true
 
 ## 引用此页面的文档
 
-- [快速入门](/getting-started)
+- [合规与税务](/compliance-and-tax)
 
 <!-- backlinks:end -->

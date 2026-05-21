@@ -11,7 +11,7 @@ sidebar: true
 
 ### 普通订单
 
-- [限价单与市价单](/stock-trading/order-types/limit-and-market)
+- [限价单](/stock-trading/order-types/limit-orders) / [市价单](/stock-trading/order-types/market-orders)
 - [碎股单](/stock-trading/order-types/odd-lot)
 
 ### 条件订单

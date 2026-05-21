@@ -3,7 +3,7 @@ layout: doc
 sidebar: true
 ---
 
-# 工银亚洲 eDDA 授权入金
+# 工银亚洲 eDDA
 
 工银亚洲（ICBC Asia）的 eDDA 授权需通过**网上银行**操作，完成前需持有工银亚洲实体密码器。
 

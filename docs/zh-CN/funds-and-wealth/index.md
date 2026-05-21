@@ -11,7 +11,7 @@ sidebar: true
 
 ### 投资者资格
 
-- [专业投资者认证](/funds-and-wealth/professional-investor)
+- [专业投资者认证](/compliance-and-tax/professional-investor)
 
 ### 基金投资
 

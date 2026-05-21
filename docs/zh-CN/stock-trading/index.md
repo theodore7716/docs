@@ -29,7 +29,7 @@ sidebar: true
 - [撤销订单](/stock-trading/order-types/cancel-order)
 - [附加订单](/stock-trading/order-types/conditional-order)
 - [网格交易](/stock-trading/order-types/grid-trading)
-- [限价单与市价单](/stock-trading/order-types/limit-and-market)
+- [限价单](/stock-trading/order-types/limit-orders) / [市价单](/stock-trading/order-types/market-orders)
 - [碎股单](/stock-trading/order-types/odd-lot)
 ### 股票转仓
 

@@ -217,6 +217,7 @@
         <ul class="feat-links">
           <li><a :href="withBase('/stock-trading/')" >{{ t('data.home.feat3.link1') }}</a></li>
           <li><a :href="withBase('/derivatives/')" >{{ t('data.home.feat3.link2') }}</a></li>
+          <li><a :href="withBase('/crypto/')" >{{ t('data.home.feat3.link5') }}</a></li>
           <li><a :href="withBase('/ipo/')" >{{ t('data.home.feat3.link3') }}</a></li>
           <li><a :href="withBase('/margin/')" >{{ t('data.home.feat3.link4') }}</a></li>
         </ul>

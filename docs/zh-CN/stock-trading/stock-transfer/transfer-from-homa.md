@@ -15,9 +15,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/afc0dc7a003dd54503335c2a4b9d9f49)
+   ![存入股票入口](./images/afc0dc7a003dd54503335c2a4b9d9f49.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/2acd93ebffcefcfe3b48f4f176831aca)
+   ![全部功能 → 转入股票](./images/2acd93ebffcefcfe3b48f4f176831aca.png)
 
 2. 转出券商选择**盈透证券**，填写账户姓名和账户号码，填写股票信息后提交
 
@@ -27,7 +27,7 @@ sidebar: true
 
 **先联系荷马客户经理获取 IB 账户信息**，然后登录 [IB 官网](https://www.interactivebrokers.com.hk/cn/home.php)
 
-![登录 IB 官网](https://pub.pbkrs.com/uploads/2025/96df7922086dd4ae824d8a78c1c8b201)
+![登录 IB 官网](./images/96df7922086dd4ae824d8a78c1c8b201.png)
 
 ### 港股（基础 FOP 转账）
 
@@ -42,19 +42,19 @@ sidebar: true
 | 联系电话 | (+852) 3585 8944 / (+852) 3585 8915 |
 | 联系邮箱 | settlement@longbridge.hk |
 
-![FOP 转账填写示例](https://pub.pbkrs.com/uploads/2025/6cc53a51b548129d4c420cfe1314e1d2)
+![FOP 转账填写示例](./images/6cc53a51b548129d4c420cfe1314e1d2.png)
 
 ### 美股（IB 消息中心）
 
 1. 在 IB 账户右上角选择**帮助** → **支持中心** → **消息中心**
 
-   ![消息中心入口](https://pub.pbkrs.com/uploads/2025/0f6ba4cfaa51b3330e525e9757e1a4bc)
+   ![消息中心入口](./images/0f6ba4cfaa51b3330e525e9757e1a4bc.png)
 
 2. **撰写** → **新咨询单** → **Funds & Banking** → **Position Transfers**
 
-   ![撰写新咨询单](https://pub.pbkrs.com/uploads/2025/34460840a25853510cc950b7c7f3ed85)
+   ![撰写新咨询单](./images/34460840a25853510cc950b7c7f3ed85.png)
 
-   ![选择 Position Transfers](https://pub.pbkrs.com/uploads/2025/42237f6554650ba96a810439b31d8d85)
+   ![选择 Position Transfers](./images/42237f6554650ba96a810439b31d8d85.png)
 
 3. 按以下模板填写咨询单后点击 **Preview Ticket**：
 
@@ -79,7 +79,7 @@ sidebar: true
 
 5. 部分用户会收到 IB 通知需提供授权书，联系 IB 获取并填写后提交
 
-   ![授权书示例](https://pub.pbkrs.com/uploads/2025/73bb4965d9bf5c72393f248904f59d77)
+   ![授权书示例](./images/73bb4965d9bf5c72393f248904f59d77.png)
 
    IB 客服：上海 +86 (21) 6086 8586（周一至周五 09:00–18:00）；香港 +852-2156-7907（周一至周五 08:00–17:00）
 

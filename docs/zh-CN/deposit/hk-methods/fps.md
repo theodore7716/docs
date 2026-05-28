@@ -25,12 +25,12 @@ FPS 转数快入金的收款信息、到账时间、手续费及操作步骤。
 
 1. 打开长桥 App，进入**资产 → 存入资金**，选择港元，选择银行卡，点击「FPS 转数快」，复制 FPS ID
 
-   ![复制 FPS ID](https://pub.pbkrs.com/uploads/2026/d5973dfa459361c96bf6703d6a0a1998)
+   ![复制 FPS ID](./images/d5973dfa459361c96bf6703d6a0a1998.png)
 
 2. 登录网上银行或储值支付工具，通过 FPS 转数快功能向该 FPS ID 发起转账
 3. 转账完成后**立即**返回长桥 App，进入**资产 → 存入资金 → FPS 转数快**，上传汇款转账凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/b29b87921e8eceab48520d8a275ea60d)
+   ![上传汇款凭证](./images/b29b87921e8eceab48520d8a275ea60d.png)
 
 > 凭证必须在转账后立即上传，否则影响入金进度。
 

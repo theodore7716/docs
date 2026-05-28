@@ -17,7 +17,7 @@ sidebar: true
 
 按**发行或交易模式**还可分为：公募基金、私募基金、开放基金、封闭基金。
 
-![基金类型概览](https://pub.pbkrs.com/uploads/2025/b5746c140f5a832a2bc68d570374da40)
+![基金类型概览](./images/b5746c140f5a832a2bc68d570374da40.png)
 
 ![公募基金入口](./images/public-fund.png)
 

@@ -141,7 +141,7 @@ DLC（Daily Leverage Certificates）是一种金融衍生品，为投资者提�
 
 ### DLC 名称构成
 
-![DLC 名称构成](https://pub.pbkrs.com/uploads/2025/aa71b004daa46787632146d84e054d2c)
+![DLC 名称构成](./images/aa71b004daa46787632146d84e054d2c.png)
 
 ### 投资者适宜性
 

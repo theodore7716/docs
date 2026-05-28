@@ -46,29 +46,29 @@ sidebar: true
 
    - **再次转账**：直接选择**最近收款人 / 已登记收款人**
 
-   ![填写收款信息](https://pub.pbkrs.com/uploads/2026/f9ab9f7567f203a322b5b8e3c029a459)
+   ![填写收款信息](./images/f9ab9f7567f203a322b5b8e3c029a459.png)
 
 3. 输入转账金额，点击**提交**，再次确认收款银行信息后再次点击**提交**，完成转账
 
-   ![输入金额并确认](https://pub.pbkrs.com/uploads/2026/862160cd36db80302501a5c42c3e785c)
+   ![输入金额并确认](./images/862160cd36db80302501a5c42c3e785c.png)
 
 4. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/8279fcbf815bab51dd1d5917d74f402f)
+   ![上传汇款凭证](./images/8279fcbf815bab51dd1d5917d74f402f.png)
 
 ## 网上银行
 
 1. 登录**民生银行香港个人网上银行**（https://hkper.cmbc.com.cn）
 
-   ![登录网上银行](https://pub.pbkrs.com/uploads/2026/245dc51b5540971fdcae968f8f9de4a9)
+   ![登录网上银行](./images/245dc51b5540971fdcae968f8f9de4a9.png)
 
 2. 选择**转账汇款** → **转账** → **香港他行账户**，填写收款人信息和转账金额，点击**下一步**，完成安全验证，提示成功即汇款完毕
 
-   ![转账汇款 → 香港他行账户](https://pub.pbkrs.com/uploads/2026/cebf6cb2926a087f3a7a2dd0201dd398)
+   ![转账汇款 → 香港他行账户](./images/cebf6cb2926a087f3a7a2dd0201dd398.png)
 
 3. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/4634d303fc952fb641eafe4d098953ca)
+   ![上传汇款凭证](./images/4634d303fc952fb641eafe4d098953ca.png)
 
    > 凭证必须在汇款完成后立即上传，否则影响入金进度。
 

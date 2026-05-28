@@ -23,7 +23,7 @@ sidebar: true
 
 1. 登入**汇丰银行网上银行** → **我的银行** → **自动转账** → **设立自动转账**
 
-   ![设立自动转账入口](https://pub.pbkrs.com/uploads/2025/1b9bc8fec1f723ee8468bf3417602b6a)
+   ![设立自动转账入口](./images/1b9bc8fec1f723ee8468bf3417602b6a.png)
 
 2. 在「其他银行户口」中填写以下信息：
 
@@ -37,29 +37,29 @@ sidebar: true
    | 最高金额 | 按需填写，建议不超过港币十万元；超过十万元需另外下载并邮寄授权书表格 |
    | 到期日 | 按需设置，建议不设到期日 |
 
-   ![填写授权信息](https://pub.pbkrs.com/uploads/2025/9dfbfdb7a1a7b11d16b8b1d7ba15f1d4)
+   ![填写授权信息](./images/9dfbfdb7a1a7b11d16b8b1d7ba15f1d4.png)
 
    > **提示**：若填写时报错，建议先填「银行编号及名称」，再填「商户名称」。
 
-   ![填写顺序参考](https://pub.pbkrs.com/uploads/2025/4d4fb23a48958ca9c53255e4e54327b7)
+   ![填写顺序参考](./images/4d4fb23a48958ca9c53255e4e54327b7.png)
 
 3. 勾选同意相关声明，点击**继续**
 
-   ![同意声明](https://pub.pbkrs.com/uploads/2025/1e12346154b4d82b4a60b624c9e93eee)
+   ![同意声明](./images/1e12346154b4d82b4a60b624c9e93eee.png)
 
 4. 核对信息无误，按网银指引获取**交易保安编码**，输入后点击**确认**
 
-   ![确认信息](https://pub.pbkrs.com/uploads/2025/8860925472a0bfdb62336f562b601118)
+   ![确认信息](./images/8860925472a0bfdb62336f562b601118.png)
 
-   ![输入保安编码](https://pub.pbkrs.com/uploads/2025/545516109047460fda8cd26edb8a8b31)
+   ![输入保安编码](./images/545516109047460fda8cd26edb8a8b31.png)
 
    > 保安编码内置于**香港汇丰 App（HSBC HK App）**，无需携带实体编码器。如未安装，可在 App Store 或 Google Play 搜索「HSBC HK」下载。
 
-   ![HSBC HK App 获取保安编码](https://pub.pbkrs.com/uploads/2025/7941344a44e2b189abee6fee126d4fa2)
+   ![HSBC HK App 获取保安编码](./images/7941344a44e2b189abee6fee126d4fa2.png)
 
 5. 完成授权申请
 
-   ![授权申请完成](https://pub.pbkrs.com/uploads/2025/f38bda92718f23ebc7e1457ea3a49b5b)
+   ![授权申请完成](./images/f38bda92718f23ebc7e1457ea3a49b5b.png)
 
 ## 第二步：长桥 App 发起入金
 

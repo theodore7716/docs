@@ -15,7 +15,7 @@ sidebar: true
 
 登录老虎证券 → **我的** → **老虎账户**，查看账户类型标识。
 
-![查看账户类型](https://pub.pbkrs.com/uploads/2025/9d2c6079c286b1bbdc592b67c2427f3d)
+![查看账户类型](./images/9d2c6079c286b1bbdc592b67c2427f3d.png)
 
 ---
 
@@ -23,9 +23,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/99cb0b20cdf495c147670abbd485b7df)
+   ![存入股票入口](./images/99cb0b20cdf495c147670abbd485b7df.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/70afb5d4a765ce649fa889d0e231aef7)
+   ![全部功能 → 转入股票](./images/70afb5d4a765ce649fa889d0e231aef7.png)
 
 2. 转出券商选择**老虎证券**，填写账户姓名和账户号码，填写股票信息后提交
 
@@ -55,7 +55,7 @@ sidebar: true
 
 在老虎 App **我的 → 老虎账户**中，环球账户括号内的账号即为 IB 用户名。
 
-![从老虎 App 获取 IB 账号](https://pub.pbkrs.com/uploads/2025/fd009ac0fb1ec079d9b516fcf52bdbca)
+![从老虎 App 获取 IB 账号](./images/fd009ac0fb1ec079d9b516fcf52bdbca.png)
 
 登录 [IB 官网](https://www.interactivebrokers.com.hk/cn/home.php)，使用该账号作为用户名（忘记密码可通过「忘记密码」找回，或致电 IB 客服 021-60868586）。登录后，在投资组合栏查看 IB 账户号（提交长桥转入申请时需要）。
 
@@ -74,27 +74,27 @@ sidebar: true
 | 联系电话 | (+852) 3585 8944 / (+852) 3585 8915 |
 | 联系邮箱 | settlement@longbridge.hk |
 
-![FOP 转账填写示例](https://pub.pbkrs.com/uploads/2025/6007ffacaad6138e947f9b43d927e525)
+![FOP 转账填写示例](./images/6007ffacaad6138e947f9b43d927e525.png)
 
 #### 美股（IB 消息中心）
 
 1. 在 IB 账户右上角选择**帮助** → **支持中心**
 
-   ![帮助 → 支持中心](https://pub.pbkrs.com/uploads/2025/20f5f3e897b9a7ddb39870122dec397d)
+   ![帮助 → 支持中心](./images/20f5f3e897b9a7ddb39870122dec397d.png)
 
 2. 选择**消息中心**
 
-   ![消息中心](https://pub.pbkrs.com/uploads/2025/dc8d801f4cab1fba12b0f90704285953)
+   ![消息中心](./images/dc8d801f4cab1fba12b0f90704285953.png)
 
 3. **撰写** → **新咨询单** → **Funds & Banking** → **Position Transfers**
 
-   ![撰写新咨询单](https://pub.pbkrs.com/uploads/2025/76b4d82fd47fd8ca5b15c43344b7bb3c)
+   ![撰写新咨询单](./images/76b4d82fd47fd8ca5b15c43344b7bb3c.png)
 
-   ![选择 Position Transfers](https://pub.pbkrs.com/uploads/2025/9518b82ee60b392eef1c795a7690256a)
+   ![选择 Position Transfers](./images/9518b82ee60b392eef1c795a7690256a.png)
 
 4. 按以下模板填写咨询单后点击 **Preview Ticket**：
 
-   ![填写咨询单](https://pub.pbkrs.com/uploads/2025/1aa10a3fd54e3fbec036fa59d630417e)
+   ![填写咨询单](./images/1aa10a3fd54e3fbec036fa59d630417e.png)
 
    ```
    Subject: Transfer US position to another IB broker
@@ -117,7 +117,7 @@ sidebar: true
 
 6. **部分用户**会收到 IB 通知需提供授权书，按实际情况处理后提交
 
-   ![授权书示例](https://pub.pbkrs.com/uploads/2025/91ee36c6efe29db471eec7f8bb3d6421)
+   ![授权书示例](./images/91ee36c6efe29db471eec7f8bb3d6421.png)
 
 如需联系 IB 客服：
 

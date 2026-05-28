@@ -13,9 +13,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/ef012ac3dd162e50fc5d5a10bf7e8e55)
+   ![存入股票入口](./images/ef012ac3dd162e50fc5d5a10bf7e8e55.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/69a2138a0ca90490bbef5493f4b1995e)
+   ![全部功能 → 转入股票](./images/69a2138a0ca90490bbef5493f4b1995e.png)
 
 2. 填写转出券商信息：
 
@@ -60,11 +60,11 @@ sidebar: true
 
    **港股表格填写示例：**
 
-   ![港股表格填写示例](https://pub.pbkrs.com/uploads/2025/8f9632656ec73ecb3188838ef6793fff)
+   ![港股表格填写示例](./images/8f9632656ec73ecb3188838ef6793fff.png)
 
    **美股表格填写示例：**
 
-   ![美股表格填写示例](https://pub.pbkrs.com/uploads/2025/5a37c25ebad6918c49276ee1c6b2d510)
+   ![美股表格填写示例](./images/5a37c25ebad6918c49276ee1c6b2d510.png)
 
 2. 填好表格后拍照，用**华泰国际开户绑定邮箱**发邮件
 

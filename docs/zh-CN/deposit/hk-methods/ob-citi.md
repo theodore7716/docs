@@ -39,7 +39,7 @@ sidebar: true
    | 转账目的 | 自行选择 |
    | 货币 | USD |
 
-   ![填写收款人信息](https://pub.pbkrs.com/uploads/2026/d78752208f3cd1105be1568ade00fa0b)
+   ![填写收款人信息](./images/d78752208f3cd1105be1568ade00fa0b.png)
 
 3. 核对信息无误，点击**确认**，完成**保安编码**校验
 
@@ -47,7 +47,7 @@ sidebar: true
 
 5. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/79afca1bc146fceecb7c33bd4ad4476c)
+   ![上传汇款凭证](./images/79afca1bc146fceecb7c33bd4ad4476c.png)
 
    > 凭证必须在汇款完成后立即上传，否则影响入金进度。
 

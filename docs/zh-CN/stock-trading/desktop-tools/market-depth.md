@@ -22,19 +22,19 @@ sidebar: true
 
 若特定价格水平有大量挂单，该价格很可能成为短期支撑位或阻力位。
 
-![识别支撑位与阻力位](https://pub.pbkrs.com/uploads/2025/1e40bfb5b7fb224b5e68453e37d103c1)
+![识别支撑位与阻力位](./images/1e40bfb5b7fb224b5e68453e37d103c1.png)
 
 ### 识别买卖力量不平衡
 
 若某价格买入订单多于卖出订单，可能表明市场对该证券持看涨态度；反之则可能表明看跌态度。
 
-![识别买卖力量不平衡](https://pub.pbkrs.com/uploads/2025/74d96d1ed316fd216b077d4505267a96)
+![识别买卖力量不平衡](./images/74d96d1ed316fd216b077d4505267a96.png)
 
 ### 评估市场流动性
 
 流动性强的股票买卖盘量均较多，大额交易不会显著影响股价；流动性差的股票则相反，大额买入可能明显推升价格。
 
-![评估市场流动性](https://pub.pbkrs.com/uploads/2025/0aa8da9d6cac7a6bea8e65765619f855)
+![评估市场流动性](./images/0aa8da9d6cac7a6bea8e65765619f855.png)
 
 长桥桌面端的市场深度除买卖盘数据外，还支持直接在盘口价格处下单、拖动改单、设置止盈止损附加单及批量撤单，显著提高日内交易效率。
 
@@ -46,19 +46,19 @@ sidebar: true
 
 点击新开标签页，选择自适应布局，点击**日内交易**，即可打开预组合好图表交易、市场深度、当日订单等功能的面板，直接使用。
 
-![打开日内交易面板](https://pub.pbkrs.com/uploads/2025/2da675be682e28e2cd890c88a1d34c8c)
+![打开日内交易面板](./images/2da675be682e28e2cd890c88a1d34c8c.png)
 
-![日内交易面板](https://pub.pbkrs.com/uploads/2025/a155f470cfb687fe78c3580a42f8bc51)
+![日内交易面板](./images/a155f470cfb687fe78c3580a42f8bc51.png)
 
 ### 入口二：组件工具箱
 
 从组件工具箱中，选择**交易** > **市场深度**，将组件拖拽到当前面板中使用。
 
-![组件工具箱添加市场深度](https://pub.pbkrs.com/uploads/2025/ae736cc9776330e082edf976ec8fba7c)
+![组件工具箱添加市场深度](./images/ae736cc9776330e082edf976ec8fba7c.png)
 
 ## 界面说明
 
-![市场深度界面总览](https://pub.pbkrs.com/uploads/2025/4e0bc91fb90a763ef1de82a589e69d56)
+![市场深度界面总览](./images/4e0bc91fb90a763ef1de82a589e69d56.png)
 
 ## 操作说明
 
@@ -66,19 +66,19 @@ sidebar: true
 
 在头部输入框设置本次委托数量，后续下单操作均使用该数量。
 
-![设置交易数量](https://pub.pbkrs.com/uploads/2025/41e03d30e2201a0edded9ab7625540ae)
+![设置交易数量](./images/41e03d30e2201a0edded9ab7625540ae.png)
 
 ### 下单
 
 在市场深度盘口中，点击目标价格行直接提交限价单，下单后对应价格行显示委托数量。
 
-![在盘口下单](https://pub.pbkrs.com/uploads/2025/0e11f1743bb22663c27ebb8e03191ca7)
+![在盘口下单](./images/0e11f1743bb22663c27ebb8e03191ca7.png)
 
 ### 改单
 
 直接拖动已有委托单到目标价格行完成改单；也可直接拖动止盈、止损单改单。
 
-![拖动改单](https://pub.pbkrs.com/uploads/2025/ea7ee0a11fbd10a5ab3b9175ddfa395c)
+![拖动改单](./images/ea7ee0a11fbd10a5ab3b9175ddfa395c.png)
 
 ### 撤单
 
@@ -86,13 +86,13 @@ sidebar: true
 
 点击委托单右侧的「X」按钮，单笔快捷撤单。
 
-![单笔撤单](https://pub.pbkrs.com/uploads/2025/e3bb57734fc8c9147e1952a45ee9a759)
+![单笔撤单](./images/e3bb57734fc8c9147e1952a45ee9a759.png)
 
 #### 批量撤单
 
 点击头部批量撤单按钮，支持：撤销全部、撤销买单、撤销卖单。
 
-![批量撤单](https://pub.pbkrs.com/uploads/2025/e36b0cb8086e524336382363cfb11a96)
+![批量撤单](./images/e36b0cb8086e524336382363cfb11a96.png)
 
 ### 价格定位
 
@@ -101,7 +101,7 @@ sidebar: true
 - **回到最新价**：点击后视图自动滚动到当前最新成交价位置
 - **锁定最新价**：开启后，视图始终跟随最新价自动滚动，保持最新价居中显示
 
-![回到最新价与锁定最新价](https://pub.pbkrs.com/uploads/2025/5d0b0ac943d0a385770ef1dc683a982c)
+![回到最新价与锁定最新价](./images/5d0b0ac943d0a385770ef1dc683a982c.png)
 
 ### 附加单设置
 
@@ -111,7 +111,7 @@ sidebar: true
 - **价差**：止盈止损相对于委托价的固定价差
 - **价格**：直接设置止盈触发价和止损触发价
 
-![附加单设置](https://pub.pbkrs.com/uploads/2025/d50aa96bda2aeb0871d5362e0234f06b)
+![附加单设置](./images/d50aa96bda2aeb0871d5362e0234f06b.png)
 
 **示例**：当前最新价 278.20，委托价 278.00，最小变动单位 0.01：
 
@@ -121,13 +121,13 @@ sidebar: true
 
 设置后，下单时可直接勾选需要附加的止盈止损单。
 
-![下单时勾选附加单](https://pub.pbkrs.com/uploads/2025/a296170c508090e74c3021b04dc95759)
+![下单时勾选附加单](./images/a296170c508090e74c3021b04dc95759.png)
 
 ### 持仓信息
 
 在头部可查看当前股票的持仓数量、持仓成本价及对应盈亏信息。
 
-![持仓信息](https://pub.pbkrs.com/uploads/2025/f90e4b3ea09e718a9433065f79e4a3d2)
+![持仓信息](./images/f90e4b3ea09e718a9433065f79e4a3d2.png)
 
 ## 高级行情权限与功能限制
 
@@ -139,7 +139,7 @@ sidebar: true
 
 市场深度按档位展示价格，展示范围较小；止盈止损偏离最新价较多时，一屏内可能看不全。结合图表交易使用，可以清楚看到当前价格在走势图中的位置，判断更直观。
 
-![市场深度与图表交易结合使用](https://pub.pbkrs.com/uploads/2025/8bb811c56ce86b0b7c88e180386a385c)
+![市场深度与图表交易结合使用](./images/8bb811c56ce86b0b7c88e180386a385c.png)
 
 <!-- backlinks:start -->
 

@@ -15,9 +15,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/3869bd78857bb1dfe21a167da9659952)
+   ![存入股票入口](./images/3869bd78857bb1dfe21a167da9659952.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/3776b6a7f3ccc2b9d6a9c8c70e402ecf)
+   ![全部功能 → 转入股票](./images/3776b6a7f3ccc2b9d6a9c8c70e402ecf.png)
 
 2. 填写转出券商信息：
 
@@ -53,11 +53,11 @@ sidebar: true
 
    **港股表格填写示例：**
 
-   ![港股表格填写示例](https://pub.pbkrs.com/uploads/2025/42709c8bc700dec9b2fc1e57c2fc2703)
+   ![港股表格填写示例](./images/42709c8bc700dec9b2fc1e57c2fc2703.png)
 
    **美股表格填写示例：**
 
-   ![美股表格填写示例](https://pub.pbkrs.com/uploads/2025/fcb2ca8d7e34985c2e84cee9c3591a7d)
+   ![美股表格填写示例](./images/fcb2ca8d7e34985c2e84cee9c3591a7d.png)
 
 2. 表格填写完毕后拍照，用**哈富开户绑定邮箱**发邮件至 hk@eastmoney.com
 

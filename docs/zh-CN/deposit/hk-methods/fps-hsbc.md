@@ -18,29 +18,29 @@ sidebar: true
    | 收款银行 | 中国工商银行（亚洲） |
    | 收款人名称 | LONG BRIDGE HK LIMITED-CLIENT'S A/C |
 
-   ![复制长桥 FPS ID](https://pub.pbkrs.com/uploads/2026/638e33651a9938710820a42fd7c07db3)
+   ![复制长桥 FPS ID](./images/638e33651a9938710820a42fd7c07db3.png)
 
 2. 打开**汇丰银行 App** → **转账/转数快** → **其他本地受款人 / "转数快"**
 
-   ![导航至转数快入口](https://pub.pbkrs.com/uploads/2026/44ae43bcbb38e693e39477e10389ac23)
+   ![导航至转数快入口](./images/44ae43bcbb38e693e39477e10389ac23.png)
 
 3. 选择**汇款银行账户**，点击勾选
 
-   ![选择汇款账户](https://pub.pbkrs.com/uploads/2026/59b3af47408cf508871b6daed6472a5f)
+   ![选择汇款账户](./images/59b3af47408cf508871b6daed6472a5f.png)
 
 4. 点击**转账至新受款人** → **选择转账方式**，在下拉弹框中选择**快速支付系统识别码**，填写 FPS ID
 
-   ![选择 FPS 识别码并填写](https://pub.pbkrs.com/uploads/2026/1a41af0229d5f5ad07395e391d38d6b5)
+   ![选择 FPS 识别码并填写](./images/1a41af0229d5f5ad07395e391d38d6b5.png)
 
 5. 输入存入资金金额，点击**继续**，核对信息后**提交**
 
-   ![输入金额并提交](https://pub.pbkrs.com/uploads/2026/09dfd0ee4db8530570e2265deb093c96)
+   ![输入金额并提交](./images/09dfd0ee4db8530570e2265deb093c96.png)
 
 6. 提示「已提交」即表示转账完成
 
 7. 立即返回**长桥 App** → **资产** → **存入资金** → **FPS 转数快**，上传汇款凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/cf8a0d076e02f79ebf989db865404311)
+   ![上传汇款凭证](./images/cf8a0d076e02f79ebf989db865404311.png)
 
    > 凭证必须在转账后立即上传，否则影响入金进度。
 

@@ -13,9 +13,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/cb57b541e3874356c0e68f3a170e1d95)
+   ![存入股票入口](./images/cb57b541e3874356c0e68f3a170e1d95.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/e0fd58de265b4d8570e7b78b8ee08800)
+   ![全部功能 → 转入股票](./images/e0fd58de265b4d8570e7b78b8ee08800.png)
 
 2. 填写转出券商信息：
 
@@ -63,11 +63,11 @@ sidebar: true
 
    **港股表格填写示例：**
 
-   ![港股表格填写示例](https://pub.pbkrs.com/uploads/2025/04ad6c07dbb611a588303286b440d8e3)
+   ![港股表格填写示例](./images/04ad6c07dbb611a588303286b440d8e3.png)
 
    **美股表格填写示例：**
 
-   ![美股表格填写示例](https://pub.pbkrs.com/uploads/2025/10c45c13e86c8ab63e6b3706e964893f)
+   ![美股表格填写示例](./images/10c45c13e86c8ab63e6b3706e964893f.png)
 
 2. 填好表格后拍照，发邮件至 settlement@stellarsec.com
 

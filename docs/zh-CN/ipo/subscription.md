@@ -24,25 +24,25 @@ sidebar: true
 
 ![市场-新股申购入口](./images/ipo-entry.png)
 
-![新股认购列表页](https://pub.pbkrs.com/uploads/2025/7b965ce3eed477d641905e575a5b3d2e)
+![新股认购列表页](./images/7b965ce3eed477d641905e575a5b3d2e.png)
 
 **步骤 2**：在认购中的新股点击「立即认购」，选择认购方式和认购股数。
 
 - 银行融资认购
 
-![银行融资认购](https://pub.pbkrs.com/uploads/2025/fe3456719e76d766c9e979a21cf6c672)
+![银行融资认购](./images/fe3456719e76d766c9e979a21cf6c672.png)
 
 - 普通认购
 
-![普通认购](https://pub.pbkrs.com/uploads/2025/7a134c956c23115bb631de9fa03e13ad)
+![普通认购](./images/7a134c956c23115bb631de9fa03e13ad.png)
 
 **步骤 3**：点击「申请认购」，确认新股认购订单后提交。
 
-![确认并提交认购订单](https://pub.pbkrs.com/uploads/2025/d0111f970e7695f717c870a81577fa5e)
+![确认并提交认购订单](./images/d0111f970e7695f717c870a81577fa5e.png)
 
 **步骤 4**：在新股页「认购记录」查看认购状态，或在新股日历中点击「查看订单」。
 
-![查看认购记录](https://pub.pbkrs.com/uploads/2025/cf4d03abb9eb461dd8fd06988a0f00b3)
+![查看认购记录](./images/cf4d03abb9eb461dd8fd06988a0f00b3.png)
 
 认购截止前支持改单和撤销，入口：长桥 App - 市场 - 新股 - 认购记录。
 

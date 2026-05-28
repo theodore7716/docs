@@ -13,7 +13,7 @@ sidebar: true
 
 深度图展示不同价格水平上的买卖订单数量，根据最高 60 档买卖盘价格绘制，不随档位切换而变化。
 
-![深度图](https://pub.pbkrs.com/uploads/2025/1ebfbb5732e6a2266959ba9077540c84)
+![深度图](./images/1ebfbb5732e6a2266959ba9077540c84.png)
 
 - **横坐标**：显示委托价格，从左到右依次为：60 档买盘最低价、60 档买盘最高价（买一价）、60 档卖盘最低价（卖一价）、60 档卖盘最高价
 - **纵坐标**：显示累计委托量（达到该价位需消化的订单量）。底部数值为买一量与卖一量中的较小值，顶部数值为 60 档买量之和与卖量之和中的较大值
@@ -28,7 +28,7 @@ sidebar: true
 
 提供详细买卖盘报价，涵盖最高 60 档价位信息，支持切换查看 1 档、5 档、10 档、20 档、40 档或 60 档不同深度。
 
-![深度盘口](https://pub.pbkrs.com/uploads/2025/5f6eeb31b65a5f49ccd20daa4b03fd9e)
+![深度盘口](./images/5f6eeb31b65a5f49ccd20daa4b03fd9e.png)
 
 **买卖盘占比**
 
@@ -61,7 +61,7 @@ sidebar: true
 - **MPID**（Market Participants ID）：市场参与者 ID。若未提供 MPID，盘前/盘中/盘后默认显示 NSDQ（来自纳斯达克交易所），夜盘默认显示 BLUE（来自 Blue Ocean 交易所）
 - 买卖盘占比及 BBO 线规则遵循深度盘口标准
 
-![委托明细](https://pub.pbkrs.com/uploads/2025/1333a13dd6c4f17285657532e0225a08)
+![委托明细](./images/1333a13dd6c4f17285657532e0225a08.png)
 
 ---
 
@@ -94,11 +94,11 @@ sidebar: true
 
 **方式一**：点击行情页面 BBO 右上角的行情商城快捷入口，跳转至「我的行情」页面购买。
 
-![行情商城入口](https://pub.pbkrs.com/uploads/2025/06765ebe2b80b8d582a98a635933027e)
+![行情商城入口](./images/06765ebe2b80b8d582a98a635933027e.png)
 
 **方式二**：通过「我的」>「行情商店」购买行情权限。
 
-![行情商店入口](https://pub.pbkrs.com/uploads/2025/bc34d27f3c14666cb3981f45a08d8a7d)
+![行情商店入口](./images/bc34d27f3c14666cb3981f45a08d8a7d.png)
 
 ### 已购买权限但看不到数据？
 
@@ -106,7 +106,7 @@ sidebar: true
 
 点击**重启行情**即可在当前设备上获取深度摆盘权限。
 
-![重启行情](https://pub.pbkrs.com/uploads/2025/83e030e0065bc86fd683b147d3d9f6ac)
+![重启行情](./images/83e030e0065bc86fd683b147d3d9f6ac.png)
 
 ## 相关文档
 

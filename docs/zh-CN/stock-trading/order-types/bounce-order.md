@@ -13,7 +13,7 @@ sidebar: true
 
 设定触发价格，当市价达到该价格后，系统自动提交买入订单。
 
-![到价买入参数设置](https://pub.pbkrs.com/uploads/2025/0df968749a4b87d620adcb48b3cc91b1)
+![到价买入参数设置](./images/0df968749a4b87d620adcb48b3cc91b1.png)
 
 ### 参数设置
 
@@ -35,7 +35,7 @@ sidebar: true
 
 设定触发价格，当市价达到该价格后，系统自动提交卖出订单。
 
-![到价卖出参数设置](https://pub.pbkrs.com/uploads/2025/1972e9a2eb58503c4fff428bb6bf4805)
+![到价卖出参数设置](./images/1972e9a2eb58503c4fff428bb6bf4805.png)
 
 ### 参数设置
 
@@ -56,7 +56,7 @@ sidebar: true
 
 设定监控价格，当市场价格跌破监控价格后，系统开始跟踪价格反弹幅度。当反弹幅度达到设定条件时，自动提交买入委托单。
 
-![反弹买入参数设置](https://pub.pbkrs.com/uploads/2025/ca6db09a5baf10cd5e5e1659a463c69c)
+![反弹买入参数设置](./images/ca6db09a5baf10cd5e5e1659a463c69c.png)
 
 ### 参数设置
 
@@ -81,7 +81,7 @@ sidebar: true
 
 设定监控价格，当市场价格涨破监控价格后，系统开始跟踪价格回落幅度。当回落幅度达到设定条件时，自动提交卖出委托单。
 
-![回落卖出参数设置](https://pub.pbkrs.com/uploads/2025/d89a8061519d67ad681aa84bcc3cca46)
+![回落卖出参数设置](./images/d89a8061519d67ad681aa84bcc3cca46.png)
 
 ### 参数设置
 

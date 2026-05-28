@@ -22,7 +22,7 @@ LongbridgeAI 在 App 内以多种形态存在：
 
 **LongbridgeAI IM**
 
-![LongbridgeAI IM 对话界面](https://assets.lbctrl.com/uploads/1_15331_mmvsads84wnrjmhea5v_.jpeg)
+![LongbridgeAI IM 对话界面](./images/1_15331_mmvsads84wnrjmhea5v_.jpeg)
 
 ## 服务范围
 
@@ -56,11 +56,11 @@ LongbridgeAI 专注于财经领域，可协助处理以下需求：
 
 **正面示例**（问题主体、对象具体明确）
 
-![正面示例](https://pub.pbkrs.com/uploads/2026/ff4ac066881f549d10cc86b98dc28888)
+![正面示例](./images/ff4ac066881f549d10cc86b98dc28888.png)
 
 **反面示例**（问题宏大、模糊、试图预测）
 
-![反面示例](https://pub.pbkrs.com/uploads/2026/7605c8a27d0af36d42dfe2e5d1816f4b)
+![反面示例](./images/7605c8a27d0af36d42dfe2e5d1816f4b.png)
 
 ## 问题反馈
 

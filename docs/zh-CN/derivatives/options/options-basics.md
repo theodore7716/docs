@@ -39,7 +39,7 @@ sidebar: true
 
 价内期权具有真实价值。在长桥 App 期权链页面，蓝色部分为价内期权。
 
-![期权链 ITM/OTM 颜色区分](https://pub.pbkrs.com/uploads/2025/c63e60f13d2da70ed9646ee167deaf4f)
+![期权链 ITM/OTM 颜色区分](./images/c63e60f13d2da70ed9646ee167deaf4f.png)
 
 ## 交易时间
 

@@ -15,9 +15,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/48b7fc2593141df1072c6410cc69e4d5)
+   ![存入股票入口](./images/48b7fc2593141df1072c6410cc69e4d5.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/799cb9dfae771123e4eb6ce2734d7be1)
+   ![全部功能 → 转入股票](./images/799cb9dfae771123e4eb6ce2734d7be1.png)
 
 2. 填写转出券商信息：
 
@@ -40,9 +40,9 @@ sidebar: true
 
 1. 前往**盈立证券官网**（https://usmart8.com/mainland）→ **帮助中心** → **下载表格**，下载「证券交收指示」表格
 
-   ![帮助中心入口](https://pub.pbkrs.com/uploads/2025/45450c230623c80c2f09dc587ea6a024)
+   ![帮助中心入口](./images/45450c230623c80c2f09dc587ea6a024.png)
 
-   ![下载证券交收指示](https://pub.pbkrs.com/uploads/2025/36a1a15a2edeb3d49cf4c592afa055b0)
+   ![下载证券交收指示](./images/36a1a15a2edeb3d49cf4c592afa055b0.png)
 
 2. 打印表格，按以下长桥接收方信息填写
 
@@ -68,11 +68,11 @@ sidebar: true
 
    **港股表格填写示例：**
 
-   ![港股表格填写示例](https://pub.pbkrs.com/uploads/2025/f71759c471f5457e528d3cfa32ed0627)
+   ![港股表格填写示例](./images/f71759c471f5457e528d3cfa32ed0627.png)
 
    **美股表格填写示例：**
 
-   ![美股表格填写示例](https://pub.pbkrs.com/uploads/2025/82930d99996fe9d94884b6a6597e41b3)
+   ![美股表格填写示例](./images/82930d99996fe9d94884b6a6597e41b3.png)
 
 3. 表格填写完毕后拍照，将图片**发给盈立在线客服（人工客服）**，并催促尽快处理转仓
 

@@ -15,7 +15,7 @@ sidebar: true
 
 1. 打开**中国银行手机 App** → **支付** → **直接付款授权** → **建立直接付款授权**
 
-   ![手机银行入口](https://assets.lbctrl.com/uploads/1_20762_mf4v8okmz5b5i6ctyap_.jpeg)
+   ![手机银行入口](./images/1_20762_mf4v8okmz5b5i6ctyap_.jpeg)
 
 2. 选择商户的识别代码／账户号码，填写以下信息后点击**同意及继续**：
 
@@ -28,7 +28,7 @@ sidebar: true
    | 付款周期 | 每次 |
    | 付款金额 | 按需填写，建议不设上限 |
 
-   ![填写授权信息](https://assets.lbctrl.com/uploads/1_20762_mf4v8lny7wz3hxgokb4_.jpeg)
+   ![填写授权信息](./images/1_20762_mf4v8lny7wz3hxgokb4_.jpeg)
 
 3. 确认资料无误，输入网上银行密码或 Face ID 完成认证
 
@@ -36,7 +36,7 @@ sidebar: true
 
 1. 登入**中国银行（香港）网上银行** → **缴付账单** → **直接付款授权**
 
-   ![网银入口](https://assets.lbctrl.com/uploads/1_20762_mf4v8hzu10d0vd93kstd_.jpeg)
+   ![网银入口](./images/1_20762_mf4v8hzu10d0vd93kstd_.jpeg)
 
 2. 建立**直接付款授权**，填写以下信息：
 
@@ -51,11 +51,11 @@ sidebar: true
    | 付款方式 | 提款账户（选择自己的付款账户） |
    | 授权到期日 | 直至另行通知 |
 
-   ![填写授权信息](https://assets.lbctrl.com/uploads/1_20762_mf4v8dzrtvif5282x8_.jpeg)
+   ![填写授权信息](./images/1_20762_mf4v8dzrtvif5282x8_.jpeg)
 
 3. 核对信息无误，按银行指引获取保安编码，输入**交易确认编码**，点击**确认**
 
-   ![输入确认编码](https://assets.lbctrl.com/uploads/1_20762_mf4v89bpz994boxrz09_.jpeg)
+   ![输入确认编码](./images/1_20762_mf4v89bpz994boxrz09_.jpeg)
 
 ## 第二步：长桥 App 发起入金
 

@@ -21,17 +21,17 @@ sidebar: true
 
 进入长桥 App → 市场，切换顶部标签至虚拟资产频道，即可查看各类虚拟资产行情及最新资讯。
 
-![虚拟资产市场频道](https://pub.pbkrs.com/uploads/2026/0e0731dd49df6d04e169b7b5ff0bb75a)
+![虚拟资产市场频道](./images/0e0731dd49df6d04e169b7b5ff0bb75a.png)
 
 点击感兴趣的加密货币进入详情页，可查看实时行情、逐笔成交和买卖盘口等深度数据。
 
-![加密货币详情页](https://pub.pbkrs.com/uploads/2026/493ca59328e0eaf1b3c7d7d40f081642)
+![加密货币详情页](./images/493ca59328e0eaf1b3c7d7d40f081642.png)
 
 在标的详情页点击**买入**或**卖出**按钮进入交易页面，若尚未开通虚拟资产账户，可根据指引提交开户申请。
 
-![买入/卖出入口](https://pub.pbkrs.com/uploads/2026/3dac948aca967ed4f8fb2e8db02c812f)
+![买入/卖出入口](./images/3dac948aca967ed4f8fb2e8db02c812f.png)
 
-![开户申请流程](https://pub.pbkrs.com/uploads/2026/7f081204e26c9bb92b91fbddfda7eff8)
+![开户申请流程](./images/7f081204e26c9bb92b91fbddfda7eff8.png)
 
 账户成功开通后，可通过入金或账户内划转资金的方式为虚拟资产账户存入资金。
 

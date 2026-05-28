@@ -19,13 +19,13 @@ sidebar: true
 
 未使用融资。
 
-![安全状态示例](https://pub.pbkrs.com/uploads/2025/4079e3205b8aec00ad0693cfe296aeb4)
+![安全状态示例](./images/4079e3205b8aec00ad0693cfe296aeb4.png)
 
 ### 中等
 
 已使用融资，股权资产大于初始保证金要求。依照账户当前杠杆倍数判断，当前使用杠杆倍数越高，则风险越高。
 
-![中等状态示例](https://pub.pbkrs.com/uploads/2025/16c1e59a551b4650de7fc660ddfb7d9b)
+![中等状态示例](./images/16c1e59a551b4650de7fc660ddfb7d9b.png)
 
 ### 预警
 
@@ -33,7 +33,7 @@ sidebar: true
 
 此时购买力已用尽，不可新增开仓。请关注持仓风险，如账户出现「应追缴保证金」金额，请及时补充资金或卖出股票补足欠款。
 
-![预警状态示例](https://pub.pbkrs.com/uploads/2025/87380d2911514ef36d664a23cd0666f7)
+![预警状态示例](./images/87380d2911514ef36d664a23cd0666f7.png)
 
 ### 危险
 
@@ -41,7 +41,7 @@ sidebar: true
 
 在此状态下，您的账户必须根据「应追缴保证金」的数值，在截止日 15:00 前存入足够的保证金或主动平仓部分头寸，否则账户会被强制平仓。券商有权自行决定平仓的股票、价格、数量和时间。具体操作步骤见[如何应对追加保证金通知](/margin/how-to-respond-to-margin-call)。
 
-![危险状态示例](https://pub.pbkrs.com/uploads/2025/e1d3b211e5ba30653fd38ef7fc7a6873)
+![危险状态示例](./images/e1d3b211e5ba30653fd38ef7fc7a6873.png)
 
 ## 字段解释
 

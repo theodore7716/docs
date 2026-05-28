@@ -38,7 +38,7 @@ sidebar: true
    | 收款银行 | 中国工商银行（亚洲） |
    | 收款人名称 | LONG BRIDGE HK LIMITED-CLIENT'S A/C |
 
-   ![复制长桥 FPS ID](https://pub.pbkrs.com/uploads/2026/68664ee85b34ca3020fadc7fe513d060)
+   ![复制长桥 FPS ID](./images/68664ee85b34ca3020fadc7fe513d060.png)
 
 2. 在工银亚洲发起转账（选择其中一种方式）：
 
@@ -46,19 +46,19 @@ sidebar: true
 
    打开**工银亚洲 App** → **全部** → **转账支付** → **e 秒转-FPS** → **付款**，填写扣款账户和转账金额，确认后完成转账
 
-   ![工银亚洲 App 导航至 FPS](https://pub.pbkrs.com/uploads/2026/0919c84adbf7b8fa6045a1249d315267)
+   ![工银亚洲 App 导航至 FPS](./images/0919c84adbf7b8fa6045a1249d315267.png)
 
-   ![填写转账信息](https://pub.pbkrs.com/uploads/2026/e2487bdebc0cf4c371fc7208b67407d9)
+   ![填写转账信息](./images/e2487bdebc0cf4c371fc7208b67407d9.png)
 
    **方式二：网上银行**
 
    登入网上银行 → **账户服务** → **转账汇款** → **本地转账**，填写转账信息后提交
 
-   ![网上银行本地转账](https://pub.pbkrs.com/uploads/2026/4eebdb5c85db6d73035f93656feefef1)
+   ![网上银行本地转账](./images/4eebdb5c85db6d73035f93656feefef1.png)
 
 3. 转账完成后，立即返回**长桥 App** → **资产** → **存入资金** → **FPS 转数快**，上传汇款转账凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/0b868927a62dcaa46907804a4de6282f)
+   ![上传汇款凭证](./images/0b868927a62dcaa46907804a4de6282f.png)
 
    > 凭证必须在转账后立即上传，否则影响入金进度。
 

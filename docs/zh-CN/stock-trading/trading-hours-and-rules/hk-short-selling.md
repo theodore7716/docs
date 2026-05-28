@@ -13,7 +13,7 @@ sidebar: true
 
 > 若账户无融资额度或资产不足 270 港币，则签署不成功。
 
-![开通港股沽空](https://pub.pbkrs.com/uploads/2026/549fa91e5823fcd2de5937f4d49894f1)
+![开通港股沽空](./images/549fa91e5823fcd2de5937f4d49894f1.png)
 
 开通后，仍需等待香港税务局返回登记审批结果，预计等待时间约一个月。
 
@@ -32,13 +32,13 @@ sidebar: true
 
 交易下单界面会按照当前账户资金证券情况展示可沽空的数量。
 
-![沽空交易界面](https://pub.pbkrs.com/uploads/2026/5bcac7be6fd52f3f2c5184c6e0100b7e)
+![沽空交易界面](./images/5bcac7be6fd52f3f2c5184c6e0100b7e.png)
 
 若港股支持沽空，个股详情会展示对应图标，点击图标可以看到融资融券信息；注意卖空池余额，若卖空池余额不足，沽空委托会失败。
 
-![个股沽空图标](https://pub.pbkrs.com/uploads/2026/1c4a303aa7dddd62e223845332d802b7)
+![个股沽空图标](./images/1c4a303aa7dddd62e223845332d802b7.png)
 
-![融资融券信息](https://pub.pbkrs.com/uploads/2026/8435eeb53592f74c4fce0b3820234747)
+![融资融券信息](./images/8435eeb53592f74c4fce0b3820234747.png)
 
 ### 沽空委托规则
 

@@ -21,21 +21,21 @@ sidebar: true
 查看方式：
 - 长桥 App **期权盘前交易榜单**，实时查看支持的正股列表
 
-![期权盘前交易榜单入口](https://pub.pbkrs.com/uploads/2025/0b4708df54333338e3200ac6cddd6e77)
+![期权盘前交易榜单入口](./images/0b4708df54333338e3200ac6cddd6e77.png)
 
-![期权盘前交易榜单](https://pub.pbkrs.com/uploads/2025/cb70f2e66a5c0b7c2bd9c45375264797)
+![期权盘前交易榜单](./images/cb70f2e66a5c0b7c2bd9c45375264797.png)
 
 - 期权链页面：勾选「支持盘前交易」筛选，带「盘前」标签的价格为盘前最新报价
 
-![期权链盘前筛选](https://pub.pbkrs.com/uploads/2025/7dbd8254aaad20958a25c0315a256946)
+![期权链盘前筛选](./images/7dbd8254aaad20958a25c0315a256946.png)
 
 ## 如何交易
 
 在盘前时段（美东 04:00 - 09:30），进入支持期权盘前交易的期权链页面，点击期权合约，在底部交易抽屉中选择「盘前交易 4:00 - 9:30」类型即可委托。
 
-![选择盘前交易类型](https://pub.pbkrs.com/uploads/2025/2d031b81db87b28550761a5f4ffd94a4)
+![选择盘前交易类型](./images/2d031b81db87b28550761a5f4ffd94a4.png)
 
-![盘前交易下单界面](https://pub.pbkrs.com/uploads/2025/60c9e2e3882f96afab264ec6a9ecf803)
+![盘前交易下单界面](./images/60c9e2e3882f96afab264ec6a9ecf803.png)
 
 首次交易时 App 会引导签署相关风险声明，完成后即可继续交易。
 
@@ -62,7 +62,7 @@ sidebar: true
 
 App 支持自定义是否使用盘前价格计算期权持仓市值和盈亏。设置路径：我的 - 设置 - 资产设置 - 开启或关闭「期权使用延长时段价格」。
 
-![期权延长时段价格设置](https://pub.pbkrs.com/uploads/2025/f1d1b7d348968f03cd2f0bce64279ca0)
+![期权延长时段价格设置](./images/f1d1b7d348968f03cd2f0bce64279ca0.png)
 
 <!-- backlinks:start -->
 

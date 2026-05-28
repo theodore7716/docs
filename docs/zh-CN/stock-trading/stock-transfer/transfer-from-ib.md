@@ -17,9 +17,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/7515c2e7419b69dc9979860fb871f527)
+   ![存入股票入口](./images/7515c2e7419b69dc9979860fb871f527.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/f69e7c09abca70295dd169cf0b2ae21a)
+   ![全部功能 → 转入股票](./images/f69e7c09abca70295dd169cf0b2ae21a.png)
 
 2. 转出券商选择**盈透证券**，填写账户姓名和账户号码，点击**下一步**，填写股票信息后提交
 
@@ -35,7 +35,7 @@ sidebar: true
 
 1. 路径：**转账与支付** → **转账头寸** → **转出** → **基础 FOP 转账**
 
-   ![基础 FOP 转账路径](https://pub.pbkrs.com/uploads/2025/52dedd4c39e18bbb56a34b1347cbda17)
+   ![基础 FOP 转账路径](./images/52dedd4c39e18bbb56a34b1347cbda17.png)
 
 2. 填写以下长桥接收方信息：
 
@@ -56,11 +56,11 @@ sidebar: true
 
 1. 路径：**转账与支付** → **转账头寸** → **转出** → **选择地区**
 
-   ![选择地区](https://pub.pbkrs.com/uploads/2025/2c4b9bc67e3851186692fee50f461697)
+   ![选择地区](./images/2c4b9bc67e3851186692fee50f461697.png)
 
 2. 选择**所有其他地区** → 选择**全球证券纯券过户**
 
-   ![选择全球证券纯券过户](https://pub.pbkrs.com/uploads/2025/c6ad46834197b5544b1cd81055ce4427)
+   ![选择全球证券纯券过户](./images/c6ad46834197b5544b1cd81055ce4427.png)
 
 3. 填写以下长桥接收方信息：
 
@@ -73,11 +73,11 @@ sidebar: true
    | 联系人电话 | (+852) 3585 8944 / (+852) 3585 8915 |
    | 联系人邮箱 | settlement@longbridge.hk |
 
-   ![填写接收方信息](https://pub.pbkrs.com/uploads/2025/687c1b513fe0df922b46b38f61b4a9ec)
+   ![填写接收方信息](./images/687c1b513fe0df922b46b38f61b4a9ec.png)
 
 4. 提交申请后，**部分用户**会收到 IB 通知需提供授权书，按实际情况处理，填写后提交
 
-   ![授权书示例](https://pub.pbkrs.com/uploads/2025/7c4ec06f7889170f6ffe933a36091417)
+   ![授权书示例](./images/7c4ec06f7889170f6ffe933a36091417.png)
 
 完成后耐心等待，一般需要 **3–6 周**完成转仓。如需跟进，可联系 IB 客服：
 

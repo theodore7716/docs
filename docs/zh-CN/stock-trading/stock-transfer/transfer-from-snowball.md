@@ -13,9 +13,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/7891d332ac53b1a71dd22ed6e69571c5)
+   ![存入股票入口](./images/7891d332ac53b1a71dd22ed6e69571c5.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/044b1080da9a179fde5b17f865bcddb0)
+   ![全部功能 → 转入股票](./images/044b1080da9a179fde5b17f865bcddb0.png)
 
 2. 转出券商选择**雪盈证券**，填写账户姓名和账户号码，填写股票信息后提交
 
@@ -25,13 +25,13 @@ sidebar: true
 
 在雪盈证券 App → **我的** → **账户** → **雪盈后台系统账户/初始密码**，查询 IB 登录账号和初始密码。
 
-![从雪盈 App 获取 IB 账号](https://pub.pbkrs.com/uploads/2025/a9b9b674034bd9b7bef38612b2cf62ba)
+![从雪盈 App 获取 IB 账号](./images/a9b9b674034bd9b7bef38612b2cf62ba.png)
 
 登录 [IB 官网](https://www.interactivebrokers.com.hk/cn/home.php)，使用雪盈后台账号登录（若已设新密码则用新密码；密码有误可通过「忘记密码」或致电 IB 021-60868586 找回）。
 
 登录后在投资组合栏查看 IB 账号（U 开头），也可在雪盈 App 账户页查看 U 账号。
 
-![登录 IB 并查看账号](https://pub.pbkrs.com/uploads/2025/0d96df688f9d616602f5eb6e0ab48907)
+![登录 IB 并查看账号](./images/0d96df688f9d616602f5eb6e0ab48907.png)
 
 ## 第三步：在 IB 提交转出指示
 
@@ -48,23 +48,23 @@ sidebar: true
 | 联系电话 | (+852) 3585 8944 / (+852) 3585 8915 |
 | 联系邮箱 | settlement@longbridge.hk |
 
-![FOP 转账填写示例](https://pub.pbkrs.com/uploads/2025/c414bf2a742e96905c1ab30c5541ceaf)
+![FOP 转账填写示例](./images/c414bf2a742e96905c1ab30c5541ceaf.png)
 
 ### 美股（IB 消息中心）
 
 1. 在 IB 账户右上角选择**帮助** → **支持中心** → **消息中心**
 
-   ![消息中心入口](https://pub.pbkrs.com/uploads/2025/ac83892c55c149a4cedacaeb315fff61)
+   ![消息中心入口](./images/ac83892c55c149a4cedacaeb315fff61.png)
 
 2. **撰写** → **新咨询单** → **Funds & Banking** → **Position Transfers**
 
-   ![撰写新咨询单](https://pub.pbkrs.com/uploads/2025/7b357b214a236beb5ca129615fa1c1c1)
+   ![撰写新咨询单](./images/7b357b214a236beb5ca129615fa1c1c1.png)
 
-   ![选择 Position Transfers](https://pub.pbkrs.com/uploads/2025/5caeff67f85ba77e16ef224d7f21af89)
+   ![选择 Position Transfers](./images/5caeff67f85ba77e16ef224d7f21af89.png)
 
 3. 按以下模板填写咨询单后点击 **Preview Ticket**：
 
-   ![填写咨询单](https://pub.pbkrs.com/uploads/2025/ad1adbfd8ceb4bc7db28b9cccf710ef1)
+   ![填写咨询单](./images/ad1adbfd8ceb4bc7db28b9cccf710ef1.png)
 
    ```
    Subject: Transfer US position to another IB broker
@@ -87,7 +87,7 @@ sidebar: true
 
 5. **部分用户**会收到 IB 通知需提供授权书，填写后提交
 
-   ![授权书示例](https://pub.pbkrs.com/uploads/2025/957bd1bce368671185077d2ba1b3d50d)
+   ![授权书示例](./images/957bd1bce368671185077d2ba1b3d50d.png)
 
    IB 客服：上海 +86 (21) 6086 8586（周一至周五 09:00–18:00）；香港 +852-2156-7907（周一至周五 08:00–17:00）
 

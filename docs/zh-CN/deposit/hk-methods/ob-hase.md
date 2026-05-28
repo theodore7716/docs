@@ -39,7 +39,7 @@ sidebar: true
 2. 输入长桥收款人名称和收款账号
 3. 核对信息无误，确认提交，完成转账
 
-   ![确认转账](https://pub.pbkrs.com/uploads/2026/7f64954f6a309425fe49dfd490a45fcb)
+   ![确认转账](./images/7f64954f6a309425fe49dfd490a45fcb.png)
 
 4. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
@@ -47,21 +47,21 @@ sidebar: true
 
 1. 登录**恒生银行网上银行** → **转账** → **本地转账** → **新收款人**，输入长桥收款银行账号信息
 
-   ![本地转账填写收款人](https://pub.pbkrs.com/uploads/2026/62fa7dd6011d7f9195901da5c1eef91c)
+   ![本地转账填写收款人](./images/62fa7dd6011d7f9195901da5c1eef91c.png)
 
 2. 输入转账金额，在**备注**栏填写长桥综合账户号和姓名（如：H123456 XIAOHUA），点击**提交**
 
    > 填写备注有助于长桥快速匹配入账。
 
-   ![填写金额和备注](https://pub.pbkrs.com/uploads/2026/d0cff1268d3d52f8ddd0ae5eb462758a)
+   ![填写金额和备注](./images/d0cff1268d3d52f8ddd0ae5eb462758a.png)
 
 3. 核对所有资料，点击**确认**，转账完成
 
-   ![确认转账](https://pub.pbkrs.com/uploads/2026/4e3c3c74e899a9dbc01f8308ea5ed8ac)
+   ![确认转账](./images/4e3c3c74e899a9dbc01f8308ea5ed8ac.png)
 
 4. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/c352d326b1070265a8196967ecda8a19)
+   ![上传汇款凭证](./images/c352d326b1070265a8196967ecda8a19.png)
 
    > 凭证必须在汇款完成后立即上传，否则影响入金进度。
 

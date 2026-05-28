@@ -43,63 +43,63 @@ sidebar: true
 
 1. 打开**渣打银行 App** → **转账** → **本地户口** → **本地转账**
 
-   ![手机 App 本地转账入口](https://pub.pbkrs.com/uploads/2026/33ce07a7d09f19d0a0edc1096ea35e63)
+   ![手机 App 本地转账入口](./images/33ce07a7d09f19d0a0edc1096ea35e63.png)
 
 2. 选择已添加的收款人，选择付款方账户
 
-   ![选择收款人和付款账户](https://pub.pbkrs.com/uploads/2026/cb23773c13776b1f990154602b592eff)
+   ![选择收款人和付款账户](./images/cb23773c13776b1f990154602b592eff.png)
 
 3. 输入转账金额和汇款备注，选择预期汇款时间
 
-   ![输入金额和备注](https://pub.pbkrs.com/uploads/2026/feef437d22e8ae78b4c660bd9d6349f7)
+   ![输入金额和备注](./images/feef437d22e8ae78b4c660bd9d6349f7.png)
 
 4. 再次核对信息，无误后提交
 
    > 渣打手机端转账**无须安全验证**，请务必仔细核对后再提交。
 
-   ![核对并提交](https://pub.pbkrs.com/uploads/2026/a07d44fb2d749892b2ffbd1cdde27af9)
+   ![核对并提交](./images/a07d44fb2d749892b2ffbd1cdde27af9.png)
 
 5. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2026/6b6907012361eeb5c6862528812cd446)
+   ![上传汇款凭证](./images/6b6907012361eeb5c6862528812cd446.png)
 
 ## 网上银行（港元和美元）
 
 1. 登入**渣打银行香港网上理财**（https://www.sc.com/hk/zh），完成安全验证
 
-   ![登录渣打网上理财](https://pub.pbkrs.com/uploads/2026/f7be7cb92760d6ced391ce2c5bb7543e)
+   ![登录渣打网上理财](./images/f7be7cb92760d6ced391ce2c5bb7543e.png)
 
 2. 添加收款人（根据入金币种选择不同路径）：
 
    **港元** → **转账** → **本地户口** → **新增本地户口收款人**
 
-   ![港元：新增本地户口收款人](https://pub.pbkrs.com/uploads/2026/e32f3373a875f1ffc217f7fa98b60437)
+   ![港元：新增本地户口收款人](./images/e32f3373a875f1ffc217f7fa98b60437.png)
 
    **美元** → **转账** → **本地汇款** → **新增电汇收款人**
 
-   ![美元：新增电汇收款人](https://pub.pbkrs.com/uploads/2026/c069a2e224fa9fd3e1ac68b84ef6c684)
+   ![美元：新增电汇收款人](./images/c069a2e224fa9fd3e1ac68b84ef6c684.png)
 
    > 添加美元电汇收款人时，收款银行选择「Industrial and Commercial Bank of China (Asia) Limited」（可选简写），SWIFT Code：UBHKHKHHXXX。
 
-   ![电汇收款银行选择示例](https://pub.pbkrs.com/uploads/2026/5920aefc0b78c1b622c368920be1d8e6)
+   ![电汇收款银行选择示例](./images/5920aefc0b78c1b622c368920be1d8e6.png)
 
 3. 填写收款人资料，点击**下一步**，确认无误后点击**确认**
 
-   ![填写收款人资料](https://pub.pbkrs.com/uploads/2026/cd7b6fd4207e2ffe9a1f333a5dcdc448)
+   ![填写收款人资料](./images/cd7b6fd4207e2ffe9a1f333a5dcdc448.png)
 
-   ![确认收款人资料](https://pub.pbkrs.com/uploads/2026/935ad509ec061401b47f36f038cc05b5)
+   ![确认收款人资料](./images/935ad509ec061401b47f36f038cc05b5.png)
 
 4. 按三步输入 **SC Mobile Key** 完成验证，收款人资料添加完毕
 
-   ![SC Mobile Key 验证](https://pub.pbkrs.com/uploads/2026/7e7e1d0f7155d56e16aa72ba49f4f0a0)
+   ![SC Mobile Key 验证](./images/7e7e1d0f7155d56e16aa72ba49f4f0a0.png)
 
 5. 选择**转账** → **本地户口**，选择收款人，点击**转账**
 
-   ![选择收款人发起转账](https://pub.pbkrs.com/uploads/2026/ee5febc078938c821d9717a87b4ca18f)
+   ![选择收款人发起转账](./images/ee5febc078938c821d9717a87b4ca18f.png)
 
 6. 选择支账账户，输入转账金额和汇款备注（填写长桥账号和姓名，如：`H123456, XIAOHUA`），点击**下一步**
 
-   ![填写金额和备注](https://pub.pbkrs.com/uploads/2026/6477b57ce963fc7c7abd30c348b9c131)
+   ![填写金额和备注](./images/6477b57ce963fc7c7abd30c348b9c131.png)
 
 7. 核对信息无误后点击**确认**，提示成功即转账完毕
 

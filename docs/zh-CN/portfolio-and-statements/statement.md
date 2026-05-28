@@ -20,7 +20,7 @@ sidebar: true
 
 途径一：长桥 App > 资产 > 全部功能 > 结单查询，可按日期和类型选择对应结单查看。
 
-![结单查询路径](https://pub.pbkrs.com/uploads/2025/4fbe5fcda1c5a18da52bf96bde49356a)
+![结单查询路径](./images/4fbe5fcda1c5a18da52bf96bde49356a.png)
 
 途径二：前往开户时填写的邮箱下载查看。如需修改邮箱，可进入长桥 App > 我的 > 设置 > 账号管理 > 邮箱 > 修改邮箱，修改成功后下个结单将发送至新邮箱。
 

@@ -30,10 +30,10 @@ sidebar: true
 3. 保留汇款凭证截图（ATM 打印凭条或柜台回执）
 
    ATM 转账凭证示例：
-   ![ATM 转账凭证](https://pub.pbkrs.com/uploads/2025/8742421ce1805d1e495c63cd9467c051)
+   ![ATM 转账凭证](./images/8742421ce1805d1e495c63cd9467c051.png)
 
    柜台转账凭证示例：
-   ![柜台转账凭证](https://pub.pbkrs.com/uploads/2025/6ce415e1355c63f819fea92300ab645c)
+   ![柜台转账凭证](./images/6ce415e1355c63f819fea92300ab645c.png)
 
 4. 打开长桥 App，进入**资产 → 存入资金 → 选择币种 → ATM / 柜台转账**，上传汇款凭证
 

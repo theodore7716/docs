@@ -44,7 +44,7 @@ sidebar: true
 
 查询个别股票是否支持日内融：长桥 App - 选择日内融账户 - 选择股票 - 点开「支持融资」了解更多。
 
-![App 查询日内融支持股票](https://pub.pbkrs.com/uploads/2025/56dfb22f5ac82cd8a9822bb2c911226c)
+![App 查询日内融支持股票](./images/56dfb22f5ac82cd8a9822bb2c911226c.png)
 
 ![可交易股票说明](./images/intraday-eligible-stocks.png)
 

@@ -13,9 +13,9 @@ sidebar: true
 
 1. 打开**长桥 App** → **资产** → **存入股票** → **提交转入申请**；或进入**资产 → 全部功能 → 转入股票**
 
-   ![存入股票入口](https://pub.pbkrs.com/uploads/2025/dd826444f25837291dcfed1be8b0f04f)
+   ![存入股票入口](./images/dd826444f25837291dcfed1be8b0f04f.png)
 
-   ![全部功能 → 转入股票](https://pub.pbkrs.com/uploads/2025/cd519b6d49ac49ef0da73f37f8b9fa92)
+   ![全部功能 → 转入股票](./images/cd519b6d49ac49ef0da73f37f8b9fa92.png)
 
 2. 填写转出券商信息：
 
@@ -62,7 +62,7 @@ sidebar: true
    | 账户号码 | 您的长桥证券账户号码（H 开头） |
    | 账户姓名 | 您的长桥证券账户姓名 |
 
-   ![表格填写示例](https://pub.pbkrs.com/uploads/2025/eb5080f3e1afeb87e7720cd1d9bd85ba)
+   ![表格填写示例](./images/eb5080f3e1afeb87e7720cd1d9bd85ba.png)
 
 2. 表格填写完毕后拍照，用**佳兆业注册预留邮箱**发送邮件至 cs@kaisafin.com：
 

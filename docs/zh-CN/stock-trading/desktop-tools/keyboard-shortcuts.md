@@ -53,31 +53,31 @@ sidebar: true
 
 Mac：⌘T，Windows：Ctrl+T，可自动新开标签页。
 
-![新开标签页](https://pub.pbkrs.com/uploads/2025/1c9a0bac31bc322b16513ec8da3792dc)
+![新开标签页](./images/1c9a0bac31bc322b16513ec8da3792dc.png)
 
 ### 跳转到前/后一个标签页
 
 Mac：⌘← / ⌘→，Windows：Ctrl+← / Ctrl+→，快速左右切换当前选中的标签页。
 
-![切换标签页](https://pub.pbkrs.com/uploads/2025/0e60c436f28f9ca51b3458e7545dc821)
+![切换标签页](./images/0e60c436f28f9ca51b3458e7545dc821.png)
 
 ### 进入组件快速切换模式
 
 长按 Option（Mac）或 Alt（Windows），进入组件快速切换模式。此时可点击数字或字母快速定位组件，也可通过 ←↑↓→ 进行焦点快速切换。
 
-![组件快速切换模式](https://pub.pbkrs.com/uploads/2025/f14da416c9c2476b4255cf959ee23460)
+![组件快速切换模式](./images/f14da416c9c2476b4255cf959ee23460.png)
 
 ### 唤起组件工具箱
 
 默认为空，需手动设置快捷键，设置后可快速唤起组件工具箱。
 
-![唤起组件工具箱](https://pub.pbkrs.com/uploads/2025/5e3a80ff03ec5e6fce560181b701fb93)
+![唤起组件工具箱](./images/5e3a80ff03ec5e6fce560181b701fb93.png)
 
 ### 打开组件操作菜单
 
 Mac：⌘E，Windows：Ctrl+E。选中当前组件后，按下快捷键唤起组件操作菜单；按 ↑↓ 切换选项，按 Enter 执行。
 
-![打开组件操作菜单](https://pub.pbkrs.com/uploads/2025/5959c83e94f922d711326d24ec979bcc)
+![打开组件操作菜单](./images/5959c83e94f922d711326d24ec979bcc.png)
 
 ## 交易快捷键
 
@@ -85,25 +85,25 @@ Mac：⌘E，Windows：Ctrl+E。选中当前组件后，按下快捷键唤起组
 
 可全局唤起交易组件买入弹窗、卖出弹窗、今日订单弹窗，具体快捷键支持自定义设置。
 
-![全局交易快捷键](https://pub.pbkrs.com/uploads/2025/4a51e3fa9824dbfe438ee4789e2d2da3)
+![全局交易快捷键](./images/4a51e3fa9824dbfe438ee4789e2d2da3.png)
 
 ### 快速下单（焦点在交易组件时）
 
 焦点选中交易组件后生效，支持价格填充、数量填充等快捷键操作。
 
-![快速下单快捷键](https://pub.pbkrs.com/uploads/2025/5116a9265ae2396eed17a9d83fc6d0aa)
+![快速下单快捷键](./images/5116a9265ae2396eed17a9d83fc6d0aa.png)
 
 ## 快速撤单快捷键
 
 需焦点选中当日订单或历史订单组件时生效。
 
-![快速撤单快捷键](https://pub.pbkrs.com/uploads/2025/39b608139db9b9b6a5ca00e1f53cf60a)
+![快速撤单快捷键](./images/39b608139db9b9b6a5ca00e1f53cf60a.png)
 
 ## 快速改单快捷键
 
 需焦点选中当日订单或历史订单组件时生效。
 
-![快速改单快捷键](https://pub.pbkrs.com/uploads/2025/30e40d8199a136af901f85b8a9bf2254)
+![快速改单快捷键](./images/30e40d8199a136af901f85b8a9bf2254.png)
 
 ## 自定义快捷键规则
 

@@ -30,24 +30,24 @@ sidebar: true
 3. 点击**转账至新受款人** → **选择转账方式**，在下拉弹框中点击**户口号码**
 4. 填写收款银行的账户号码，可勾选「新增至受款人名单」，填完后点击**继续**
 
-   ![填写账户号码](https://pub.pbkrs.com/uploads/2025/f5ca41e0e20b75a84bb46ae24ca92fbc)
+   ![填写账户号码](./images/f5ca41e0e20b75a84bb46ae24ca92fbc.png)
 
 5. 输入转账金额，生效日期选择**现在生效**，确认提交
 6. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2025/0244fa3c8336aff3abf0a3e88233d1b8)
+   ![上传汇款凭证](./images/0244fa3c8336aff3abf0a3e88233d1b8.png)
 
 ## 网上银行
 
 1. 登录**汇丰银行网上理财**，点击右上角**登入 → 汇丰网上理财**
 
-   ![登录汇丰网上理财](https://pub.pbkrs.com/uploads/2025/47cf4c63a30e1c641f53dcd62f70cda9)
+   ![登录汇丰网上理财](./images/47cf4c63a30e1c641f53dcd62f70cda9.png)
 
 2. 点击**转账及缴费** → **转账至其他本地受款人**
 
-   ![转账及缴费入口](https://pub.pbkrs.com/uploads/2025/ceab9d456f8021ae0ece6cba14eeb789)
+   ![转账及缴费入口](./images/ceab9d456f8021ae0ece6cba14eeb789.png)
 
-   ![转账至其他本地受款人](https://pub.pbkrs.com/uploads/2025/41c53075088ff05f511c0af447c2ff66)
+   ![转账至其他本地受款人](./images/41c53075088ff05f511c0af447c2ff66.png)
 
 3. 选择转账对象：
    - **首次转账**：选择**转账至新受款人**
@@ -57,15 +57,15 @@ sidebar: true
 
    > 填写备注有助于长桥快速匹配入账。
 
-   ![填写金额和备注](https://pub.pbkrs.com/uploads/2025/76f7152e6caca73b2f34fd7ded40a33e)
+   ![填写金额和备注](./images/76f7152e6caca73b2f34fd7ded40a33e.png)
 
 5. 核对信息，点击**继续**，完成安全验证，提示成功即汇款完毕
 
-   ![确认并提交](https://pub.pbkrs.com/uploads/2025/0d23ea2cc19f970f503f58d927176b12)
+   ![确认并提交](./images/0d23ea2cc19f970f503f58d927176b12.png)
 
 6. 立即截图保留凭证，返回**长桥 App** → **资产** → **存入资金** → **网银转账**，上传凭证
 
-   ![上传汇款凭证](https://pub.pbkrs.com/uploads/2025/89515d1dd8de7a8f334b8d407746550e)
+   ![上传汇款凭证](./images/89515d1dd8de7a8f334b8d407746550e.png)
 
    > 凭证必须在汇款完成后立即上传，否则影响入金进度。
 

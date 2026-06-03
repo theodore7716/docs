@@ -47,8 +47,8 @@ function askAi() {
         <span class="ftm__copy">{{ t('footerMini.copyright') }}</span>
         <nav class="ftm__bottom-nav" :aria-label="t('footerMini.navAriaLabel')">
           <a href="https://longbridge.com" target="_blank" rel="noopener" class="ftm__bottom-link">{{ t('footerMini.official') }}</a>
-          <a href="/zh-CN/compliance-and-tax/privacy-policy" class="ftm__bottom-link">{{ t('footerMini.privacy') }}</a>
-          <a href="/zh-CN/compliance-and-tax/" class="ftm__bottom-link">{{ t('footerMini.compliance') }}</a>
+          <a href="/compliance-and-tax/privacy-policy" class="ftm__bottom-link">{{ t('footerMini.privacy') }}</a>
+          <a href="/compliance-and-tax/" class="ftm__bottom-link">{{ t('footerMini.compliance') }}</a>
         </nav>
       </div>
     </div>

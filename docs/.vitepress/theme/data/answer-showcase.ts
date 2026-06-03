@@ -21,7 +21,7 @@ export const answerExamples: AnswerExample[] = [
     ],
     citation: {
       label: '入金方式说明',
-      path: '/zh-CN/deposit/how-to-choose-deposit-method',
+      path: '/deposit/how-to-choose-deposit-method',
     },
   },
   {
@@ -35,7 +35,7 @@ export const answerExamples: AnswerExample[] = [
     ],
     citation: {
       label: '期权开通与规则',
-      path: '/zh-CN/derivatives/options/enable-options',
+      path: '/derivatives/options/enable-options',
     },
   },
   {
@@ -49,7 +49,7 @@ export const answerExamples: AnswerExample[] = [
     ],
     citation: {
       label: '美股税务与 W-8BEN',
-      path: '/zh-CN/compliance-and-tax/us-stock-tax',
+      path: '/compliance-and-tax/us-stock-tax',
     },
   },
 ]

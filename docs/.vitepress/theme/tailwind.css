@@ -1656,7 +1656,7 @@ html.ai-resizing .hn-root {
   }
 
   .card-title {
-    @apply text-base font-semibold m-0;
+    @apply text-base font-semibold m-0 whitespace-nowrap;
     color: var(--vp-c-text-1);
   }
 

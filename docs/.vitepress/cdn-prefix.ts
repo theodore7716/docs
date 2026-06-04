@@ -58,23 +58,23 @@ export function buildEndCdnPrefix(prefix: string) {
       'g',
     )
 
-    // framework chunk 里 runtime URL 拼接的三个 pattern
+    // framework chunk 里 runtime URL 拼接需要 patch 的 pattern。注意：base 在
+    // VitePress runtime 里有两类用途——
+    //   (a) 加载产物（fetch hashmap、动态 import page chunk、preload asset）
+    //       → 改 CDN 完整 URL，让浏览器去 CDN 取
+    //   (b) 构造 page 导航 URL（history.replaceState / link href）
+    //       → 必须保持同源相对路径，否则跨域 URL 触发 SecurityError
+    // 只 patch (a) 类用法。
     const frameworkPatterns: Array<[RegExp, string]> = [
       [
-        // fetch(<id>.value.base + "hashmap.json")  →  fetch("<CDN>/hashmap.json")
+        // (a) fetch(<id>.value.base + "hashmap.json")
         /[A-Za-z_$][A-Za-z0-9_$]*\.value\.base\s*\+\s*"hashmap\.json"/g,
         `"${prefixSlash}hashmap.json"`,
       ],
       [
-        // <id>.value.base + <id>.relativePath  →  "<CDN>/" + <id>.relativePath
-        /[A-Za-z_$][A-Za-z0-9_$]*\.value\.base\s*\+\s*([A-Za-z_$][A-Za-z0-9_$]*\.relativePath)/g,
-        `"${prefixSlash}"+$1`,
-      ],
-      [
-        // VitePress SPA 动态 chunk loader：t = `/assets/${t}.${n}.js`
-        // 是反引号模板字符串，没有 base 拼接，浏览器 import absolute path 会
-        // 落到 calling module 的 origin（CDN host）但缺 OSS 子路径而 404。
-        // 把模板开头的 `/assets/` 替换为完整 CDN URL。
+        // (a) VitePress SPA 动态 chunk loader：t = `/assets/${t}.${n}.js`
+        // 反引号模板字符串，浏览器 import absolute path 时按 calling module 的
+        // origin（CDN host）解析，缺 OSS 子路径会 404。补完整 CDN URL。
         /`\/assets\/\$\{/g,
         '`' + prefixSlash + 'assets/${',
       ],

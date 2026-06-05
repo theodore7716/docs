@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRouter } from 'vitepress'
 import { useI18n } from '../../../i18n/useI18n'
+import { useRegion } from '../../composables/useRegion'
 import {
   UserPlus, Users, Layers, CircleHelp, ArrowLeftRight,
   ArrowDownToLine, Zap, RefreshCw, RefreshCcw, Send, Smartphone, Globe, Globe2,
@@ -16,6 +17,7 @@ const props = defineProps<{ task: TaskCard }>()
 
 const router = useRouter()
 const { t } = useI18n()
+const { withRegion } = useRegion()
 
 const iconMap: Record<string, unknown> = {
   UserPlus, Users, Layers, CircleHelp, ArrowLeftRight,
@@ -33,7 +35,7 @@ const iconComponent = computed(() => iconMap[props.task.icon] ?? null)
   <article
     class="task-card"
     role="article"
-    @click="router.go(task.href)"
+    @click="router.go(withRegion(task.href))"
   >
     <div class="task-card__header">
       <component

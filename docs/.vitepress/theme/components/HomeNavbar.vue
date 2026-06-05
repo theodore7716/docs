@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, onBeforeUnmount } from 'vue'
+import { computed, ref, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import { useRoute, useData, inBrowser } from 'vitepress'
 import { MoreVertical, ExternalLink, Sun, Moon, Globe, Github, ChevronDown } from 'lucide-vue-next'
 import { NAV_TABS } from '../../../.vitepress/tabs.config'
@@ -74,13 +74,18 @@ function switchRegion(target: typeof REGIONS[number]) {
   }
   writeCookie('region', target.code)
   currentRegion.value = target.code
-  if (inBrowser) window.location.reload()
+  if (!inBrowser) return
+  // 把 URL 第一段 region 换掉，保留 locale + 剩余路径
+  const p = window.location.pathname
+  const next = p.replace(/^\/(hk|sg)(?=\/|$)/, `/${target.code}`)
+  window.location.href = next === p ? `/${target.code}/` : next
 }
 
 const currentLang = computed(() => {
   const p = route.path
-  if (p.startsWith('/zh-CN/')) return 'zh-CN'
-  if (p.startsWith('/zh-HK/')) return 'zh-HK'
+  // 现在 URL 形如 /<region>/<locale>/...，需要在 region 后判断
+  const m = p.match(/^\/(hk|sg)\/(zh-CN|zh-HK)\//)
+  if (m) return m[2]
   return 'en'
 })
 
@@ -90,25 +95,85 @@ function switchLang(target: typeof LANGS[number]) {
     return
   }
   if (!inBrowser) return
+  const region = currentRegion.value || 'hk'
+  // 剥掉当前 region + locale 前缀，得到 region 内剩余路径
   const p = route.path
-  let rest = p
-  for (const code of ['zh-CN', 'zh-HK']) {
-    if (rest.startsWith(`/${code}/`)) {
-      rest = rest.slice(`/${code}`.length)
-      break
-    }
-  }
+  let rest = p.replace(/^\/(hk|sg)(\/(zh-CN|zh-HK))?/, '')
   if (!rest.startsWith('/')) rest = '/' + rest
-  const nextPath = target.link.replace(/\/$/, '') + rest
+  // 目标 locale 在该 region 下的前缀（按 LANGS.link 推断，默认语言 en 不带 locale 段）
+  const langSegment = target.code === 'en' ? '' : `/${target.code}`
+  const nextPath = `/${region}${langSegment}${rest === '/' ? '/' : rest}`
   window.location.href = nextPath
 }
 
 const activeTab = computed(() => {
-  const p = route.path
+  // 剥掉 URL 中的 region/locale 前缀（如 /hk/、/hk/zh-CN/、/hk/zh-HK/），
+  // 再按 NAV_TABS 配置的相对 path 匹配
+  let p = route.path.replace(/^\/(hk|sg)(\/(zh-CN|zh-HK))?/, '') || '/'
+  if (!p.startsWith('/')) p = '/' + p
   const tab = NAV_TABS.find(t =>
     p === t.path || t.categories.some(c => p.startsWith('/' + c + '/'))
   )
   return tab?.path ?? null
+})
+
+// sub-bar 激活 tab 的滑动下划线位置
+// 用 sessionStorage 持久化上一次位置，跨路由切换/组件重挂载也能保留起点 → 触发 CSS 过渡
+const SUB_INDICATOR_KEY = 'hn:sub-indicator'
+
+function readSavedIndicator(): { left: number; width: number; ready: boolean } {
+  if (typeof window === 'undefined') return { left: 0, width: 0, ready: false }
+  try {
+    const raw = sessionStorage.getItem(SUB_INDICATOR_KEY)
+    if (!raw) return { left: 0, width: 0, ready: false }
+    const parsed = JSON.parse(raw)
+    if (typeof parsed.left === 'number' && typeof parsed.width === 'number') {
+      return { left: parsed.left, width: parsed.width, ready: true }
+    }
+  } catch {}
+  return { left: 0, width: 0, ready: false }
+}
+
+const subInnerRef = ref<HTMLElement | null>(null)
+const subIndicator = ref(readSavedIndicator())
+
+async function updateSubIndicator() {
+  await nextTick()
+  const wrap = subInnerRef.value
+  if (!wrap) return
+  const active = wrap.querySelector<HTMLElement>(`.hn-sub-tab.is-active`)
+  if (!active) {
+    subIndicator.value = { ...subIndicator.value, ready: false }
+    return
+  }
+  // 对齐文字本体：减去左右 padding，下划线宽度 = 文字实际宽度
+  const cs = window.getComputedStyle(active)
+  const padL = parseFloat(cs.paddingLeft) || 0
+  const padR = parseFloat(cs.paddingRight) || 0
+  const next = {
+    left: active.offsetLeft + padL,
+    width: active.offsetWidth - padL - padR,
+    ready: true,
+  }
+  subIndicator.value = next
+  try {
+    sessionStorage.setItem(SUB_INDICATOR_KEY, JSON.stringify({ left: next.left, width: next.width }))
+  } catch {}
+}
+
+watch(activeTab, updateSubIndicator, { flush: 'post' })
+onMounted(() => {
+  // 先用 saved 位置渲染（已在 setup 中读取），下一帧再写入真实位置
+  // 这样浏览器有「起点 → 终点」两组样式，CSS transition 才能补帧
+  requestAnimationFrame(() => updateSubIndicator())
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', updateSubIndicator)
+  }
+})
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    window.removeEventListener('resize', updateSubIndicator)
+  }
 })
 
 // ── Kebab "more" menu ─────────────────────────────────────────
@@ -164,7 +229,7 @@ onBeforeUnmount(() => {
     <div class="hn-top-bar">
       <div class="hn-container">
         <!-- Logo -->
-        <a href="/" class="hn-logo" :aria-label="t('brand.homeAriaLabel')">
+        <a :href="`/${currentRegion}/`" class="hn-logo" :aria-label="t('brand.homeAriaLabel')">
           <img
             src="https://assets.lbctrl.com/uploads/34ee0a83-6f70-4aea-aa49-7ba5df3c64c4/longbridge-light.png"
             :alt="t('brand.logoAlt')"
@@ -255,15 +320,15 @@ onBeforeUnmount(() => {
             </Transition>
           </div>
 
-          <!-- 主题切换 -->
+          <!-- 主题切换：两个图标都渲染，避免 SSR / 重渲染丢失 -->
           <button
             type="button"
-            class="hn-icon-btn"
+            class="hn-icon-btn hn-theme-toggle"
             :aria-label="isDark ? t('common.switchToLight') : t('common.switchToDark')"
             @click="toggleTheme"
           >
-            <Sun v-if="isDark" :size="16" />
-            <Moon v-else :size="16" />
+            <Sun :size="16" class="hn-theme-icon hn-theme-icon--dark" />
+            <Moon :size="16" class="hn-theme-icon hn-theme-icon--light" />
           </button>
 
           <!-- GitHub -->
@@ -306,7 +371,7 @@ onBeforeUnmount(() => {
                 <a
                   v-for="tab in NAV_TABS"
                   :key="tab.path"
-                  :href="tab.path"
+                  :href="`/${currentRegion}${tab.path}overview`"
                   class="hn-more-item"
                   :class="{ 'is-active': activeTab === tab.path }"
                   role="menuitem"
@@ -322,13 +387,22 @@ onBeforeUnmount(() => {
 
     <!-- 第二行：高频菜单组（NAV_TABS） -->
     <div class="hn-sub-bar">
-      <div class="hn-sub-inner">
+      <div ref="subInnerRef" class="hn-sub-inner">
+        <div
+          class="hn-sub-underline"
+          :style="{
+            left: subIndicator.left + 'px',
+            width: subIndicator.width + 'px',
+            opacity: subIndicator.ready ? 1 : 0,
+          }"
+        />
         <a
           v-for="tab in NAV_TABS"
           :key="tab.path"
-          :href="`${tab.path}overview`"
+          :href="`/${currentRegion}${tab.path}overview`"
           class="hn-sub-tab"
           :class="{ 'is-active': activeTab === tab.path }"
+          :data-tab-path="tab.path"
         >
           {{ t(tab.label) }}
         </a>

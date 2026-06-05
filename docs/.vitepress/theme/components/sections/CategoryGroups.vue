@@ -2,9 +2,11 @@
 import { useRouter } from 'vitepress'
 import { categoryGroups } from '../../data/category-groups'
 import { useI18n } from '../../../i18n/useI18n'
+import { useRegion } from '../../composables/useRegion'
 
 const router = useRouter()
 const { t } = useI18n()
+const { withRegion } = useRegion()
 </script>
 
 <template>
@@ -23,7 +25,7 @@ const { t } = useI18n()
               v-for="item in group.items"
               :key="item.path"
               class="category-groups__chip"
-              @click="router.go(item.path)"
+              @click="router.go(withRegion(item.path))"
             >
               {{ t(item.label) }}
             </button>

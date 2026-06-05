@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, inject, watch, nextTick, onMounted } from 'vue'
-import type { Ref } from 'vue'
+import { ref, computed, watch, nextTick, onMounted } from 'vue'
 import { useRouter } from 'vitepress'
 import {
   UserPlus, Users, Layers, CircleHelp, ArrowLeftRight,
@@ -10,8 +9,9 @@ import {
   ArrowUpFromLine, Building2, Shuffle,
   Flame, ShieldCheck, FileCheck, Wrench,
 } from 'lucide-vue-next'
-import { categories, markets, type Market } from '../../data/journey'
+import { categories, type Market } from '../../data/journey'
 import { useI18n } from '../../../i18n/useI18n'
+import { useRegion } from '../../composables/useRegion'
 
 const iconMap: Record<string, unknown> = {
   UserPlus, Users, Layers, CircleHelp, ArrowLeftRight,
@@ -24,88 +24,85 @@ const iconMap: Record<string, unknown> = {
 
 const router = useRouter()
 const { t } = useI18n()
-const activeMarketRef = inject<Ref<Market>>('journeyMarket')!
+const { withRegion, region } = useRegion()
+
+// region → 显示哪些 market 的任务：
+//   hk 用户能买港股 + 美股 → ['hk', 'us']
+//   sg 用户能买新加坡 + 美股 → ['sg', 'us']
+const regionMarkets = computed<Market[]>(() =>
+  region.value === 'sg' ? ['sg', 'us'] : ['hk', 'us']
+)
 
 const activeCat = ref<'all' | string>('all')
 const expanded = ref(false)
 
-watch(activeMarketRef, () => {
+watch(region, () => {
   activeCat.value = 'all'
   expanded.value = false
 })
 
+function matchesRegion(task: { markets: Market[] }) {
+  return task.markets.some(m => regionMarkets.value.includes(m))
+}
+
 const filteredTasks = computed(() => {
-  const m = activeMarketRef.value
   if (activeCat.value === 'all') {
-    return categories.flatMap(c => c.tasks).filter(task => task.markets.includes(m))
+    return categories.flatMap(c => c.tasks).filter(matchesRegion)
   }
   const cat = categories.find(c => c.id === activeCat.value)
-  return cat ? cat.tasks.filter(task => task.markets.includes(m)) : []
+  return cat ? cat.tasks.filter(matchesRegion) : []
 })
 
 const MAX_VISIBLE = 8 // 4 列 × 2 行
 const visibleTasks = computed(() => filteredTasks.value.slice(0, MAX_VISIBLE))
 const hiddenTasks = computed(() => filteredTasks.value.slice(MAX_VISIBLE))
 
-const catList = computed<{ id: string; label: string }[]>(() => {
-  const m = activeMarketRef.value
-  return [
-    { id: 'all', label: t('category.all') },
-    ...categories
-      .filter(c => c.tasks.some(t => t.markets.includes(m)))
-      .map(c => ({ id: c.id, label: t(c.label) })),
-  ]
-})
+const catList = computed<{ id: string; label: string }[]>(() => [
+  { id: 'all', label: t('category.all') },
+  ...categories
+    .filter(c => c.tasks.some(matchesRegion))
+    .map(c => ({ id: c.id, label: t(c.label) })),
+])
 
 function countOf(catId: string): number {
-  const m = activeMarketRef.value
   if (catId === 'all') {
-    return categories.flatMap(c => c.tasks).filter(task => task.markets.includes(m)).length
+    return categories.flatMap(c => c.tasks).filter(matchesRegion).length
   }
   const cat = categories.find(c => c.id === catId)
-  return cat ? cat.tasks.filter(task => task.markets.includes(m)).length : 0
-}
-
-function switchMarket(m: Market) {
-  activeMarketRef.value = m
+  return cat ? cat.tasks.filter(matchesRegion).length : 0
 }
 
 function goTask(href: string) {
   if (href.startsWith('http')) {
     window.open(href, '_blank')
   } else {
-    router.go(href)
+    router.go(withRegion(href))
   }
 }
 
 // 滑动下划线：跟踪当前激活 tab 的位置
 const tabsRef = ref<HTMLElement | null>(null)
 const indicator = ref({ left: 0, width: 0, ready: false })
-const mktRef = ref<HTMLElement | null>(null)
-const mktIndicator = ref({ left: 0, width: 0, ready: false })
 
 async function updateIndicator() {
   await nextTick()
-  if (tabsRef.value) {
-    const active = tabsRef.value.querySelector<HTMLElement>('[data-active="true"]')
-    if (active) {
-      const parent = tabsRef.value.getBoundingClientRect()
-      const el = active.getBoundingClientRect()
-      indicator.value = { left: el.left - parent.left, width: el.width, ready: true }
-    }
-  }
-  if (mktRef.value) {
-    const active = mktRef.value.querySelector<HTMLElement>('[data-mkt-active="true"]')
-    if (active) {
-      const parent = mktRef.value.getBoundingClientRect()
-      const el = active.getBoundingClientRect()
-      mktIndicator.value = { left: el.left - parent.left, width: el.width, ready: true }
-    }
-  }
+  if (!tabsRef.value) return
+  const active = tabsRef.value.querySelector<HTMLElement>('[data-active="true"]')
+  if (!active) return
+  indicator.value = { left: active.offsetLeft, width: active.offsetWidth, ready: true }
 }
 
-watch([activeCat, activeMarketRef, catList], updateIndicator, { flush: 'post' })
+watch([activeCat, region, catList], updateIndicator, { flush: 'post' })
 onMounted(updateIndicator)
+
+function selectCat(id: string, e: MouseEvent) {
+  activeCat.value = id
+  const btn = e.currentTarget as HTMLElement | null
+  const wrap = tabsRef.value
+  if (!btn || !wrap) return
+  const target = btn.offsetLeft - (wrap.clientWidth - btn.offsetWidth) / 2
+  wrap.scrollTo({ left: target, behavior: 'smooth' })
+}
 </script>
 
 <template>
@@ -113,24 +110,6 @@ onMounted(updateIndicator)
     <div class="ti__inner">
       <div class="ti__top">
         <h2 class="ti__title">{{ t('journey.headingExperienced') }}</h2>
-        <div ref="mktRef" class="ti__market">
-          <div
-            v-if="mktIndicator.ready"
-            class="ti__market-pill"
-            :style="{ left: mktIndicator.left + 'px', width: mktIndicator.width + 'px' }"
-          />
-          <button
-            v-for="m in markets"
-            :key="m.value"
-            type="button"
-            class="ti__market-btn"
-            :class="{ 'is-active': activeMarketRef === m.value }"
-            :data-mkt-active="activeMarketRef === m.value"
-            @click="switchMarket(m.value)"
-          >
-            {{ t(m.label) }}
-          </button>
-        </div>
       </div>
 
       <div ref="tabsRef" class="ti__tabs">
@@ -146,14 +125,14 @@ onMounted(updateIndicator)
           class="ti__tab"
           :class="{ 'is-active': activeCat === c.id }"
           :data-active="activeCat === c.id"
-          @click="activeCat = c.id"
+          @click="selectCat(c.id, $event)"
         >
           {{ c.label }}
           <span class="ti__count" :class="{ 'is-active': activeCat === c.id }">{{ countOf(c.id) }}</span>
         </button>
       </div>
 
-      <div :key="activeMarketRef + '-' + activeCat" class="ti__grid ti__fade">
+      <div :key="region + '-' + activeCat" class="ti__grid ti__fade">
         <button
           v-for="task in visibleTasks"
           :key="task.id"
@@ -184,7 +163,7 @@ onMounted(updateIndicator)
         {{ t('journey.taskIndex.noMatch') }}
       </div>
 
-      <div v-if="expanded && hiddenTasks.length" :key="'hid-' + activeMarketRef + '-' + activeCat" class="ti__hidden ti__fade">
+      <div v-if="expanded && hiddenTasks.length" :key="'hid-' + region + '-' + activeCat" class="ti__hidden ti__fade">
         <button
           v-for="task in hiddenTasks"
           :key="task.id"
@@ -292,6 +271,13 @@ onMounted(updateIndicator)
   border-bottom: 1px solid var(--vp-c-divider);
   margin-bottom: 24px;
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+
+.ti__tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .ti__tab-underline {

@@ -88,7 +88,7 @@ function centerActiveSidebarItem() {
     const visibleHeight = sRect.height - navHeight
     const target = sidebar.scrollTop + (aRect.top - sRect.top) - navHeight - visibleHeight / 2 + aRect.height / 2
     sidebar.scrollTo({ top: Math.max(0, target), behavior: 'smooth' })
-  }, 400)
+  }, 200)
 }
 watch(() => route.path, centerActiveSidebarItem, { immediate: true })
 onMounted(centerActiveSidebarItem)
@@ -103,21 +103,20 @@ function onGroupToggled(e: Event) {
 }
 
 // ── client-side 持久化用户折叠偏好 ─────────────────────────────────────
-// 二级及以下 group 默认收起；localStorage 记录"被用户主动展开"的 key 集合。
-// 这样即使 VitePress watchPostEffect 因 active 强制展开了它们，apply 也会按
-// 用户偏好覆盖回去（未展开过的保持收起）。
-const EXPANDED_KEY = 'lb-sidebar-expanded-groups'
+// 二级及以下 group 默认展开；localStorage 记录"被用户主动收起"的 key 集合。
+// 未主动收起的 group 保持展开；含 active 后代的 group 始终展开（VitePress 默认）。
+const COLLAPSED_KEY = 'lb-sidebar-collapsed-groups'
 
-function loadExpanded(): Set<string> {
+function loadCollapsed(): Set<string> {
   if (!inBrowser) return new Set()
   try {
-    return new Set(JSON.parse(localStorage.getItem(EXPANDED_KEY) || '[]'))
+    return new Set(JSON.parse(localStorage.getItem(COLLAPSED_KEY) || '[]'))
   } catch { return new Set() }
 }
 
-function saveExpanded(set: Set<string>) {
+function saveCollapsed(set: Set<string>) {
   if (!inBrowser) return
-  try { localStorage.setItem(EXPANDED_KEY, JSON.stringify([...set])) } catch { /* ignore */ }
+  try { localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...set])) } catch { /* ignore */ }
 }
 
 function groupKey(el: HTMLElement): string {
@@ -134,15 +133,15 @@ function persistGroupState(groupItem: HTMLElement) {
   if (groupItem.classList.contains('level-0')) return
   const k = groupKey(groupItem)
   if (!k) return
-  const set = loadExpanded()
-  if (groupItem.classList.contains('collapsed')) set.delete(k)
-  else set.add(k)
-  saveExpanded(set)
+  const set = loadCollapsed()
+  if (groupItem.classList.contains('collapsed')) set.add(k)
+  else set.delete(k)
+  saveCollapsed(set)
 }
 
 function applyCollapsedPreference() {
   if (!inBrowser) return
-  const expanded = loadExpanded()
+  const collapsed = loadCollapsed()
   document.querySelectorAll<HTMLElement>('.VPSidebar .VPSidebarItem.collapsible').forEach(el => {
     // 一级菜单（level-0）始终展开，不参与
     if (el.classList.contains('level-0')) return
@@ -151,8 +150,8 @@ function applyCollapsedPreference() {
     if (el.classList.contains('is-active') || el.classList.contains('has-active')) return
     const k = groupKey(el)
     if (!k) return
-    // 默认收起：只有 localStorage 标记为"展开"才展开
-    const wantCollapsed = !expanded.has(k)
+    // 默认展开：只有 localStorage 标记为"用户主动收起"才收起
+    const wantCollapsed = collapsed.has(k)
     const isCollapsed = el.classList.contains('collapsed')
     if (wantCollapsed === isCollapsed) return
     const caret = el.querySelector<HTMLElement>(':scope > .item > .caret')
@@ -169,8 +168,9 @@ onBeforeUnmount(() => {
   window.removeEventListener('lb:sidebar:group-toggled', onGroupToggled)
 })
 
-// 路由切换/首次挂载后，把用户偏好应用回去
+// 路由切换/首次挂载后，把用户偏好应用回去（SSR 期间无 rAF，跳过）
 watch(() => route.path, () => {
+  if (!inBrowser) return
   requestAnimationFrame(() => requestAnimationFrame(applyCollapsedPreference))
 }, { immediate: true })
 onMounted(applyCollapsedPreference)

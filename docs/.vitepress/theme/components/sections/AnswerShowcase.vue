@@ -213,6 +213,9 @@ function askDemo() {
   background: var(--vp-c-bg-soft);
   border-radius: 20px;
   padding: 24px 24px 20px;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
 }
 
 .answer-showcase__bubble-row {
@@ -238,6 +241,7 @@ function askDemo() {
   padding: 16px;
   border: 1px solid var(--vp-c-border);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  flex: 1;
 }
 
 .answer-showcase__ai-head {
@@ -340,6 +344,9 @@ function askDemo() {
   }
   .answer-showcase__title {
     font-size: 26px;
+  }
+  .answer-showcase__demo {
+    min-height: 420px;
   }
 }
 </style>

@@ -3,9 +3,11 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRouter } from 'vitepress'
 import { newUserSteps } from '../../data/new-user-path'
 import { useI18n } from '../../../i18n/useI18n'
+import { useRegion } from '../../composables/useRegion'
 
 const router = useRouter()
 const { t } = useI18n()
+const { withRegion } = useRegion()
 
 const cur = ref(0)
 const current = computed(() => newUserSteps[cur.value])
@@ -29,7 +31,7 @@ function select(i: number) {
 }
 
 function goDoc() {
-  router.go(current.value.path)
+  router.go(withRegion(current.value.path))
 }
 </script>
 

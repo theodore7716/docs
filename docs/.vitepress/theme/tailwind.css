@@ -1369,7 +1369,22 @@ html.ai-resizing .hn-root {
 
   .hn-sub-inner {
     /* 不设 overflow-x: auto，否则会创建 BFC 裁掉 .hn-api-popover 的绝对定位下拉 */
-    @apply max-w-7xl w-full mx-auto px-6 flex items-center gap-1;
+    @apply relative max-w-7xl w-full mx-auto px-6 flex items-center gap-1;
+  }
+
+  /* 共享 indicator：根据当前 active tab 的 offsetLeft/width 平滑滑动 */
+  .hn-sub-underline {
+    position: absolute;
+    bottom: -1px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--vp-c-brand-1);
+    will-change: left, width;
+    transition:
+      left 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.15s linear;
+    pointer-events: none;
   }
 
   .hn-sub-tab {
@@ -1379,25 +1394,11 @@ html.ai-resizing .hn-root {
     transition: color 0.15s;
   }
 
-  /* 下划线用伪元素，宽度严格跟随 padding 内的文字盒，不会被 padding 撑长 */
-  .hn-sub-tab::after {
-    content: '';
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: -1px;
-    height: 2px;
-    background: transparent;
-    transition: background 0.15s;
-  }
-
-  /* 第一项的文字左缘对齐 logo 左缘 */
-  .hn-sub-tab:first-child {
+  /* 第一项的文字左缘对齐 logo 左缘
+     注意：.hn-sub-underline 占据 :first-child，需用相邻兄弟选择器兜底 */
+  .hn-sub-tab:first-child,
+  .hn-sub-underline + .hn-sub-tab {
     padding-left: 0;
-  }
-
-  .hn-sub-tab:first-child::after {
-    left: 0;
   }
 
   .hn-sub-tab:hover {
@@ -1406,10 +1407,6 @@ html.ai-resizing .hn-root {
 
   .hn-sub-tab.is-active {
     color: var(--vp-c-brand-1);
-  }
-
-  .hn-sub-tab.is-active::after {
-    background: var(--vp-c-brand-1);
   }
 
   /* API 和 SDK 下拉，靠右贴边 */
@@ -1604,6 +1601,12 @@ html.ai-resizing .hn-root {
     color: var(--vp-c-text-1);
     background: var(--vp-c-bg-soft);
   }
+
+  /* 主题切换：根据 html.dark 显示对应图标，避免 SSR / hydration 抖动 */
+  .hn-theme-toggle .hn-theme-icon--dark { display: none; }
+  .hn-theme-toggle .hn-theme-icon--light { display: block; }
+  .dark .hn-theme-toggle .hn-theme-icon--dark { display: block; }
+  .dark .hn-theme-toggle .hn-theme-icon--light { display: none; }
 
   /* 语言切换下拉容器（hover 触发，无需边界 padding 也能稳定悬停） */
   .hn-lang {
@@ -2685,7 +2688,10 @@ html.ai-resizing .hn-root {
 
 @media (max-width: 768px) {
   .hn-askai-btn {
-    padding: 0 14px;
+    width: 36px;
+    padding: 0;
+    gap: 0;
+    justify-content: center;
   }
 }
 

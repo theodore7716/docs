@@ -4,10 +4,12 @@ import type { Ref } from 'vue'
 import { useRouter } from 'vitepress'
 import { getMarketTasks, type Market } from '../../data/journey'
 import { useI18n } from '../../../i18n/useI18n'
+import { useRegion } from '../../composables/useRegion'
 import TaskCard from './TaskCard.vue'
 
 const { t } = useI18n()
 const router = useRouter()
+const { withRegion } = useRegion()
 
 const props = defineProps<{ categoryId: string }>()
 
@@ -55,7 +57,7 @@ watch([() => props.categoryId, () => activeMarket.value], () => {
             v-for="task in extraRows"
             :key="task.id"
             class="expand-row"
-            @click="router.go(task.href)"
+            @click="router.go(withRegion(task.href))"
           >
             <span class="expand-row__title">{{ t(task.title) }}</span>
             <span class="expand-row__subtitle">{{ t(task.subtitle) }}</span>

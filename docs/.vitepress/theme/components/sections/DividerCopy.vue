@@ -66,12 +66,22 @@ function handleClick() {
 }
 
 @media (max-width: 768px) {
+  .divider-copy {
+    padding: 28px 20px;
+  }
   .divider-copy__inner {
     flex-direction: column;
     gap: 16px;
   }
   .divider-copy__line {
     display: none;
+  }
+  .divider-copy__text {
+    white-space: normal;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    max-width: 100%;
   }
 }
 </style>

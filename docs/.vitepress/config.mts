@@ -19,7 +19,37 @@ const env = loadEnv('development', path.resolve(__dirname, '..'), '')
 const AI_ENDPOINT_PATH = env.VITE_AI_API_ENDPOINT || '/api/forward/v1/customer-service/docs/chat'
 const AI_PROXY_PREFIX = AI_ENDPOINT_PATH
 
+// 每次 build 锁定一个 region；前端跨 region 跳转走绝对 URL（window.location.href）
+const REGION_ALL = ['hk', 'sg'] as const
+const BUILD_REGION = (process.env.BUILD_REGION || 'hk').toLowerCase()
+if (!REGION_ALL.includes(BUILD_REGION as any)) {
+  throw new Error(`Invalid BUILD_REGION "${BUILD_REGION}". Expected one of: ${REGION_ALL.join(', ')}`)
+}
+
 // 访问 /some/page.md 返回原始 markdown 源码（开发模式 + 生产构建）
+// dev 模式：访问当前 region 之外的路径（如 base=/hk/ 时访问 /sg/）改写到 base 内的
+// 不存在 path，让 VitePress 走它内置 NotFound 模板渲染（带 navbar + 完整 layout），
+// 而不是 Vite 抛 "configured with public base URL" 的原始报错页。
+// 浏览器地址栏的 URL 不变，只是 server 内部把它当 base 内未匹配 path 处理。
+function wrongRegionRedirectPlugin(): Plugin {
+  return {
+    name: 'lb-wrong-region-404',
+    configureServer(server) {
+      const base = `/${BUILD_REGION}/`
+      server.middlewares.use((req, res, next) => {
+        const url = (req.url ?? '').replace(/\?.*$/, '')
+        const accept = req.headers['accept'] ?? ''
+        if (!accept.includes('text/html')) return next()
+        if (url === '/' || url.startsWith(base) || url.startsWith('/@') || url.startsWith('/__')) return next()
+        // 内部 rewrite：把 url 改成 base 内一个肯定不存在的 path，VitePress SSR 会
+        // 渲染 NotFound 组件 + 完整主题 layout
+        req.url = base + '__not_found__'
+        next()
+      })
+    },
+  }
+}
+
 function rawMarkdownPlugin(): Plugin {
   return {
     name: 'raw-markdown-source',
@@ -33,9 +63,9 @@ function rawMarkdownPlugin(): Plugin {
         const accept = req.headers['accept'] ?? ''
         if (!accept.includes('text/html')) return next()
 
-        // 优先从 en 目录查找（rewrites 把 en/* 映射到根）
+        // 优先从 hk/en 目录查找（rewrites 把 hk/en/* 映射到根）
         const candidates = [
-          path.join('docs/en', url),
+          path.join(`docs/${BUILD_REGION}/en`, url),
           path.join('docs', url),
         ]
 
@@ -54,7 +84,8 @@ function rawMarkdownPlugin(): Plugin {
 
     // 生产构建：把所有 .md 源文件复制到 dist，保持与 HTML 相同的路径结构
     closeBundle() {
-      const outDir = path.resolve('docs/.vitepress/dist')
+      // 与 VitePress outDir 同步
+      const outDir = path.resolve(`docs/.vitepress/dist/${BUILD_REGION}`)
       if (!fs.existsSync(outDir)) return
 
       function copyMdFiles(srcDir: string, urlBase: string) {
@@ -72,13 +103,14 @@ function rawMarkdownPlugin(): Plugin {
         }
       }
 
-      // 三个 locale 各自从对应源目录复制 .md：
-      //   docs/en/* → dist/*（英文落到根，rewrites 已剥前缀）
-      //   docs/zh-CN/* → dist/zh-CN/*
-      //   docs/zh-HK/* → dist/zh-HK/*
-      copyMdFiles(path.resolve('docs/en'), '')
-      copyMdFiles(path.resolve('docs/zh-CN'), '/zh-CN')
-      copyMdFiles(path.resolve('docs/zh-HK'), '/zh-HK')
+      // outDir 已经是 dist/<region>/，URL 内部不带 region 前缀；md 副本与 HTML 同路径
+      //   docs/<region>/en/*     → dist/<region>/*
+      //   docs/<region>/zh-CN/*  → dist/<region>/zh-CN/*
+      //   docs/<region>/zh-HK/*  → dist/<region>/zh-HK/*
+      const srcRoot = path.resolve(`docs/${BUILD_REGION}`)
+      copyMdFiles(path.join(srcRoot, 'en'), '')
+      copyMdFiles(path.join(srcRoot, 'zh-CN'), '/zh-CN')
+      copyMdFiles(path.join(srcRoot, 'zh-HK'), '/zh-HK')
     },
   }
 }
@@ -149,9 +181,10 @@ function generateSidebarItemsFromDir(dir: string, base: string, dirNames: Record
           : undefined
 
         const groupItem: any = {
-          // 二级及以下 group 默认收起；active 时 VitePress 的 watchPostEffect 会自动展开
+          // 二级及以下 group 默认展开；用 false（而非 undefined）保留 collapsible，
+          // 让用户仍可手动折叠
           text: displayName,
-          collapsed: true,
+          collapsed: false,
           items: subItems,
         }
         if (groupLink) groupItem.link = groupLink
@@ -219,7 +252,8 @@ const categoryOrder = [
 
 // 生成侧边栏配置（始终从 zh-CN 读取作为唯一内容源，按 urlPrefix 给 link/key 加前缀）
 function generateSidebar(dirNames: Record<string, string>, urlPrefix = '') {
-  const contentRoot = './docs/zh-CN'
+  // 当前 region 的 zh-CN 作为 sidebar 内容源
+  const contentRoot = `./docs/${BUILD_REGION}/zh-CN`
 
   const topDirs = (() => {
     try {
@@ -279,8 +313,7 @@ function generateSidebar(dirNames: Record<string, string>, urlPrefix = '') {
   return sidebar
 }
 
-// 三套 sidebar：root（英文，无前缀，落地到 / 根路径）、zh-CN（/zh-CN/）、zh-HK（/zh-HK/）
-// 在 dev 模式下，root 仍按现有 rewrites 把 zh-CN 内容映射到 /，所以无前缀的 sidebar 同样适用
+// 三套 sidebar：urlPrefix 不带 region（base 已经处理）
 const sidebarRoot = generateSidebar(zhCN.data.dirNames, '')
 const sidebarZhCN = generateSidebar(zhCN.data.dirNames, '/zh-CN')
 const sidebarZhHK = generateSidebar(zhCN.data.dirNames, '/zh-HK')
@@ -296,7 +329,12 @@ const editLinkPattern = 'https://github.com/longbridge/docs/edit/main/docs/:path
 export default defineConfig({
   title: zhCN.vp.title,
   description: zhCN.vp.description,
-  base: '/',
+  // 每 region 单独 build：BUILD_REGION 决定 base / outDir / 源目录 / rewrites。
+  // 当前 region 锁定后该次 build 产物完全独立（HTML + assets 都在 dist/<region>/）。
+  // 默认 hk；通过 `BUILD_REGION=sg yarn build` 为另一个 region 构建。
+  base: `/${BUILD_REGION}/`,
+  outDir: `.vitepress/dist/${BUILD_REGION}`,
+  srcExclude: REGION_ALL.filter(r => r !== BUILD_REGION).map(r => `${r}/**`),
   appearance: 'light',
   ignoreDeadLinks: true,
   cleanUrls: true,
@@ -312,11 +350,17 @@ export default defineConfig({
     ['link', { rel: 'shortcut icon', type: 'image/x-icon', href: 'https://assets.wbrks.com/assets/logo/logo1.png' }],
   ],
 
-  // en/ 内容映射到根路径，使英文成为默认 locale
+  // BUILD_REGION 锁定后，srcExclude 已排除其它 region 目录；rewrites 把
+  // <region>/<lang>/... → <lang>/... （en 作为该 region 的默认语言落到根）
+  //   docs/hk/en/foo.md      → /foo（配合 base=/hk/ 最终 URL = /hk/foo）
+  //   docs/hk/zh-CN/foo.md   → /zh-CN/foo（URL = /hk/zh-CN/foo）
+  //   docs/hk/zh-HK/foo.md   → /zh-HK/foo（URL = /hk/zh-HK/foo）
   rewrites: {
-    'en/index.md': 'index.md',
-    'en/docs/index.md': 'docs/index.md',
-    'en/:path*': ':path*',
+    [`${BUILD_REGION}/en/index.md`]: 'index.md',
+    [`${BUILD_REGION}/en/docs/index.md`]: 'docs/index.md',
+    [`${BUILD_REGION}/en/:path*`]: ':path*',
+    [`${BUILD_REGION}/zh-CN/:path*`]: 'zh-CN/:path*',
+    [`${BUILD_REGION}/zh-HK/:path*`]: 'zh-HK/:path*',
   },
 
   locales: {
@@ -465,7 +509,7 @@ export default defineConfig({
   },
 
   vite: {
-    plugins: [UnoCSS(), rawMarkdownPlugin()],
+    plugins: [UnoCSS(), wrongRegionRedirectPlugin(), rawMarkdownPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './theme'),

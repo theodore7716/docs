@@ -298,6 +298,7 @@ const zhHK = {
     },
     markets: { hk: '港股', us: '美股', sg: '新加坡' },
     navTabs: {
+      home: '首頁',
       'getting-started': '快速開始',
       'stock-trading': '股票投資',
       derivatives: '期權衍生品',

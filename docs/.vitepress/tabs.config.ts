@@ -7,6 +7,12 @@ export interface NavTab {
 
 export const NAV_TABS: NavTab[] = [
   {
+    key: 'home',
+    label: 'data.navTabs.home',
+    path: '/',
+    categories: [],
+  },
+  {
     key: 'getting-started',
     label: 'data.navTabs.getting-started',
     path: '/getting-started/',

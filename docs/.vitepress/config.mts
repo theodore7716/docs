@@ -36,10 +36,17 @@ function wrongRegionRedirectPlugin(): Plugin {
     name: 'lb-wrong-region-404',
     configureServer(server) {
       const base = `/${BUILD_REGION}/`
+      const baseNoSlash = `/${BUILD_REGION}`
       server.middlewares.use((req, res, next) => {
         const url = (req.url ?? '').replace(/\?.*$/, '')
         const accept = req.headers['accept'] ?? ''
         if (!accept.includes('text/html')) return next()
+        // /hk -> 内部 rewrite 为 /hk/（避免 Vite 默认 301 跳转；保留 query string）
+        if (url === baseNoSlash) {
+          const qs = (req.url ?? '').slice(url.length)
+          req.url = base + qs
+          return next()
+        }
         if (url === '/' || url.startsWith(base) || url.startsWith('/@') || url.startsWith('/__')) return next()
         // 内部 rewrite：把 url 改成 base 内一个肯定不存在的 path，VitePress SSR 会
         // 渲染 NotFound 组件 + 完整主题 layout

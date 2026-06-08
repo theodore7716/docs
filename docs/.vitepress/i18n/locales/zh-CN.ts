@@ -382,6 +382,7 @@ const zhCN = {
       sg: '新加坡',
     },
     navTabs: {
+      home: '首页',
       'getting-started': '快速开始',
       'stock-trading': '股票投资',
       derivatives: '期权衍生品',

@@ -298,6 +298,7 @@ const en = {
     },
     markets: { hk: 'HK Stocks', us: 'US Stocks', sg: 'Singapore' },
     navTabs: {
+      home: 'Home',
       'getting-started': 'Get Started',
       'stock-trading': 'Stocks',
       derivatives: 'Derivatives',

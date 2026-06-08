@@ -119,10 +119,13 @@ const activeTab = computed(() => {
   // 再按 NAV_TABS 配置的相对 path 匹配
   let p = route.path.replace(/^\/(hk|sg)(\/(zh-CN|zh-HK))?/, '') || '/'
   if (!p.startsWith('/')) p = '/' + p
+  // 先做非 home 匹配；home 用 categories=[] 兜底，避免它把所有 / 开头路径都吞掉
   const tab = NAV_TABS.find(t =>
-    p === t.path || t.categories.some(c => p.startsWith('/' + c + '/'))
+    t.path !== '/' && (p === t.path || t.categories.some(c => p.startsWith('/' + c + '/')))
   )
-  return tab?.path ?? null
+  if (tab) return tab.path
+  // 没有任何业务 tab 命中 → 视为首页
+  return '/'
 })
 
 // sub-bar 激活 tab 的滑动下划线位置
@@ -380,7 +383,7 @@ onBeforeUnmount(() => {
                 <a
                   v-for="tab in NAV_TABS"
                   :key="tab.path"
-                  :href="`/${currentRegion}${tab.path}overview`"
+                  :href="tab.path === '/' ? `/${currentRegion}/` : `/${currentRegion}${tab.path}overview`"
                   class="hn-more-item"
                   :class="{ 'is-active': activeTab === tab.path }"
                   role="menuitem"
@@ -408,7 +411,7 @@ onBeforeUnmount(() => {
         <a
           v-for="tab in NAV_TABS"
           :key="tab.path"
-          :href="`/${currentRegion}${tab.path}overview`"
+          :href="tab.path === '/' ? `/${currentRegion}/` : `/${currentRegion}${tab.path}overview`"
           class="hn-sub-tab"
           :class="{ 'is-active': activeTab === tab.path }"
           :data-tab-path="tab.path"

@@ -36,17 +36,10 @@ function wrongRegionRedirectPlugin(): Plugin {
     name: 'lb-wrong-region-404',
     configureServer(server) {
       const base = `/${BUILD_REGION}/`
-      const baseNoSlash = `/${BUILD_REGION}`
       server.middlewares.use((req, res, next) => {
         const url = (req.url ?? '').replace(/\?.*$/, '')
         const accept = req.headers['accept'] ?? ''
         if (!accept.includes('text/html')) return next()
-        // /hk -> 内部 rewrite 为 /hk/（避免 Vite 默认 301 跳转；保留 query string）
-        if (url === baseNoSlash) {
-          const qs = (req.url ?? '').slice(url.length)
-          req.url = base + qs
-          return next()
-        }
         if (url === '/' || url.startsWith(base) || url.startsWith('/@') || url.startsWith('/__')) return next()
         // 内部 rewrite：把 url 改成 base 内一个肯定不存在的 path，VitePress SSR 会
         // 渲染 NotFound 组件 + 完整主题 layout
@@ -300,8 +293,11 @@ function generateSidebar(dirNames: Record<string, string>, urlPrefix = '') {
   }
 
   // 每个 tab 路径前缀对应该 tab 下的分类列表
+  // 跳过 home（path '/'）：把 '/' 写进 sidebar 会被 VitePress 当作所有路径的兜底，
+  // 让具体业务路径匹配不到自己的 sidebar，面包屑也因此推不出层级
   const sidebar: Record<string, object[]> = {}
   for (const tab of NAV_TABS) {
+    if (tab.path === '/') continue
     sidebar[`${urlPrefix}${tab.path}`] = tab.categories
       .filter(cat => itemByCategory[cat])
       .map(cat => itemByCategory[cat])
@@ -309,6 +305,7 @@ function generateSidebar(dirNames: Record<string, string>, urlPrefix = '') {
 
   // 补齐各分类自身的路径前缀
   for (const tab of NAV_TABS) {
+    if (tab.path === '/') continue
     for (const cat of tab.categories) {
       const catPath = `${urlPrefix}/${cat}/`
       if (catPath !== `${urlPrefix}${tab.path}`) {

@@ -1,6 +1,7 @@
 // 繁體中文 overrides（未覆盖的 key 回退到 zh-CN）。
 const zhHK = {
   common: {
+    home: '首頁',
     search: '搜尋文檔',
     askAi: '向 AI 提問',
     browseAllDocs: '瀏覽所有文檔',

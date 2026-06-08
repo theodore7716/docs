@@ -1,6 +1,7 @@
 // English overrides (keys not present here fall back to zh-CN).
 const en = {
   common: {
+    home: 'Home',
     search: 'Search docs',
     askAi: 'Ask AI',
     browseAllDocs: 'Browse all docs',

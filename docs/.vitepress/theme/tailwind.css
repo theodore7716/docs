@@ -216,14 +216,14 @@
 
 /* 内容和右侧 TOC 的顶部距离对齐 sidebar 首项（VPSidebarGroup.padding-top: 10px）
  * VitePress 默认：VPDoc padding-top 48px、aside-container 内部 +48px → 内容比 sidebar 低 38px
- * 把这两处都降到 10px 让三栏顶部齐平 */
+ * 把这两处都降到 24px 让三栏顶部齐平，同时给 breadcrumb 留出脱离 fixed nav 的安全距离
+ * （JS 在 rAF 内才写入真实 --hn-height，初始 paint 用 fallback；padding 偏大可吸收测量误差） */
 .VPDoc {
-  padding-top: 10px !important;
+  padding-top: 24px !important;
 }
 
 .VPDoc .aside-container {
-  /* 原计算式 var(--vp-nav-height) + ... + 48px → 改 10px 跟 VPDoc 一致 */
-  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 10px) !important;
+  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 24px) !important;
 }
 
 .custom-nav-layout .VPLocalNav {
@@ -2614,7 +2614,7 @@ html.ai-resizing .hn-root {
 /* Logo 同理：放 unlayered 才能稳定锁住 height（VitePress 对 img 也有重置规则） */
 .hn-logo-img {
   display: block;
-  height: 22px;
+  height: 30px;
   width: auto;
   object-fit: contain;
 }
@@ -2649,6 +2649,9 @@ html.ai-resizing .hn-root {
   .hn-search-btn {
     padding: 0 8px;
     gap: 0;
+  }
+  .hn-logo-img {
+    height: 22px;
   }
 }
 
@@ -2873,9 +2876,11 @@ html.ai-resizing .hn-root {
   }
 }
 
-/* F.3 — Hero 标题区 */
+/* F.3 — Hero 标题区
+ * scroll-margin-top 让锚点/初始定位避开 fixed navbar */
 .lb-doc-hero {
   @apply mt-2 mx-0 mb-7;
+  scroll-margin-top: calc(var(--hn-height, 97px) + 16px);
 }
 
 .lb-doc-hero .lb-eyebrow {

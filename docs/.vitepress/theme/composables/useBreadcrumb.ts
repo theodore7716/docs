@@ -1,137 +1,146 @@
 import { computed } from 'vue'
 import { useRoute, useData } from 'vitepress'
 import type { DefaultTheme } from 'vitepress'
+import { NAV_TABS } from '../../../.vitepress/tabs.config'
+import { useI18n } from '../../i18n/useI18n'
 
 export interface BreadcrumbItem {
   text: string
   link?: string
 }
 
+const LOCALE_PREFIX_RE = /^\/(zh-CN|zh-HK)(?=\/|$)/
+
+function stripLocale(p: string): string {
+  return p.replace(LOCALE_PREFIX_RE, '') || '/'
+}
+
+function stripHtml(html: string): string {
+  return html.replace(/<[^>]*>/g, '')
+}
+
+// 在 sidebar 中找指定 link 对应的标题（精确匹配）
+function findTitleByLink(
+  items: DefaultTheme.SidebarItem[],
+  link: string,
+): string | null {
+  for (const item of items) {
+    if (item.link === link && item.text) return stripHtml(item.text)
+    if (item.items?.length) {
+      const r = findTitleByLink(item.items, link)
+      if (r) return r
+    }
+  }
+  return null
+}
+
+// 在 sidebar 中找精确匹配 `${prefix}overview` 的 link
+function findOverviewLink(
+  items: DefaultTheme.SidebarItem[],
+  target: string,
+): string | null {
+  for (const item of items) {
+    if (item.link === target) return item.link
+    if (item.items?.length) {
+      const r = findOverviewLink(item.items, target)
+      if (r) return r
+    }
+  }
+  return null
+}
+
 export function useBreadcrumb() {
   const route = useRoute()
-  const { theme } = useData()
+  const { theme, page, frontmatter } = useData()
+  const { t } = useI18n()
   const sidebar = computed(() => theme.value.sidebar)
 
-  // 获取主页链接
-  const getHomeItem = (): BreadcrumbItem => {
-    return {
-      text: '首页',
-      link: '/',
+  // 把 sidebar 配置摊平成数组（无论是 record 还是 array）
+  const allSidebarItems = computed<DefaultTheme.SidebarItem[]>(() => {
+    const s = sidebar.value
+    if (!s) return []
+    if (Array.isArray(s)) return s
+    if (typeof s === 'object') {
+      return Object.values(s).flatMap(v => (Array.isArray(v) ? v : []))
     }
-  }
-
-  const stripHtml = (html: string): string => html.replace(/<[^>]*>/g, '')
-
-  // 递归查找匹配的面包屑路径
-  const findBreadcrumbPath = (
-    items: DefaultTheme.SidebarItem[],
-    targetPath: string,
-    currentPath: BreadcrumbItem[] = []
-  ): BreadcrumbItem[] | null => {
-    for (const item of items) {
-      // 确保 text 存在，如果不存在则跳过
-      if (!item.text) continue
-
-      const newPath = [...currentPath, { text: stripHtml(item.text), link: item.link }]
-
-      // 如果当前项目的链接匹配目标路径
-      if (item.link && normalizePath(item.link) === normalizePath(targetPath)) {
-        return newPath
-      }
-
-      // 如果有子项目，递归查找
-      if (item.items && item.items.length > 0) {
-        const childResult = findBreadcrumbPath(item.items, targetPath, newPath)
-        if (childResult) {
-          return childResult
-        }
-      }
-    }
-
-    return null
-  }
-
-  // 标准化路径，处理不同的路径格式
-  const normalizePath = (path: string): string => {
-    if (!path) return ''
-
-    // 移除开头的 /
-    let normalized = path.replace(/^\/+/, '')
-
-    // 移除结尾的 .md
-    normalized = normalized.replace(/\.md$/, '')
-
-    // 移除结尾的 /
-    normalized = normalized.replace(/\/+$/, '')
-
-    return normalized
-  }
-
-  // 计算面包屑导航
-  const breadcrumbItems = computed(() => {
-    // 首先获取主页项
-    const homeItem = getHomeItem()
-
-    // 如果当前就是主页，只显示主页
-    const currentPath = route.path
-    const normalizedCurrentPath = normalizePath(currentPath)
-    const normalizedHomePath = normalizePath(homeItem.link || '/')
-
-    if (normalizedCurrentPath === normalizedHomePath || currentPath === homeItem.link) {
-      return [homeItem]
-    }
-
-    if (!sidebar.value || !route.path) {
-      return [homeItem]
-    }
-
-    let sidebarItems: DefaultTheme.SidebarItem[] = []
-
-    // 处理不同的 sidebar 格式
-    if (Array.isArray(sidebar.value)) {
-      sidebarItems = sidebar.value
-    } else if (typeof sidebar.value === 'object') {
-      // 对于多级 sidebar，尝试找到匹配当前路径的 sidebar
-      const keys = Object.keys(sidebar.value)
-      for (const key of keys) {
-        const normalizedKey = normalizePath(key)
-        const normalizedPath = normalizePath(currentPath)
-
-        if (normalizedPath.startsWith(normalizedKey)) {
-          const sidebarForKey = sidebar.value[key]
-          if (Array.isArray(sidebarForKey)) {
-            sidebarItems = sidebarForKey
-          }
-          break
-        }
-      }
-    }
-
-    if (sidebarItems.length === 0) {
-      return [homeItem]
-    }
-
-    const breadcrumbPath = findBreadcrumbPath(sidebarItems, currentPath)
-
-    // 始终在面包屑路径前添加主页链接
-    if (breadcrumbPath && breadcrumbPath.length > 0) {
-      // 给 group 节点（无 link）按当前页 URL 截到对应层级补 link，
-      // 例如当前页 /app-guide/profile，group「App 导览」补成 /app-guide/
-      const segments = normalizePath(currentPath).split('/').filter(Boolean)
-      const filled = breadcrumbPath.map((crumb, i) => {
-        if (crumb.link) return crumb
-        // 末位通常是当前页本身（一定有 link），这里只处理中间 group
-        const depth = i + 1
-        if (depth >= segments.length) return crumb
-        return { ...crumb, link: `/${segments.slice(0, depth).join('/')}` }
-      })
-      return [homeItem, ...filled]
-    }
-
-    return [homeItem]
+    return []
   })
 
-  return {
-    breadcrumbItems,
+  // 根据 route.path 找出当前 NAV_TAB
+  function findTab(currentPath: string) {
+    const p = stripLocale(currentPath)
+    return NAV_TABS.find(tab =>
+      tab.path !== '/' &&
+      (p === tab.path || tab.categories.some(c => p.startsWith('/' + c + '/'))),
+    )
   }
+
+  // 当前页标题：frontmatter > page.title > sidebar 中查 link > url 末段
+  function currentTitleFor(path: string, lastSeg: string): string {
+    if (frontmatter.value?.title) return frontmatter.value.title
+    if (page.value?.title) return page.value.title
+    const fromSidebar = findTitleByLink(allSidebarItems.value, path)
+    if (fromSidebar) return fromSidebar
+    return lastSeg.replace(/-/g, ' ')
+  }
+
+  const breadcrumbItems = computed<BreadcrumbItem[]>(() => {
+    const homeItem: BreadcrumbItem = {
+      text: t('common.home') || 'Home',
+      link: '/',
+    }
+    const currentPath = route.path
+    const noLocale = stripLocale(currentPath)
+    const localePrefix = currentPath.match(LOCALE_PREFIX_RE)?.[0] ?? ''
+
+    // 当前是主页
+    if (noLocale === '/' || noLocale === '') return [homeItem]
+
+    // 1) 拿到当前 tab
+    const tab = findTab(currentPath)
+    const tabItem: BreadcrumbItem | null = tab
+      ? {
+        text: t(tab.label) || tab.key,
+        link: `${localePrefix}${tab.path}overview`,
+      }
+      : null
+
+    // 2) 拆出当前路径在 tab 下的「中间段」（剔除最后一段当前页）
+    //    e.g. /stock-trading/trading-hours-and-rules/sg-trading-rules
+    //    segments = ['stock-trading', 'trading-hours-and-rules', 'sg-trading-rules']
+    //    tab 本身是 stock-trading，所以中间段 = ['trading-hours-and-rules']
+    const segments = noLocale.replace(/^\/+/, '').split('/').filter(Boolean)
+    // 末段是当前页，跳过
+    const lastSeg = segments[segments.length - 1] || ''
+    const intermediate = segments.slice(0, -1)
+
+    // 3) 每段查 dirNames 显示名；link 优先从 sidebar 找该段 group 的 overview，
+    //    没有再回退到 /path/
+    const intermediateItems: BreadcrumbItem[] = []
+    for (let i = 0; i < intermediate.length; i++) {
+      const seg = intermediate[i]
+      const key = `data.dirNames.${seg}`
+      const translated = t(key)
+      const text = translated && translated !== key ? translated : seg
+      const subPath = '/' + intermediate.slice(0, i + 1).join('/')
+      const overviewLink = findOverviewLink(allSidebarItems.value, `${subPath}/overview`)
+      const link = overviewLink
+        ? `${localePrefix}${overviewLink}`
+        : `${localePrefix}${subPath}/`
+      intermediateItems.push({ text, link })
+    }
+
+    // 4) 当前页项（无 link）
+    const currentTitle = currentTitleFor(currentPath, lastSeg)
+    const currentItem: BreadcrumbItem = { text: String(currentTitle) }
+
+    // 5) 拼装：Home / Tab / intermediate.../ current
+    const result: BreadcrumbItem[] = [homeItem]
+    if (tabItem) result.push(tabItem)
+    result.push(...intermediateItems)
+    result.push(currentItem)
+    return result
+  })
+
+  return { breadcrumbItems }
 }

@@ -1,5 +1,6 @@
 const zhCN = {
   common: {
+    home: '首页',
     search: '搜索文档',
     askAi: '向 AI 提问',
     browseAllDocs: '浏览所有文档',

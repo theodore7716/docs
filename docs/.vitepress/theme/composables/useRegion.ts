@@ -38,12 +38,12 @@ export function useRegion() {
     if (!href) return ''
     if (/^https?:\/\//.test(href) || href.startsWith('mailto:') || href.startsWith('#')) return href
     if (!href.startsWith('/')) return href
-    let normalized = href
-    if (normalized !== '/' && normalized.endsWith('/')) {
-      normalized = `${normalized}overview`
-    }
+    // strip 已有 region + locale 前缀，保证 idempotent（搜索结果 id 等可能已带 locale）
+    let bare = href.replace(/^\/(hk|sg)(\/(zh-CN|zh-HK))?/, '')
+    if (!bare.startsWith('/')) bare = '/' + bare
+    if (bare !== '/' && bare.endsWith('/')) bare = `${bare}overview`
     const localeSegment = lang.value === 'en' ? '' : `/${lang.value}`
-    return withBase(`${localeSegment}${normalized}`)
+    return withBase(`${localeSegment}${bare}`)
   }
 
   // 跨 region：忽略当前 base，直接构造目标 region 的绝对 URL

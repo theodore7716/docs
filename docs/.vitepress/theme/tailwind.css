@@ -214,16 +214,23 @@
   display: none !important;
 }
 
-/* 内容和右侧 TOC 的顶部距离对齐 sidebar 首项（VPSidebarGroup.padding-top: 10px）
- * VitePress 默认：VPDoc padding-top 48px、aside-container 内部 +48px → 内容比 sidebar 低 38px
- * 把这两处都降到 24px 让三栏顶部齐平，同时给 breadcrumb 留出脱离 fixed nav 的安全距离
- * （JS 在 rAF 内才写入真实 --hn-height，初始 paint 用 fallback；padding 偏大可吸收测量误差） */
+/* 三栏顶部对齐：sidebar 首项 / breadcrumb / On this page 都从 nav 底下 12px 处开始
+ * 注意 aside-container 是 sticky 滚动后会被「钉」到 viewport 顶端，
+ * 它的 padding-top 必须包含 nav-height，否则 TOC 会被 fixed navbar 遮挡 */
 .VPDoc {
-  padding-top: 24px !important;
+  padding-top: 12px !important;
 }
 
 .VPDoc .aside-container {
-  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 24px) !important;
+  padding-top: calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 12px) !important;
+}
+
+/* sidebar 首个 group 的顶部内边距，对齐 breadcrumb / TOC */
+.custom-nav-layout .VPSidebar nav > div:first-child,
+.custom-nav-layout .VPSidebar > div:first-child,
+.custom-nav-layout .VPSidebar .group:first-of-type {
+  padding-top: 12px !important;
+  margin-top: 0 !important;
 }
 
 .custom-nav-layout .VPLocalNav {

@@ -13,11 +13,13 @@ import { useSearchDialog } from '../composables/useSearchDialog'
 import { useDocsSearch, type DocSearchItem } from '../composables/useDocsSearch'
 import { useSearchHistory } from '../composables/useSearchHistory'
 import { useAIModal } from '../composables/useAIModal'
+import { useRegion } from '../composables/useRegion'
 import { useI18n } from '../../i18n/useI18n'
 
 const router = useRouter()
 const { lang } = useData()
 const { t } = useI18n()
+const { withRegionAndLocale } = useRegion()
 const { isOpen, close } = useSearchDialog()
 const { results, isSearching, search, clear } = useDocsSearch()
 const { history, addToHistory, removeFromHistory, clearHistory } = useSearchHistory()
@@ -117,8 +119,9 @@ function scrollSelected() {
 function navigateTo(item: DocSearchItem) {
   addToHistory(item)
   close()
-  const href = item.id.startsWith('/') ? item.id : '/' + item.id
-  router.go(href)
+  const raw = item.id.startsWith('/') ? item.id : '/' + item.id
+  // withRegionAndLocale 幂等：item.id 可能已含 locale 前缀，也可能不含
+  router.go(withRegionAndLocale(raw))
 }
 
 function askAI() {

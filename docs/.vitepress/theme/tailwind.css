@@ -308,13 +308,19 @@
    AI Drawer push layout（行为类逻辑保留为纯 CSS）
    ============================================================ */
 
-#VPContent {
+/* AI 抽屉打开时，整页内容左移、navbar 右收，"屏幕变窄"观感。
+ * - body padding-right：所有非 fixed 子元素的可用宽度 = 100vw - 抽屉宽，
+ *   home / page / doc 各种 layout 一视同仁
+ * - navbar 是 position: fixed 参考 viewport，不受 body padding 影响，单独
+ *   margin-right 收尾
+ * - 抽屉自己 position: fixed，落在 padding-right 留出的右侧区域 */
+body {
   transition: padding-right 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (min-width: 768px) {
-  html.ai-drawer-open #VPContent {
-    padding-right: var(--ai-drawer-width, 380px) !important;
+  html.ai-drawer-open body {
+    padding-right: var(--ai-drawer-width, 380px);
   }
 
   html.ai-drawer-open .VPDocAside {
@@ -326,7 +332,7 @@
   }
 }
 
-html.ai-resizing #VPContent {
+html.ai-resizing body {
   transition: none !important;
 }
 

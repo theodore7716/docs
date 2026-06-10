@@ -1,31 +1,24 @@
-// AI 入口统一桥接到 Helora iframe（script 由 config.mts head 注入并自动 boot）。
-// 保留 openAIModal(query) / toggleAIModal() API 形态，让所有现存调用点（HomeNavbar /
-// SearchDialog / 首页各 section 的 inject）无需改动；query 参数 Helora 当前 API 未
-// 支持，传入会被丢弃（视觉上 panel 打开后用户重新输入）。
+import { ref } from 'vue'
 
-declare global {
-  interface Window {
-    Helora?: {
-      open: () => void
-      close: () => void
-      show?: () => void
-      hide?: () => void
-      destroy?: () => void
-    }
-  }
-}
+// 项目所有 AI 入口（HomeNavbar Ask AI 按钮、SearchDialog AI row、首页 section
+// 等）都通过 useAIModal 控制右侧 AiChatDrawer 的可见性与初始 query。
+// 内容由 iframe 加载 https://app.longbridge.xyz/helora/agent 提供。
+const modalOpen = ref(false)
+const initialQuery = ref('')
 
 export function useAIModal() {
-  function openAIModal(_query?: string) {
-    if (typeof window === 'undefined') return
-    window.Helora?.open()
+  function openAIModal(query?: string) {
+    initialQuery.value = query ?? ''
+    modalOpen.value = true
   }
 
-  // Helora 内部自管开关；toggle 语义统一映射到 open（点击未展开时打开，
-  // 已展开时再点 Helora 自己处理为 noop / 收起）
   function toggleAIModal() {
-    openAIModal()
+    modalOpen.value = !modalOpen.value
   }
 
-  return { openAIModal, toggleAIModal }
+  function closeAIModal() {
+    modalOpen.value = false
+  }
+
+  return { modalOpen, initialQuery, openAIModal, toggleAIModal, closeAIModal }
 }

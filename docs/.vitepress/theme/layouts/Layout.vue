@@ -6,6 +6,7 @@ import HomeNavbar from '../components/HomeNavbar.vue'
 import PageHero from '../components/PageHero.vue'
 import PageFeedback from '../components/PageFeedback.vue'
 import SearchDialog from '../components/SearchDialog.vue'
+import AiChatDrawer from '../components/AiChatDrawer.vue'
 import { useAIModal } from '../composables/useAIModal'
 import { useI18n } from '../../i18n/useI18n'
 
@@ -18,8 +19,15 @@ const isDocPage = computed(() => {
 
 const isHomePage = computed(() => frontmatter.value.layout === 'page')
 
-const { openAIModal } = useAIModal()
+const { modalOpen, initialQuery, openAIModal } = useAIModal()
 const { t } = useI18n()
+
+// 抽屉打开时给 html 加 .ai-drawer-open，tailwind.css 里有现成的规则把 main
+// 内容、navbar 右侧 padding 挤开 var(--ai-drawer-width)，保证抽屉不遮挡正文
+watch(modalOpen, (open) => {
+  if (!inBrowser) return
+  document.documentElement.classList.toggle('ai-drawer-open', open)
+}, { immediate: true })
 
 function syncHomeClass(val: boolean) {
   if (!inBrowser) return
@@ -185,8 +193,10 @@ onMounted(applyCollapsedPreference)
     </template>
     <template #layout-bottom>
       <SearchDialog />
+      <AiChatDrawer v-model="modalOpen" :initial-query="initialQuery" />
       <button
         v-if="!isHomePage"
+        v-show="!modalOpen"
         class="ai-fab-mobile fixed bottom-7 right-7 w-12 h-12 rounded-full bg-brand-1 text-white border-0 cursor-pointer flex items-center justify-center z-[999] transition-[transform,box-shadow] duration-150 hover:-translate-y-0.5"
         style="box-shadow: 0 4px 16px var(--vp-c-brand-soft);"
         @click="openAIModal()"

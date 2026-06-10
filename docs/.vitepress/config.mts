@@ -349,20 +349,6 @@ export default defineConfig({
 
   head: [
     ['link', { rel: 'shortcut icon', type: 'image/x-icon', href: 'https://assets.wbrks.com/assets/logo/logo1.png' }],
-
-    // ── Helora 客服 / AI 嵌入 ───────────────────────────────────────────
-    // 项目所有 AI 入口（HomeNavbar Ask AI 按钮、SearchDialog AI row、首页各 section
-    // 内的 Ask AI 按钮）都走 useAIModal → window.Helora.open()。
-    // 顺序敏感：内联 HeloraConfig 必须在 iife 之前；configKey 按 region 切换多品牌
-    // 配置（HK = helora-hk，SG 暂用默认 helora，后台新增 helora-sg 后再切）。
-    // proxy 联调阶段 staging，验收后切 prod。
-    ['script', {}, `window.HeloraConfig = ${JSON.stringify({
-      proxy: 'staging',
-      source: 'web',
-      configPlatform: 'web',
-      configKey: BUILD_REGION === 'hk' ? 'helora-hk' : 'helora',
-    })};`],
-    ['script', { src: 'https://assets.lbkrs.com/h5hub/helora-embed/helora-embed-0.1.0.dev.iife.js' }],
   ],
 
   // BUILD_REGION 锁定后，srcExclude 已排除其它 region 目录；rewrites 把

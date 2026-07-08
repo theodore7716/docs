@@ -11,9 +11,9 @@ sidebar: true
 
 ## 安卓
 
-- [HK App 下载链接](https%3A%2F%2Fstatic.lbkrs.com%2Fapp%2Flongbridge-online-release.apk)
+- [HK App 下载链接](https://longportapp.cn/zh-CN/download/longbridge)
 
-- [SG App 下载链接](https%3A%2F%2Fstatic.lbkrs.com%2Fapp%2Flongbridgesg-online-release.apk)
+- [SG App 下载链接](https://longbridge.com/sg/download)
 
 ## 苹果（iOS）
 
